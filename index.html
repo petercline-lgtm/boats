@@ -140,9 +140,9 @@
     ============================================================ */
     .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(18px);
+      transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .reveal.visible {
@@ -150,11 +150,11 @@
       transform: translateY(0);
     }
 
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-1 { transition-delay: 0.06s; }
+    .reveal-delay-2 { transition-delay: 0.12s; }
+    .reveal-delay-3 { transition-delay: 0.18s; }
+    .reveal-delay-4 { transition-delay: 0.24s; }
+    .reveal-delay-5 { transition-delay: 0.30s; }
 
     /* ============================================================
        NAVIGATION
@@ -1827,7 +1827,7 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 
       revealElements.forEach(el => observer.observe(el));
     } else {
