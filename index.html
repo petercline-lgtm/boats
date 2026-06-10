@@ -136,6 +136,8 @@
     .about-content p{font-size:1rem;line-height:1.85;color:#4A5568;margin-bottom:1.5rem}
     .about-divider{width:60px;height:1px;background:var(--gold);margin:2rem 0}
     .about-image-wrap{position:relative}
+    /* graceful placeholder if any photo fails to load */
+    img.img-fallback{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-dk) 55%,#13344f 100%);object-fit:cover}
     .about-image-main{width:100%;aspect-ratio:4/5;object-fit:cover}
     .about-image-accent{position:absolute;bottom:-2.5rem;left:-2.5rem;width:55%;aspect-ratio:1;object-fit:cover;border:6px solid var(--white);box-shadow:var(--lg)}
 
@@ -143,7 +145,7 @@
     #services{padding:8rem 0;background:var(--off)}
     .services-header{text-align:center;margin-bottom:4.5rem}
     .services-header .section-heading{font-size:clamp(2rem,3vw,3rem)}
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5px;background:var(--gray-lt);border:1.5px solid var(--gray-lt)}
+    .services-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5px;background:var(--gray-lt);border:1.5px solid var(--gray-lt)}
     .service-card{background:var(--white);padding:2.5rem 2rem;transition:var(--t);cursor:default;position:relative;overflow:hidden}
     .service-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s ease}
     .service-card:hover{background:var(--navy)}
@@ -341,6 +343,7 @@
     @media(max-width:1024px){
       .about-grid,.approach-grid,.contact-grid{grid-template-columns:1fr;gap:3.5rem}
       .about-image-wrap{max-width:560px;margin:0 auto}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
       .footer-grid{grid-template-columns:1fr 1fr}
       .gallery-slide{flex:0 0 calc(50% - .75rem)}
       .faq-grid{grid-template-columns:1fr}
@@ -546,8 +549,8 @@
         <button class="btn btn-navy reveal reveal-delay-4" style="margin-top:1rem" onclick="openModal()">Get Started Today</button>
       </div>
       <div class="about-image-wrap reveal reveal-delay-2">
-        <img class="about-image-main" src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=900&q=85&auto=format&fit=crop" alt="Yacht teak deck being professionally detailed" loading="lazy"/>
-        <img class="about-image-accent" src="https://images.unsplash.com/photo-1519832514-c41e5f53f4ac?w=600&q=85&auto=format&fit=crop" alt="Close-up of polished yacht hardware" loading="lazy"/>
+        <img class="about-image-main" src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=900&q=85&auto=format&fit=crop" alt="Yacht teak deck being professionally detailed" loading="lazy" onerror="imgFail(this)"/>
+        <img class="about-image-accent" src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=85&auto=format&fit=crop" alt="Luxury motor yacht on Lake Michigan" loading="lazy" onerror="imgFail(this)"/>
       </div>
     </div>
   </div>
@@ -592,7 +595,7 @@
         </div>
       </div>
       <div class="approach-image reveal reveal-delay-2">
-        <img class="approach-photo" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=85&auto=format&fit=crop" alt="Chicago skyline viewed from Lake Michigan" loading="lazy"/>
+        <img class="approach-photo" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=85&auto=format&fit=crop" alt="Chicago skyline viewed from Lake Michigan" loading="lazy" onerror="imgFail(this)"/>
         <div class="approach-photo-overlay" aria-hidden="true"></div>
       </div>
     </div>
@@ -608,12 +611,12 @@
   </div>
   <div class="gallery-track-wrap reveal reveal-delay-2">
     <div class="gallery-track" id="galleryTrack">
-      <div class="gallery-slide" onclick="openLightbox(0)"><img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80&auto=format&fit=crop" alt="Luxury motor yacht underway on open water" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Open water, full speed ahead</span></div></div>
-      <div class="gallery-slide" onclick="openLightbox(1)"><img src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&q=80&auto=format&fit=crop" alt="Friends celebrating on yacht deck at sunset" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Golden hour on the deck</span></div></div>
-      <div class="gallery-slide" onclick="openLightbox(2)"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80&auto=format&fit=crop" alt="Sunset over Lake Michigan from yacht" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Lake Michigan at dusk</span></div></div>
-      <div class="gallery-slide" onclick="openLightbox(3)"><img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop" alt="Yacht deck detail and teak wood" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Teak — restored to perfection</span></div></div>
-      <div class="gallery-slide" onclick="openLightbox(4)"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&auto=format&fit=crop" alt="Chicago skyline from the water" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Chicago from the water</span></div></div>
-      <div class="gallery-slide" onclick="openLightbox(5)"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80&auto=format&fit=crop" alt="Yacht marina at night with city lights" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Harbored and ready</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(0)"><img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80&auto=format&fit=crop" alt="Luxury motor yacht underway on open water" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Open water, full speed ahead</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(1)"><img src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&q=80&auto=format&fit=crop" alt="Friends celebrating on yacht deck at sunset" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Golden hour on the deck</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(2)"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80&auto=format&fit=crop" alt="Sunset over Lake Michigan from yacht" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Lake Michigan at dusk</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(3)"><img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop" alt="Yacht deck detail and teak wood" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Teak — restored to perfection</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(4)"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&auto=format&fit=crop" alt="Chicago skyline from the water" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Chicago from the water</span></div></div>
+      <div class="gallery-slide" onclick="openLightbox(5)"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80&auto=format&fit=crop" alt="Yacht marina at night with city lights" loading="lazy" onerror="imgFail(this)"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Harbored and ready</span></div></div>
     </div>
   </div>
   <div class="container">
@@ -754,6 +757,9 @@
 </footer>
 
 <script>
+// ── IMAGE FALLBACK ── replace a broken photo with a clean gradient panel
+function imgFail(el){el.onerror=null;el.classList.add('img-fallback');el.removeAttribute('src');el.alt='';}
+
 // ── SCROLL PROGRESS ──
 const pb=document.getElementById('progress-bar');
 window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
