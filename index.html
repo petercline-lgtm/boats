@@ -45,6 +45,23 @@
     /* ── SCROLL PROGRESS ── */
     #progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:2000;width:0%;transition:width .1s linear}
 
+    /* ── LAKE CONDITIONS STRIP ── */
+    #lake-conditions{background:var(--navy-dk);border-bottom:1px solid rgba(194,162,76,.15);padding:1.1rem 0}
+    .conditions-inner{display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+    .conditions-inner::-webkit-scrollbar{display:none}
+    .condition-source{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-right:2rem;border-right:1px solid rgba(255,255,255,.1);margin-right:2rem;white-space:nowrap;flex-shrink:0}
+    .condition-source span{display:block;font-size:.58rem;color:rgba(255,255,255,.35);letter-spacing:.1em;margin-top:2px;font-weight:400}
+    .condition-items{display:flex;gap:2rem;align-items:center;flex-wrap:nowrap}
+    .condition-item{display:flex;align-items:center;gap:.65rem;white-space:nowrap;flex-shrink:0}
+    .condition-icon{font-size:1.1rem;line-height:1}
+    .condition-label{font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:1px}
+    .condition-value{font-size:.9rem;font-weight:500;color:var(--white);letter-spacing:.02em}
+    .condition-sub{font-size:.68rem;color:rgba(255,255,255,.45);margin-top:1px;display:block}
+    .condition-sep{width:1px;height:28px;background:rgba(255,255,255,.08);flex-shrink:0}
+    .conditions-loading{font-size:.8rem;color:rgba(255,255,255,.4);letter-spacing:.05em}
+    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+    .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-right:.4rem;animation:pulse-dot 2s infinite;vertical-align:middle}
+
     /* ── UTILITIES ── */
     .container{max-width:1200px;margin:0 auto;padding:0 2rem}
     .section-label{font-size:.7rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
@@ -93,7 +110,7 @@
 
     /* ── HERO ── */
     #hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;/* SWAP: your hero image */background-image:url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2000&q=85&auto=format&fit=crop');background-size:cover;background-position:center 40%;transform:scale(1.05);transition:transform 6s ease-out;will-change:transform}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2000&q=85&auto=format&fit=crop');background-size:cover;background-position:center 40%;transform:scale(1.05);transition:transform 6s ease-out;will-change:transform}
     .hero-bg.loaded{transform:scale(1)}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,26,47,.85) 0%,rgba(11,31,51,.65) 50%,rgba(11,31,51,.35) 100%)}
     .hero-content{position:relative;z-index:2;max-width:760px}
@@ -196,7 +213,7 @@
 
     /* ── SEASONAL ── */
     #seasonal{padding:0;position:relative;min-height:560px;display:flex;align-items:center}
-    .seasonal-bg{position:absolute;inset:0;/* SWAP: marina image */background-image:url('https://images.unsplash.com/photo-1534259164093-6a4f4c0e1b5c?w=2000&q=80&auto=format&fit=crop');background-size:cover;background-position:center}
+    .seasonal-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1534259164093-6a4f4c0e1b5c?w=2000&q=80&auto=format&fit=crop');background-size:cover;background-position:center}
     .seasonal-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,47,.92) 0%,rgba(10,26,47,.75) 55%,rgba(10,26,47,.45) 100%)}
     .seasonal-content{position:relative;z-index:2;padding:6rem 0;max-width:620px}
     .seasonal-content .section-label{color:var(--gold)}
@@ -294,7 +311,6 @@
     /* ── FLOATING CTA ── */
     #float-cta{position:fixed;bottom:2rem;right:2rem;z-index:800;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .4s var(--ease),transform .4s var(--ease)}
     #float-cta.visible{opacity:1;transform:translateY(0);pointer-events:all}
-    #float-cta .btn{box-shadow:0 8px 32px rgba(194,162,76,.4);border-radius:0}
 
     /* ── BOOKING MODAL ── */
     #booking-modal{position:fixed;inset:0;background:rgba(10,26,47,.9);z-index:4000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
@@ -349,6 +365,7 @@
       .testi-slide{padding:0 1rem}
       .modal-box{max-height:95vh}
       .service-select-grid{grid-template-columns:1fr}
+      .condition-items{gap:1.25rem}
     }
     @media(max-width:480px){
       .container{padding:0 1.25rem}
@@ -360,14 +377,10 @@
 </head>
 <body>
 
-<!-- CURSOR -->
 <div id="cursor-dot" aria-hidden="true"></div>
 <div id="cursor-ring" aria-hidden="true"></div>
-
-<!-- SCROLL PROGRESS -->
 <div id="progress-bar" aria-hidden="true"></div>
 
-<!-- FLOATING CTA -->
 <div id="float-cta">
   <button class="btn btn-gold" onclick="openModal()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -375,7 +388,6 @@
   </button>
 </div>
 
-<!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
   <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">&#8249;</button>
@@ -383,7 +395,6 @@
   <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)" aria-label="Next">&#8250;</button>
 </div>
 
-<!-- BOOKING MODAL -->
 <div id="booking-modal" role="dialog" aria-modal="true" aria-label="Request Service">
   <div class="modal-box">
     <div class="modal-header">
@@ -393,7 +404,6 @@
       </div>
       <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
     </div>
-
     <div class="modal-steps" id="modalSteps">
       <div class="modal-step active" data-step="1"><span class="step-num">1</span>Service</div>
       <div class="modal-step-connector"></div>
@@ -401,9 +411,7 @@
       <div class="modal-step-connector"></div>
       <div class="modal-step" data-step="3"><span class="step-num">3</span>Contact</div>
     </div>
-
     <div class="modal-body">
-      <!-- Step 1 -->
       <div class="modal-pane active" id="modal-pane-1">
         <p style="font-size:.88rem;color:#4A5568;margin-bottom:1.5rem">What service are you looking for?</p>
         <div class="service-select-grid">
@@ -418,89 +426,38 @@
         </div>
         <div id="modal-error-1" style="font-size:.75rem;color:#C0392B;display:none;margin-top:.5rem">Please select a service to continue.</div>
       </div>
-
-      <!-- Step 2 -->
       <div class="modal-pane" id="modal-pane-2">
         <p style="font-size:.88rem;color:#4A5568;margin-bottom:1.5rem">Tell us about your vessel and preferred timing.</p>
         <div class="form-row">
-          <div class="form-group" id="mg-vtype">
-            <label for="m-vessel">Vessel Type *</label>
-            <select id="m-vessel" required>
-              <option value="" disabled selected>Select…</option>
-              <option>Motor Yacht (under 40')</option>
-              <option>Motor Yacht (40'–60')</option>
-              <option>Motor Yacht (60'+)</option>
-              <option>Sailboat</option>
-              <option>Classic / Antique</option>
-              <option>Other</option>
-            </select>
-            <p class="form-error">Please select your vessel type.</p>
-          </div>
-          <div class="form-group" id="mg-harbor">
-            <label for="m-harbor">Home Harbor *</label>
-            <select id="m-harbor" required>
-              <option value="" disabled selected>Select…</option>
-              <option>Burnham Harbor</option>
-              <option>DuSable Harbor</option>
-              <option>Monroe Harbor</option>
-              <option>Belmont Harbor</option>
-              <option>Montrose Harbor</option>
-              <option>Other</option>
-            </select>
-            <p class="form-error">Please select a harbor.</p>
-          </div>
+          <div class="form-group" id="mg-vtype"><label for="m-vessel">Vessel Type *</label><select id="m-vessel" required><option value="" disabled selected>Select…</option><option>Motor Yacht (under 40')</option><option>Motor Yacht (40'–60')</option><option>Motor Yacht (60'+)</option><option>Sailboat</option><option>Classic / Antique</option><option>Other</option></select><p class="form-error">Please select your vessel type.</p></div>
+          <div class="form-group" id="mg-harbor"><label for="m-harbor">Home Harbor *</label><select id="m-harbor" required><option value="" disabled selected>Select…</option><option>Burnham Harbor</option><option>DuSable Harbor</option><option>Monroe Harbor</option><option>Belmont Harbor</option><option>Montrose Harbor</option><option>Other</option></select><p class="form-error">Please select a harbor.</p></div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="m-date">Preferred Start Date</label>
-            <input type="date" id="m-date" />
-          </div>
-          <div class="form-group">
-            <label for="m-vessel-name">Vessel Name</label>
-            <input type="text" id="m-vessel-name" placeholder="Optional" />
-          </div>
+          <div class="form-group"><label for="m-date">Preferred Start Date</label><input type="date" id="m-date" /></div>
+          <div class="form-group"><label for="m-vessel-name">Vessel Name</label><input type="text" id="m-vessel-name" placeholder="Optional" /></div>
         </div>
-        <div class="form-group">
-          <label for="m-notes">Additional Notes</label>
-          <textarea id="m-notes" style="min-height:90px" placeholder="Any details about your vessel or the service needed…"></textarea>
-        </div>
+        <div class="form-group"><label for="m-notes">Additional Notes</label><textarea id="m-notes" style="min-height:90px" placeholder="Any details about your vessel or the service needed…"></textarea></div>
         <div id="modal-error-2" style="font-size:.75rem;color:#C0392B;display:none;margin-top:.5rem">Please fill in the required fields.</div>
       </div>
-
-      <!-- Step 3 -->
       <div class="modal-pane" id="modal-pane-3">
         <p style="font-size:.88rem;color:#4A5568;margin-bottom:1.5rem">How should we reach you?</p>
         <div class="form-row">
-          <div class="form-group" id="mg-mname">
-            <label for="m-name">Full Name *</label>
-            <input type="text" id="m-name" placeholder="Your name" required />
-            <p class="form-error">Please enter your name.</p>
-          </div>
-          <div class="form-group" id="mg-memail">
-            <label for="m-email">Email *</label>
-            <input type="email" id="m-email" placeholder="you@example.com" required />
-            <p class="form-error">Please enter a valid email.</p>
-          </div>
+          <div class="form-group" id="mg-mname"><label for="m-name">Full Name *</label><input type="text" id="m-name" placeholder="Your name" required /><p class="form-error">Please enter your name.</p></div>
+          <div class="form-group" id="mg-memail"><label for="m-email">Email *</label><input type="email" id="m-email" placeholder="you@example.com" required /><p class="form-error">Please enter a valid email.</p></div>
         </div>
-        <div class="form-group">
-          <label for="m-phone">Phone</label>
-          <input type="tel" id="m-phone" placeholder="(312) 000-0000" />
-        </div>
+        <div class="form-group"><label for="m-phone">Phone</label><input type="tel" id="m-phone" placeholder="(312) 000-0000" /></div>
         <div style="background:var(--off);border:1px solid var(--gray-lt);padding:1.25rem;font-size:.85rem;color:#4A5568;line-height:1.7;margin-top:.5rem">
           <strong style="color:var(--navy);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;">Your Request Summary</strong><br/>
           <span id="modal-summary"></span>
         </div>
         <div id="modal-error-3" style="font-size:.75rem;color:#C0392B;display:none;margin-top:.75rem">Please fill in your name and email.</div>
       </div>
-
-      <!-- Success -->
       <div class="modal-pane modal-success" id="modal-pane-success">
         <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         <h3>Request Received</h3>
         <p>We'll be in touch within one business day to confirm your service and answer any questions.</p>
       </div>
     </div>
-
     <div class="modal-footer" id="modal-footer">
       <button class="btn btn-outline" id="modal-back-btn" onclick="modalBack()" style="color:var(--navy);border-color:var(--gray-lt)" aria-label="Back">← Back</button>
       <button class="btn btn-gold" id="modal-next-btn" onclick="modalNext()">Continue →</button>
@@ -508,7 +465,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav id="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
     <div class="nav-inner">
@@ -535,7 +491,6 @@
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Mobile navigation" aria-modal="true">
   <a href="#services" class="mobile-link">Services</a>
   <a href="#approach" class="mobile-link">Our Approach</a>
@@ -545,7 +500,6 @@
   <button class="btn btn-gold" onclick="openModal();toggleMenu(false)" style="margin-top:1rem">Request Service</button>
 </div>
 
-<!-- HERO -->
 <section id="hero" aria-label="Hero">
   <div class="hero-bg" id="heroBg" role="img" aria-label="Luxury motor yacht on Lake Michigan"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -566,7 +520,6 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">Weekly Detailing</span><span class="marquee-item">Teak Restoration</span><span class="marquee-item">Interior Turnover</span><span class="marquee-item">Captain Services</span><span class="marquee-item">Preventative Maintenance</span><span class="marquee-item">Vendor Coordination</span><span class="marquee-item">Seasonal Programs</span><span class="marquee-item">Water Tank Top-Offs</span>
@@ -574,7 +527,21 @@
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- LIVE LAKE CONDITIONS -->
+<div id="lake-conditions" aria-label="Live Lake Michigan conditions">
+  <div class="container">
+    <div class="conditions-inner">
+      <div class="condition-source">
+        <span class="live-dot" aria-hidden="true"></span>Live Conditions
+        <span id="conditionsTime">NOAA Buoy 45198</span>
+      </div>
+      <div class="condition-items" id="conditionItems">
+        <span class="conditions-loading">Fetching buoy data…</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section id="about" aria-labelledby="about-heading">
   <div class="container">
     <div class="about-grid">
@@ -587,19 +554,15 @@
         <button class="btn btn-navy reveal reveal-delay-4" style="margin-top:1rem" onclick="openModal()">Get Started Today</button>
       </div>
       <div class="about-image-wrap reveal reveal-delay-2">
-        <!-- SWAP: yacht detailing photo -->
         <img class="about-image-main" src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=900&q=85&auto=format&fit=crop" alt="Yacht teak deck being professionally detailed" loading="lazy"/>
-        <!-- SWAP: close-up yacht detail -->
         <img class="about-image-accent" src="https://images.unsplash.com/photo-1519832514-c41e5f53f4ac?w=600&q=85&auto=format&fit=crop" alt="Close-up of polished yacht hardware" loading="lazy"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- wave -->
 <span class="wave-divider" aria-hidden="true"><svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="#F7F5F0"/></svg></span>
 
-<!-- SERVICES -->
 <section id="services" aria-labelledby="services-heading">
   <div class="container">
     <div class="services-header">
@@ -621,7 +584,6 @@
   </div>
 </section>
 
-<!-- APPROACH -->
 <section id="approach" aria-labelledby="approach-heading">
   <div class="container">
     <div class="approach-grid">
@@ -632,14 +594,12 @@
         <p class="reveal reveal-delay-3">We take ownership of your vessel's appearance and mechanical readiness as if it were our own. Proactively flagging concerns, coordinating with specialists, and maintaining meticulous service records throughout the season.</p>
         <div class="stats-grid reveal reveal-delay-3" role="list">
           <div class="stat-box" role="listitem"><div class="stat-number" data-count="40" data-suffix="+">0</div><div class="stat-label">Vessels Cared For</div></div>
-          <!-- SWAP: replace data-count values with real numbers -->
           <div class="stat-box" role="listitem"><div class="stat-number" data-count="12">0</div><div class="stat-label">Years on Lake Michigan</div></div>
           <div class="stat-box" role="listitem"><div class="stat-number" data-count="5">0</div><div class="stat-label">Harbors Served</div></div>
           <div class="stat-box" role="listitem"><div class="stat-number" data-count="100" data-suffix="%">0</div><div class="stat-label">Satisfaction Focus</div></div>
         </div>
       </div>
       <div class="approach-image reveal reveal-delay-2">
-        <!-- SWAP: Chicago skyline from water -->
         <img class="approach-photo" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=85&auto=format&fit=crop" alt="Chicago skyline viewed from Lake Michigan" loading="lazy"/>
         <div class="approach-photo-overlay" aria-hidden="true"></div>
       </div>
@@ -647,7 +607,6 @@
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery" aria-labelledby="gallery-heading">
   <div class="container">
     <div class="gallery-header">
@@ -657,7 +616,6 @@
   </div>
   <div class="gallery-track-wrap reveal reveal-delay-2">
     <div class="gallery-track" id="galleryTrack">
-      <!-- SWAP: replace these with your own lifestyle/vessel photos -->
       <div class="gallery-slide" onclick="openLightbox(0)"><img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=800&q=80&auto=format&fit=crop" alt="Luxury motor yacht underway on open water" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Open water, full speed ahead</span></div></div>
       <div class="gallery-slide" onclick="openLightbox(1)"><img src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=800&q=80&auto=format&fit=crop" alt="Friends celebrating on yacht deck at sunset" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Golden hour on the deck</span></div></div>
       <div class="gallery-slide" onclick="openLightbox(2)"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80&auto=format&fit=crop" alt="Sunset over Lake Michigan from yacht" loading="lazy"/><div class="gallery-slide-overlay"><span class="gallery-slide-caption">Lake Michigan at dusk</span></div></div>
@@ -675,7 +633,6 @@
   </div>
 </section>
 
-<!-- SEASONAL -->
 <section id="seasonal" aria-labelledby="seasonal-heading">
   <div class="seasonal-bg" role="img" aria-label="Marina at dusk"></div>
   <div class="seasonal-overlay" aria-hidden="true"></div>
@@ -697,7 +654,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" aria-labelledby="faq-heading">
   <div class="container">
     <div class="faq-header">
@@ -705,76 +661,18 @@
       <h2 id="faq-heading" class="section-heading reveal reveal-delay-1">Everything You Want<br />to Know</h2>
     </div>
     <div class="faq-grid reveal reveal-delay-2">
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">What does a weekly service visit include?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Each weekly visit includes a full exterior wash and rinse, hull wipe-down, cockpit and deck cleaning, fender and line inspection, bilge check, and a brief mechanical visual. You receive a written report after every visit with photos of anything noteworthy.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">Do you work on sailboats as well as motor yachts?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Yes. We care for motor yachts, sailboats, and classic/antique vessels. Our team adjusts protocols based on vessel type — rigging inspection and sail care for sailboats, generator and mechanical checks for motor yachts.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">How do I get a report after each visit?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">After every service visit, you receive a concise written report by email with a checklist of everything completed, any observations or concerns, and photo documentation when relevant. No surprises — ever.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">Which harbors do you serve?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">We serve all five major Chicago harbors: Burnham Harbor, DuSable Harbor, Monroe Harbor, Belmont Harbor, and Montrose Harbor. We can also discuss vessels stored at marinas outside the city on a case-by-case basis.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">Can I book a one-time service instead of a seasonal program?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. We offer one-time detailing, teak restoration, interior turnovers, and single-visit maintenance checks. Many owners start with a one-time service and then enroll in a seasonal program once they see the results.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">What does commissioning and winterization involve?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Spring commissioning includes a full systems check, fresh water flush, battery inspection, engine checks, hull inspection, and polish. Fall winterization covers engine fogging, raw water system winterizing, storage prep, cover installation, and a final condition report so you know exactly where things stand come spring.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">Do you carry insurance?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Yes. Buoyancy Elite carries full general liability and marine operator insurance. Documentation is available upon request for marina requirements or your own peace of mind.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
-          <span class="faq-q-text">How do captain services work?</span>
-          <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner">We provide licensed USCG captains for delivery runs, sea trials, owner-accompanied trips, and charter days. Simply let us know your vessel, departure date, and destination. Fuel and any dock fees are billed separately at cost.</div></div>
-      </div>
-
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">What does a weekly service visit include?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Each weekly visit includes a full exterior wash and rinse, hull wipe-down, cockpit and deck cleaning, fender and line inspection, bilge check, and a brief mechanical visual. You receive a written report after every visit with photos of anything noteworthy.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">Do you work on sailboats as well as motor yachts?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. We care for motor yachts, sailboats, and classic/antique vessels. Our team adjusts protocols based on vessel type — rigging inspection and sail care for sailboats, generator and mechanical checks for motor yachts.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">How do I get a report after each visit?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">After every service visit, you receive a concise written report by email with a checklist of everything completed, any observations or concerns, and photo documentation when relevant. No surprises — ever.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">Which harbors do you serve?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">We serve all five major Chicago harbors: Burnham Harbor, DuSable Harbor, Monroe Harbor, Belmont Harbor, and Montrose Harbor. We can also discuss vessels stored at marinas outside the city on a case-by-case basis.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">Can I book a one-time service instead of a seasonal program?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Absolutely. We offer one-time detailing, teak restoration, interior turnovers, and single-visit maintenance checks. Many owners start with a one-time service and then enroll in a seasonal program once they see the results.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">What does commissioning and winterization involve?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Spring commissioning includes a full systems check, fresh water flush, battery inspection, engine checks, hull inspection, and polish. Fall winterization covers engine fogging, raw water system winterizing, storage prep, cover installation, and a final condition report.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">Do you carry insurance?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Buoyancy Elite carries full general liability and marine operator insurance. Documentation is available upon request for marina requirements or your own peace of mind.</div></div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)"><span class="faq-q-text">How do captain services work?</span><span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><div class="faq-answer-inner">We provide licensed USCG captains for delivery runs, sea trials, owner-accompanied trips, and charter days. Simply let us know your vessel, departure date, and destination. Fuel and any dock fees are billed separately at cost.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials" aria-labelledby="testimonials-heading">
   <div class="container">
     <div class="testimonials-header">
@@ -783,27 +681,9 @@
     </div>
     <div class="testi-carousel reveal reveal-delay-2">
       <div class="testi-track" id="testiTrack">
-        <div class="testi-slide"><div class="testi-inner">
-          <!-- SWAP: real testimonial -->
-          <p class="testi-quote">"Buoyancy Elite has completely transformed how I experience boat ownership. I no longer stress about the condition of the vessel between trips — I know it's in perfect hands. The level of communication and attention to detail is truly second to none."</p>
-          <div class="testi-divider"></div>
-          <p class="testi-author">— [Client Name]</p>
-          <p class="testi-vessel">[Vessel Name &amp; Type] · Burnham Harbor</p>
-        </div></div>
-        <div class="testi-slide"><div class="testi-inner">
-          <!-- SWAP: real testimonial -->
-          <p class="testi-quote">"I've had my 52-foot Hatteras on Lake Michigan for fifteen years, and these are the first people I've trusted to care for her the way I would myself. The teak work they did this spring was absolutely flawless."</p>
-          <div class="testi-divider"></div>
-          <p class="testi-author">— [Client Name]</p>
-          <p class="testi-vessel">52' Hatteras Motor Yacht · Monroe Harbor</p>
-        </div></div>
-        <div class="testi-slide"><div class="testi-inner">
-          <!-- SWAP: real testimonial -->
-          <p class="testi-quote">"Signing up for the full seasonal program was the best decision I made this year. From commissioning to winterization, every single detail was handled professionally. I'll never go back to managing this myself."</p>
-          <div class="testi-divider"></div>
-          <p class="testi-author">— [Client Name]</p>
-          <p class="testi-vessel">[Vessel Name &amp; Type] · Montrose Harbor</p>
-        </div></div>
+        <div class="testi-slide"><div class="testi-inner"><p class="testi-quote">"Buoyancy Elite has completely transformed how I experience boat ownership. I no longer stress about the condition of the vessel between trips — I know it's in perfect hands. The level of communication and attention to detail is truly second to none."</p><div class="testi-divider"></div><p class="testi-author">— [Client Name]</p><p class="testi-vessel">[Vessel Name &amp; Type] · Burnham Harbor</p></div></div>
+        <div class="testi-slide"><div class="testi-inner"><p class="testi-quote">"I've had my 52-foot Hatteras on Lake Michigan for fifteen years, and these are the first people I've trusted to care for her the way I would myself. The teak work they did this spring was absolutely flawless."</p><div class="testi-divider"></div><p class="testi-author">— [Client Name]</p><p class="testi-vessel">52' Hatteras Motor Yacht · Monroe Harbor</p></div></div>
+        <div class="testi-slide"><div class="testi-inner"><p class="testi-quote">"Signing up for the full seasonal program was the best decision I made this year. From commissioning to winterization, every single detail was handled professionally. I'll never go back to managing this myself."</p><div class="testi-divider"></div><p class="testi-author">— [Client Name]</p><p class="testi-vessel">[Vessel Name &amp; Type] · Montrose Harbor</p></div></div>
       </div>
       <div class="testi-controls">
         <button class="testi-btn" onclick="testiPrev()" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
@@ -814,7 +694,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" aria-labelledby="contact-heading">
   <div class="container">
     <div class="contact-grid">
@@ -822,18 +701,9 @@
         <p class="section-label reveal">Get In Touch</p>
         <h2 id="contact-heading" class="section-heading reveal reveal-delay-1">Request Service or<br />Ask Us Anything</h2>
         <p class="reveal reveal-delay-2">Ready to experience truly effortless yacht ownership? Reach out to schedule a consultation, discuss a seasonal program, or inquire about any of our services.</p>
-        <div class="contact-detail reveal reveal-delay-2">
-          <div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
-          <div><p class="contact-detail-label">Phone</p><!-- SWAP: real phone --><p class="contact-detail-value">[Phone Number]</p></div>
-        </div>
-        <div class="contact-detail reveal reveal-delay-3">
-          <div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-          <div><p class="contact-detail-label">Email</p><!-- SWAP: real email --><p class="contact-detail-value">[email@buoyancyelite.com]</p></div>
-        </div>
-        <div class="contact-detail reveal reveal-delay-3">
-          <div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-          <div><p class="contact-detail-label">Service Area</p><p class="contact-detail-value">Chicago, IL · Lake Michigan</p></div>
-        </div>
+        <div class="contact-detail reveal reveal-delay-2"><div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><div><p class="contact-detail-label">Phone</p><p class="contact-detail-value">[Phone Number]</p></div></div>
+        <div class="contact-detail reveal reveal-delay-3"><div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><p class="contact-detail-label">Email</p><p class="contact-detail-value">[email@buoyancyelite.com]</p></div></div>
+        <div class="contact-detail reveal reveal-delay-3"><div class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><p class="contact-detail-label">Service Area</p><p class="contact-detail-value">Chicago, IL · Lake Michigan</p></div></div>
         <div class="reveal reveal-delay-4">
           <p style="font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem">Harbors We Serve</p>
           <div class="harbors-list" role="list">
@@ -869,14 +739,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#hero" class="nav-logo" aria-label="Buoyancy Elite home"><span class="nav-logo-primary">BUOYANCY ELITE</span><span class="nav-logo-sub">Yacht Management</span></a>
         <p>Chicago's premier full-service yacht care and management company, keeping every vessel in exceptional condition across Lake Michigan's finest harbors.</p>
-        <!-- SWAP: real social URLs -->
         <div class="social-links" aria-label="Social media">
           <a href="#" class="social-link" aria-label="Instagram" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
           <a href="#" class="social-link" aria-label="Facebook" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -895,303 +763,217 @@
 
 <script>
 // ── CURSOR ──
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
-(function animRing() { rx += (mx-rx)*.18; ry += (my-ry)*.18; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
 
 // ── SCROLL PROGRESS ──
-const pb = document.getElementById('progress-bar');
-window.addEventListener('scroll', () => {
-  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-  pb.style.width = pct + '%';
-}, {passive:true});
+const pb=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
 
 // ── NAVBAR ──
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
 
-// ── HERO KEN BURNS ──
-window.addEventListener('load', () => document.getElementById('heroBg').classList.add('loaded'));
-
-// ── HERO PARALLAX ──
-document.getElementById('hero').addEventListener('mousemove', e => {
-  const {left,top,width,height} = e.currentTarget.getBoundingClientRect();
-  const xPct = (e.clientX - left) / width - 0.5;
-  const yPct = (e.clientY - top) / height - 0.5;
-  document.getElementById('heroBg').style.transform = `scale(1) translate(${xPct*18}px,${yPct*10}px)`;
+// ── HERO ──
+window.addEventListener('load',()=>document.getElementById('heroBg').classList.add('loaded'));
+document.getElementById('hero').addEventListener('mousemove',e=>{
+  const{left,top,width,height}=e.currentTarget.getBoundingClientRect();
+  const xP=(e.clientX-left)/width-.5,yP=(e.clientY-top)/height-.5;
+  document.getElementById('heroBg').style.transform=`scale(1) translate(${xP*18}px,${yP*10}px)`;
 });
-document.getElementById('hero').addEventListener('mouseleave', () => {
-  document.getElementById('heroBg').style.transform = 'scale(1)';
-});
+document.getElementById('hero').addEventListener('mouseleave',()=>{document.getElementById('heroBg').style.transform='scale(1)';});
 
 // ── HAMBURGER ──
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobileNav');
-function toggleMenu(open) {
-  hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-  mobileNav.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
-document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
-document.addEventListener('keydown', e => { if(e.key==='Escape') { toggleMenu(false); closeModal(); closeLightbox(); }});
+const hamburger=document.getElementById('hamburger'),mobileNav=document.getElementById('mobileNav');
+function toggleMenu(open){hamburger.classList.toggle('open',open);hamburger.setAttribute('aria-expanded',open);mobileNav.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+hamburger.addEventListener('click',()=>toggleMenu(!hamburger.classList.contains('open')));
+document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>toggleMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggleMenu(false);closeModal();closeLightbox();}});
 
 // ── SCROLL REVEAL ──
-const reveals = document.querySelectorAll('.reveal');
-if('IntersectionObserver' in window) {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
-  }, {threshold:.07, rootMargin:'0px 0px -40px 0px'});
-  reveals.forEach(el => obs.observe(el));
-} else { reveals.forEach(el => el.classList.add('visible')); }
+const reveals=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+  reveals.forEach(el=>obs.observe(el));
+}else{reveals.forEach(el=>el.classList.add('visible'));}
 
 // ── ANIMATED COUNTERS ──
-function animateCounter(el) {
-  const target = parseInt(el.dataset.count);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1800;
-  const start = performance.now();
-  function step(now) {
-    const pct = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - pct, 3);
-    el.textContent = Math.floor(ease * target) + suffix;
-    if(pct < 1) requestAnimationFrame(step);
-  }
+function animateCounter(el){
+  const target=parseInt(el.dataset.count),suffix=el.dataset.suffix||'',duration=1800,start=performance.now();
+  function step(now){const pct=Math.min((now-start)/duration,1),ease=1-Math.pow(1-pct,3);el.textContent=Math.floor(ease*target)+suffix;if(pct<1)requestAnimationFrame(step);}
   requestAnimationFrame(step);
 }
-const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting && e.target.dataset.count) { animateCounter(e.target); counterObs.unobserve(e.target); }});
-}, {threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+const counterObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&e.target.dataset.count){animateCounter(e.target);counterObs.unobserve(e.target);}});},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
 
 // ── FLOATING CTA ──
-const floatCta = document.getElementById('float-cta');
-window.addEventListener('scroll', () => floatCta.classList.toggle('visible', window.scrollY > 600), {passive:true});
+const floatCta=document.getElementById('float-cta');
+window.addEventListener('scroll',()=>floatCta.classList.toggle('visible',window.scrollY>600),{passive:true});
 
-// ── WEATHER ──
-async function fetchWeather() {
-  try {
-    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.85&longitude=-87.65&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Chicago');
-    const data = await res.json();
-    const c = data.current;
-    const code = c.weather_code;
-    const temp = Math.round(c.temperature_2m);
-    const wind = Math.round(c.wind_speed_10m);
-    const icons = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
-    const icon = icons[code] || '⛵';
-    document.getElementById('weatherIcon').textContent = icon;
-    document.getElementById('weatherText').textContent = `${temp}°F · ${wind} mph wind`;
-  } catch(e) { document.getElementById('weatherText').textContent = 'Chicago, IL'; }
+// ── NAV WEATHER BADGE ──
+async function fetchNavWeather(){
+  try{
+    const res=await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.85&longitude=-87.65&current=temperature_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Chicago');
+    const d=await res.json(),c=d.current;
+    const icons={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+    document.getElementById('weatherIcon').textContent=icons[c.weather_code]||'⛵';
+    document.getElementById('weatherText').textContent=`${Math.round(c.temperature_2m)}°F · ${Math.round(c.wind_speed_10m)} mph`;
+  }catch(e){document.getElementById('weatherText').textContent='Chicago, IL';}
 }
-fetchWeather();
+fetchNavWeather();
 
-// ── GALLERY CAROUSEL ──
-const galleryTrack = document.getElementById('galleryTrack');
-const slides = galleryTrack.querySelectorAll('.gallery-slide');
-const galleryDots = document.getElementById('galleryDots');
-let gIdx = 0;
-const visibleSlides = () => window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+// ── LIVE LAKE CONDITIONS — NOAA Buoy 45198 ──
+function degToCompass(deg){if(deg===null)return '—';return['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(deg/22.5)%16];}
+function cToF(c){return c===null?null:Math.round(c*9/5+32);}
+function mpsToMph(v){return v===null?null:Math.round(v*2.23694);}
+function mToFt(m){return m===null?null:(m*3.28084).toFixed(1);}
 
-function buildGalleryDots() {
-  galleryDots.innerHTML = '';
-  const pages = Math.ceil(slides.length / visibleSlides());
-  for(let i=0;i<pages;i++) {
-    const d = document.createElement('button');
-    d.className = 'gallery-dot' + (i===0?' active':'');
-    d.setAttribute('aria-label', `Go to slide group ${i+1}`);
-    d.onclick = () => goGallery(i * visibleSlides());
-    galleryDots.appendChild(d);
+function renderConditions(items){
+  document.getElementById('conditionItems').innerHTML=items.map((item,i)=>
+    (i>0?'<div class="condition-sep" aria-hidden="true"></div>':'')+
+    `<div class="condition-item"><span class="condition-icon" aria-hidden="true">${item.icon}</span><div><span class="condition-label">${item.label}</span><span class="condition-value">${item.value}</span>${item.sub?`<span class="condition-sub">${item.sub}</span>`:''}</div></div>`
+  ).join('');
+}
+
+async function fetchBuoyData(){
+  // NOAA NDBC buoy 45198 — Lake Michigan near Chicago
+  // corsproxy.io used to bypass CORS on NOAA's plain-text feed
+  // For production reliability, replace with a Vercel serverless function proxy
+  const BUOY_URL='https://www.ndbc.noaa.gov/data/realtime2/45198.txt';
+  const PROXY='https://corsproxy.io/?url=';
+  try{
+    const res=await fetch(PROXY+encodeURIComponent(BUOY_URL),{signal:AbortSignal.timeout(8000)});
+    if(!res.ok)throw new Error('proxy error');
+    const text=await res.text();
+    const lines=text.trim().split('\n').filter(l=>!l.startsWith('#'));
+    if(!lines.length)throw new Error('no data');
+    const cols=lines[0].trim().split(/\s+/);
+    const get=(i)=>{const v=cols[i];return(v==='MM'||v===undefined)?null:parseFloat(v);};
+    const mo=cols[1],dy=cols[2],hr=cols[3],mn=cols[4];
+    const wdir=get(5),wspd=get(6),gst=get(7),wvht=get(8),dpd=get(9),pres=get(12),atmp=get(13),wtmp=get(14);
+    document.getElementById('conditionsTime').textContent=`Buoy 45198 · ${mo}/${dy} ${hr}:${mn} UTC`;
+    renderConditions([
+      {icon:'💨',label:'Wind',       value:wspd!==null?`${mpsToMph(wspd)} mph ${degToCompass(wdir)}`:'—',       sub:gst!==null?`Gusts ${mpsToMph(gst)} mph`:null},
+      {icon:'🌊',label:'Wave Height',value:wvht!==null?`${mToFt(wvht)} ft`:'—',                                  sub:dpd!==null?`${dpd}s period`:null},
+      {icon:'🌡️',label:'Water Temp', value:wtmp!==null?`${cToF(wtmp)}°F`:'—',                                    sub:wtmp!==null?`${wtmp.toFixed(1)}°C`:null},
+      {icon:'🌤', label:'Air Temp',   value:atmp!==null?`${cToF(atmp)}°F`:'—',                                    sub:atmp!==null?`${atmp.toFixed(1)}°C`:null},
+      {icon:'📊',label:'Pressure',   value:pres!==null?`${pres} hPa`:'—',                                        sub:null},
+    ]);
+  }catch(e){
+    // Fallback: Open-Meteo atmosphere + marine
+    try{
+      const[wxRes,marineRes]=await Promise.all([
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=41.85&longitude=-87.65&current=temperature_2m,wind_speed_10m,wind_direction_10m,surface_pressure&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America/Chicago'),
+        fetch('https://marine-api.open-meteo.com/v1/marine?latitude=41.85&longitude=-87.65&current=wave_height,wave_period,wave_direction&length_unit=imperial')
+      ]);
+      const wx=await wxRes.json(),marine=await marineRes.json();
+      const wc=wx.current,mc=marine.current;
+      document.getElementById('conditionsTime').textContent='Open-Meteo · Lake Michigan';
+      renderConditions([
+        {icon:'💨',label:'Wind',       value:`${Math.round(wc.wind_speed_10m)} mph ${degToCompass(wc.wind_direction_10m)}`,sub:null},
+        {icon:'🌊',label:'Wave Height',value:mc.wave_height!==null?`${mc.wave_height.toFixed(1)} ft`:'—',sub:mc.wave_period?`${Math.round(mc.wave_period)}s period`:null},
+        {icon:'🌡️',label:'Air Temp',  value:`${Math.round(wc.temperature_2m)}°F`,sub:null},
+        {icon:'📊',label:'Pressure',  value:`${Math.round(wc.surface_pressure)} hPa`,sub:null},
+      ]);
+    }catch(e2){document.getElementById('conditionItems').innerHTML='<span class="conditions-loading">Conditions temporarily unavailable</span>';}
   }
 }
+fetchBuoyData();
+setInterval(fetchBuoyData,10*60*1000);
 
-function goGallery(idx) {
-  const total = slides.length;
-  const vis = visibleSlides();
-  gIdx = Math.max(0, Math.min(idx, total - vis));
-  const slideW = galleryTrack.parentElement.offsetWidth / vis;
-  galleryTrack.style.transform = `translateX(-${gIdx * slideW}px)`;
-  const page = Math.floor(gIdx / vis);
-  galleryDots.querySelectorAll('.gallery-dot').forEach((d,i) => d.classList.toggle('active', i===page));
-}
-
-function galleryNext() { goGallery(gIdx + visibleSlides()); }
-function galleryPrev() { goGallery(gIdx - visibleSlides()); }
-
+// ── GALLERY ──
+const galleryTrack=document.getElementById('galleryTrack');
+const slides=galleryTrack.querySelectorAll('.gallery-slide');
+const galleryDots=document.getElementById('galleryDots');
+let gIdx=0;
+const visibleSlides=()=>window.innerWidth<768?1:window.innerWidth<1024?2:3;
+function buildGalleryDots(){galleryDots.innerHTML='';const pages=Math.ceil(slides.length/visibleSlides());for(let i=0;i<pages;i++){const d=document.createElement('button');d.className='gallery-dot'+(i===0?' active':'');d.setAttribute('aria-label',`Slide group ${i+1}`);d.onclick=()=>goGallery(i*visibleSlides());galleryDots.appendChild(d);}}
+function goGallery(idx){const vis=visibleSlides();gIdx=Math.max(0,Math.min(idx,slides.length-vis));const slideW=galleryTrack.parentElement.offsetWidth/vis;galleryTrack.style.transform=`translateX(-${gIdx*slideW}px)`;const page=Math.floor(gIdx/vis);galleryDots.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===page));}
+function galleryNext(){goGallery(gIdx+visibleSlides());}
+function galleryPrev(){goGallery(gIdx-visibleSlides());}
 buildGalleryDots();
-window.addEventListener('resize', () => { buildGalleryDots(); goGallery(0); });
-
-// Gallery auto-play
-let galleryTimer = setInterval(() => galleryNext(), 5000);
-galleryTrack.parentElement.addEventListener('mouseenter', () => clearInterval(galleryTimer));
-galleryTrack.parentElement.addEventListener('mouseleave', () => { galleryTimer = setInterval(() => galleryNext(), 5000); });
+window.addEventListener('resize',()=>{buildGalleryDots();goGallery(0);});
+let galleryTimer=setInterval(()=>galleryNext(),5000);
+galleryTrack.parentElement.addEventListener('mouseenter',()=>clearInterval(galleryTimer));
+galleryTrack.parentElement.addEventListener('mouseleave',()=>{galleryTimer=setInterval(()=>galleryNext(),5000);});
 
 // ── LIGHTBOX ──
-const lightboxImages = Array.from(slides).map(s => ({src:s.querySelector('img').src, alt:s.querySelector('img').alt}));
-let lbIdx = 0;
-function openLightbox(idx) {
-  lbIdx = idx;
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = lightboxImages[lbIdx].src;
-  img.alt = lightboxImages[lbIdx].alt;
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function lightboxNav(dir) {
-  lbIdx = (lbIdx + dir + lightboxImages.length) % lightboxImages.length;
-  const img = document.getElementById('lightbox-img');
-  img.src = lightboxImages[lbIdx].src;
-  img.alt = lightboxImages[lbIdx].alt;
-}
-document.getElementById('lightbox').addEventListener('click', e => { if(e.target === e.currentTarget) closeLightbox(); });
+const lightboxImages=Array.from(slides).map(s=>({src:s.querySelector('img').src,alt:s.querySelector('img').alt}));
+let lbIdx=0;
+function openLightbox(idx){lbIdx=idx;const img=document.getElementById('lightbox-img');img.src=lightboxImages[lbIdx].src;img.alt=lightboxImages[lbIdx].alt;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function lightboxNav(dir){lbIdx=(lbIdx+dir+lightboxImages.length)%lightboxImages.length;const img=document.getElementById('lightbox-img');img.src=lightboxImages[lbIdx].src;img.alt=lightboxImages[lbIdx].alt;}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLightbox();});
 
 // ── FAQ ──
-function toggleFaq(btn) {
-  const answer = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.faq-question.open').forEach(q => {
-    q.classList.remove('open');
-    q.setAttribute('aria-expanded','false');
-    q.nextElementSibling.style.maxHeight = '0';
-  });
-  if(!isOpen) {
-    btn.classList.add('open');
-    btn.setAttribute('aria-expanded','true');
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-  }
-}
+function toggleFaq(btn){const answer=btn.nextElementSibling,isOpen=btn.classList.contains('open');document.querySelectorAll('.faq-question.open').forEach(q=>{q.classList.remove('open');q.setAttribute('aria-expanded','false');q.nextElementSibling.style.maxHeight='0';});if(!isOpen){btn.classList.add('open');btn.setAttribute('aria-expanded','true');answer.style.maxHeight=answer.scrollHeight+'px';}}
 
-// ── TESTIMONIAL CAROUSEL ──
-const testiTrack = document.getElementById('testiTrack');
-const testiSlides = testiTrack.querySelectorAll('.testi-slide');
-const testiDots = document.getElementById('testiDots');
-let tIdx = 0;
-testiSlides.forEach((_,i) => {
-  const d = document.createElement('button');
-  d.className = 'testi-dot' + (i===0?' active':'');
-  d.setAttribute('aria-label', `Testimonial ${i+1}`);
-  d.onclick = () => goTesti(i);
-  testiDots.appendChild(d);
-});
-function goTesti(idx) {
-  tIdx = (idx + testiSlides.length) % testiSlides.length;
-  testiTrack.style.transform = `translateX(-${tIdx * 100}%)`;
-  testiDots.querySelectorAll('.testi-dot').forEach((d,i) => d.classList.toggle('active', i===tIdx));
-}
-function testiNext() { goTesti(tIdx+1); }
-function testiPrev() { goTesti(tIdx-1); }
-let testiTimer = setInterval(testiNext, 6000);
-testiTrack.parentElement.addEventListener('mouseenter', () => clearInterval(testiTimer));
-testiTrack.parentElement.addEventListener('mouseleave', () => { testiTimer = setInterval(testiNext, 6000); });
+// ── TESTIMONIALS ──
+const testiTrack=document.getElementById('testiTrack');
+const testiSlides=testiTrack.querySelectorAll('.testi-slide');
+const testiDots=document.getElementById('testiDots');
+let tIdx=0;
+testiSlides.forEach((_,i)=>{const d=document.createElement('button');d.className='testi-dot'+(i===0?' active':'');d.setAttribute('aria-label',`Testimonial ${i+1}`);d.onclick=()=>goTesti(i);testiDots.appendChild(d);});
+function goTesti(idx){tIdx=(idx+testiSlides.length)%testiSlides.length;testiTrack.style.transform=`translateX(-${tIdx*100}%)`;testiDots.querySelectorAll('.testi-dot').forEach((d,i)=>d.classList.toggle('active',i===tIdx));}
+function testiNext(){goTesti(tIdx+1);}
+function testiPrev(){goTesti(tIdx-1);}
+let testiTimer=setInterval(testiNext,6000);
+testiTrack.parentElement.addEventListener('mouseenter',()=>clearInterval(testiTimer));
+testiTrack.parentElement.addEventListener('mouseleave',()=>{testiTimer=setInterval(testiNext,6000);});
 
 // ── BOOKING MODAL ──
-let modalStep = 1;
-let selectedService = '';
-function openModal() {
-  document.getElementById('booking-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  goModalStep(1);
+let modalStep=1,selectedService='';
+function openModal(){document.getElementById('booking-modal').classList.add('open');document.body.style.overflow='hidden';goModalStep(1);}
+function closeModal(){document.getElementById('booking-modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('booking-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+function goModalStep(step){
+  modalStep=step;
+  document.querySelectorAll('.modal-pane').forEach(p=>p.classList.remove('active'));
+  const pane=document.getElementById('modal-pane-'+step)||document.getElementById('modal-pane-success');
+  if(pane)pane.classList.add('active');
+  document.querySelectorAll('.modal-step').forEach(s=>{const n=parseInt(s.dataset.step);s.classList.toggle('active',n===step);s.classList.toggle('done',n<step);});
+  const footer=document.getElementById('modal-footer');
+  if(step==='success'||step>3){footer.style.display='none';return;}
+  footer.style.display='flex';
+  document.getElementById('modal-back-btn').style.visibility=step>1?'visible':'hidden';
+  document.getElementById('modal-next-btn').textContent=step===3?'Submit Request':'Continue →';
 }
-function closeModal() {
-  document.getElementById('booking-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('booking-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
-
-function goModalStep(step) {
-  modalStep = step;
-  document.querySelectorAll('.modal-pane').forEach(p => p.classList.remove('active'));
-  const pane = document.getElementById('modal-pane-' + step) || document.getElementById('modal-pane-success');
-  if(pane) pane.classList.add('active');
-  document.querySelectorAll('.modal-step').forEach(s => {
-    const n = parseInt(s.dataset.step);
-    s.classList.toggle('active', n === step);
-    s.classList.toggle('done', n < step);
-  });
-  const footer = document.getElementById('modal-footer');
-  const backBtn = document.getElementById('modal-back-btn');
-  const nextBtn = document.getElementById('modal-next-btn');
-  if(step === 'success' || step > 3) { footer.style.display='none'; return; }
-  footer.style.display = 'flex';
-  backBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
-  nextBtn.textContent = step === 3 ? 'Submit Request' : 'Continue →';
-}
-
-function selectService(btn) {
-  document.querySelectorAll('.service-select-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedService = btn.dataset.val;
-  document.getElementById('modal-error-1').style.display = 'none';
-}
-
-function modalNext() {
-  if(modalStep === 1) {
-    if(!selectedService) { document.getElementById('modal-error-1').style.display='block'; return; }
-    goModalStep(2);
-  } else if(modalStep === 2) {
-    const vtype = document.getElementById('m-vessel');
-    const harbor = document.getElementById('m-harbor');
-    let ok = true;
-    [['mg-vtype',vtype],['mg-harbor',harbor]].forEach(([id,el]) => {
-      const g = document.getElementById(id);
-      if(!el.value) { g.classList.add('invalid'); ok=false; } else { g.classList.remove('invalid'); }
-    });
-    if(!ok) { document.getElementById('modal-error-2').style.display='block'; return; }
+function selectService(btn){document.querySelectorAll('.service-select-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedService=btn.dataset.val;document.getElementById('modal-error-1').style.display='none';}
+function modalNext(){
+  if(modalStep===1){if(!selectedService){document.getElementById('modal-error-1').style.display='block';return;}goModalStep(2);}
+  else if(modalStep===2){
+    const vtype=document.getElementById('m-vessel'),harbor=document.getElementById('m-harbor');let ok=true;
+    [['mg-vtype',vtype],['mg-harbor',harbor]].forEach(([id,el])=>{const g=document.getElementById(id);if(!el.value){g.classList.add('invalid');ok=false;}else{g.classList.remove('invalid');}});
+    if(!ok){document.getElementById('modal-error-2').style.display='block';return;}
     document.getElementById('modal-error-2').style.display='none';
-    const date = document.getElementById('m-date').value;
-    const vname = document.getElementById('m-vessel-name').value;
-    document.getElementById('modal-summary').innerHTML =
-      `<b>Service:</b> ${selectedService}<br><b>Vessel:</b> ${vtype.value}${vname?' — '+vname:''}<br><b>Harbor:</b> ${harbor.value}${date?'<br><b>Date:</b> '+date:''}`;
+    const date=document.getElementById('m-date').value,vname=document.getElementById('m-vessel-name').value;
+    document.getElementById('modal-summary').innerHTML=`<b>Service:</b> ${selectedService}<br><b>Vessel:</b> ${vtype.value}${vname?' — '+vname:''}<br><b>Harbor:</b> ${harbor.value}${date?'<br><b>Date:</b> '+date:''}`;
     goModalStep(3);
-  } else if(modalStep === 3) {
-    const name = document.getElementById('m-name');
-    const email = document.getElementById('m-email');
-    let ok = true;
-    [['mg-mname',name,name.value.trim().length>0],['mg-memail',email,/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)]].forEach(([id,el,valid]) => {
-      const g = document.getElementById(id);
-      g.classList.toggle('invalid', !valid);
-      if(!valid) ok=false;
-    });
-    if(!ok) { document.getElementById('modal-error-3').style.display='block'; return; }
-    // Simulate submit
+  }else if(modalStep===3){
+    const name=document.getElementById('m-name'),email=document.getElementById('m-email');let ok=true;
+    [['mg-mname',name,name.value.trim().length>0],['mg-memail',email,/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)]].forEach(([id,el,valid])=>{document.getElementById(id).classList.toggle('invalid',!valid);if(!valid)ok=false;});
+    if(!ok){document.getElementById('modal-error-3').style.display='block';return;}
     goModalStep('success');
   }
 }
-function modalBack() { if(modalStep > 1) goModalStep(modalStep - 1); }
+function modalBack(){if(modalStep>1)goModalStep(modalStep-1);}
 
 // ── CONTACT FORM ──
-const form = document.getElementById('contactForm');
-function validateField(input) {
-  const group = input.closest('[id^="group-"]');
-  if(!group) return true;
-  const valid = input.checkValidity();
-  group.classList.toggle('invalid', !valid);
-  return valid;
-}
-form.querySelectorAll('input,select,textarea').forEach(f => {
-  f.addEventListener('blur', () => validateField(f));
-  f.addEventListener('input', () => { if(f.closest('[id^="group-"]')?.classList.contains('invalid')) validateField(f); });
-});
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  let ok = true;
-  form.querySelectorAll('[required]').forEach(f => { if(!validateField(f)) ok=false; });
-  if(!ok) { form.querySelector('.invalid input,.invalid select,.invalid textarea')?.focus(); return; }
-  const btn = form.querySelector('[type=submit]');
-  btn.textContent = 'Sending…'; btn.disabled = true;
-  setTimeout(() => { form.style.display='none'; document.getElementById('formSuccess').style.display='block'; }, 800);
+const form=document.getElementById('contactForm');
+function validateField(input){const group=input.closest('[id^="group-"]');if(!group)return true;const valid=input.checkValidity();group.classList.toggle('invalid',!valid);return valid;}
+form.querySelectorAll('input,select,textarea').forEach(f=>{f.addEventListener('blur',()=>validateField(f));f.addEventListener('input',()=>{if(f.closest('[id^="group-"]')?.classList.contains('invalid'))validateField(f);});});
+form.addEventListener('submit',e=>{
+  e.preventDefault();let ok=true;
+  form.querySelectorAll('[required]').forEach(f=>{if(!validateField(f))ok=false;});
+  if(!ok){form.querySelector('.invalid input,.invalid select,.invalid textarea')?.focus();return;}
+  const btn=form.querySelector('[type=submit]');btn.textContent='Sending…';btn.disabled=true;
+  setTimeout(()=>{form.style.display='none';document.getElementById('formSuccess').style.display='block';},800);
 });
 
 // ── FOOTER YEAR ──
-document.getElementById('footerYear').textContent = new Date().getFullYear();
+document.getElementById('footerYear').textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
