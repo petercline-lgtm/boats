@@ -1,1044 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Buoyancy Elite Yacht Management — white-glove yacht care for Chicago's harbors. Weekly care, seasonal programs, refit management, and captain services on Lake Michigan." />
-  <title>Buoyancy Elite Yacht Management — Fable Edition</title>
-  <!-- Microsoft Clarity -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Buoyancy Elite — vessel stewardship for Lake Michigan. Weekly care, seasonal programs, refit management, and captain services across Chicago's harbors."/>
+  <title>Buoyancy Elite — Vessel Stewardship · Chicago</title>
   <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x2eyivxcmg");</script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    /* ════════════════════════════════════════════════════════════
-       BUOYANCY ELITE — FABLE EDITION
-       Editorial luxury-marine design system
-       ════════════════════════════════════════════════════════════ */
     :root{
-      --ink:      #0A1626;   /* deep ink navy */
-      --ink-soft: #16263A;
-      --paper:    #FAF7F1;   /* warm alabaster */
-      --paper-dk: #F2EDE3;
-      --gold:     #B6985A;   /* champagne */
-      --gold-lt:  #D2BA82;
-      --slate:    #51606F;   /* secondary text on paper */
-      --mist:     rgba(10,22,38,.12);          /* hairline on paper */
-      --mist-ink: rgba(250,247,241,.14);       /* hairline on ink */
-      --serif:    'Cormorant Garamond', Georgia, serif;
-      --sans:     'Inter', system-ui, sans-serif;
-      --ease:     cubic-bezier(0.22, 1, 0.36, 1);
-      --t:        .35s cubic-bezier(0.25,0.46,0.45,0.94);
+      --linen:#F4EFE4;--linen-2:#EDE8DC;
+      --ink:#18180E;--brass:#8C7856;--brass-l:#B09A6E;
+      --slate:#2B4556;--mid:#6B6254;
+      --rule:rgba(24,24,14,.1);--rule-lt:rgba(244,239,228,.1);
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --ease:cubic-bezier(0.22,1,0.36,1);
+      --nw:64px;
     }
-
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;font-size:16px}
-    body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--paper);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.75}
+    body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--linen);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.75}
     img{display:block;max-width:100%}
     a{color:inherit;text-decoration:none}
     ul{list-style:none}
     button{font-family:inherit}
-    ::selection{background:var(--gold);color:var(--ink)}
-    :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-    section{scroll-margin-top:84px}
+    ::selection{background:var(--brass);color:var(--linen)}
+    :focus-visible{outline:1px solid var(--brass);outline-offset:4px}
+    section{scroll-margin-top:0}
 
-    /* paper grain */
-    body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+    /* ── SIDENAV ── */
+    #sn{position:fixed;left:0;top:0;bottom:0;width:var(--nw);z-index:900;background:var(--linen);border-right:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;padding:2rem 0 1.8rem}
+    .sn-mark{font-family:var(--serif);font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--ink);writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);padding-bottom:1.6rem;border-bottom:1px solid var(--rule);margin-bottom:2.2rem;white-space:nowrap}
+    .sn-dots{display:flex;flex-direction:column;gap:1.5rem;flex:1;align-items:center;justify-content:center}
+    .snd{width:5px;height:5px;border-radius:50%;background:rgba(24,24,14,.2);transition:background .35s,transform .35s;position:relative;cursor:pointer;border:none}
+    .snd:hover,.snd.on{background:var(--brass);transform:scale(1.5)}
+    .snd::after{content:attr(data-label);position:absolute;left:calc(100% + 1.2rem);top:50%;transform:translateY(-50%);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;background:var(--linen);padding:.3rem .75rem;border:1px solid var(--rule);opacity:0;pointer-events:none;transition:opacity .2s}
+    .snd:hover::after{opacity:1}
+    .sn-ed{font-size:.55rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);writing-mode:vertical-rl;transform:rotate(180deg);padding-top:1.6rem;border-top:1px solid var(--rule);margin-top:auto;transition:color .3s}
+    .sn-ed:hover{color:var(--brass)}
 
-    .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+    /* ── MOBILE HEADER ── */
+    #tb{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:var(--linen);border-bottom:1px solid var(--rule);z-index:900;align-items:center;justify-content:space-between;padding:0 1.5rem}
+    .tb-b{font-family:var(--serif);font-size:.8rem;font-weight:700;letter-spacing:.2em;color:var(--ink)}
+    .tb-r{display:flex;align-items:center;gap:1.2rem}
+    .tb-cl{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+    .tb-hb{background:none;border:none;cursor:pointer;font-size:1.6rem;line-height:1;color:var(--ink);letter-spacing:-.08em}
 
-    /* ── type ── */
-    .kicker{display:flex;align-items:center;gap:1rem;font-size:.66rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-    .kicker::before{content:'';width:2.5rem;height:1px;background:var(--gold);flex:none}
-    .kicker .idx{color:var(--slate);font-weight:500;letter-spacing:.2em}
-    h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:-.01em}
-    .display{font-size:clamp(2.6rem,5.4vw,4.6rem);font-weight:300;margin:1.4rem 0 0}
-    .display em{font-style:italic;color:var(--gold)}
-    .lede{font-size:1.05rem;color:var(--slate);max-width:34em;line-height:1.85}
+    /* ── MOBILE NAV ── */
+    #mn{position:fixed;inset:0;background:var(--ink);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+    #mn.open{opacity:1;pointer-events:all}
+    .mn-x{position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;color:rgba(244,239,228,.4);font-size:1.8rem;cursor:pointer;line-height:1}
+    #mn a{font-family:var(--serif);font-size:1.9rem;font-weight:300;font-style:italic;color:var(--linen);transition:color .3s}
+    #mn a:hover{color:var(--brass-l)}
+    .mn-cl{font-family:var(--sans) !important;font-size:.66rem !important;font-style:normal !important;font-weight:500 !important;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-l) !important;border:1px solid rgba(140,120,86,.35);padding:.6rem 1.2rem;margin-top:.5rem}
 
-    /* ── reveal (fast + subtle) ── */
-    .rv{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
     .rv.in{opacity:1;transform:none}
-    .rv-1{transition-delay:.06s}.rv-2{transition-delay:.12s}.rv-3{transition-delay:.18s}.rv-4{transition-delay:.24s}
-    .rule{height:1px;background:var(--mist);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .15s}
-    .rv.in .rule,.rule.in{transform:scaleX(1)}
+    .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
 
-    /* ── buttons ── */
-    .btn{display:inline-flex;align-items:center;gap:.65rem;padding:.85rem 1.9rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;cursor:pointer;border-radius:100px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s}
-    .btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.75;transition:transform .3s var(--ease)}
-    .btn:hover svg{transform:translateX(3px)}
-    .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-lt));color:var(--ink);box-shadow:0 6px 24px rgba(182,152,90,.35)}
-    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(182,152,90,.45)}
-    .btn-ink{background:var(--ink);color:var(--paper);box-shadow:0 6px 20px rgba(10,22,38,.22)}
-    .btn-ink:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(10,22,38,.32)}
-    .btn-ghost{background:rgba(250,247,241,.08);color:var(--paper);border:1px solid rgba(250,247,241,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-    .btn-ghost:hover{background:rgba(250,247,241,.16);border-color:rgba(250,247,241,.55);transform:translateY(-2px)}
-    .link-quiet{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:.3rem;transition:color var(--t)}
-    .link-quiet:hover{color:var(--gold)}
+    /* ── SECTION: PRACTICE ── */
+    #practice{min-height:100svh;display:grid;grid-template-columns:1fr 36%;background:var(--linen);padding-left:var(--nw)}
+    .pr-txt{display:flex;flex-direction:column;justify-content:center;padding:7rem clamp(2.5rem,4vw,4rem) 5rem clamp(2.5rem,5vw,5.5rem)}
+    .pr-sup{font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--mid);margin-bottom:3.5rem;display:flex;align-items:center;gap:1rem}
+    .pr-sup::before{content:'';width:1.8rem;height:1px;background:var(--brass);flex:none}
+    .pr-h1{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2.6rem,5vw,4.8rem);line-height:1.1;color:var(--ink);letter-spacing:-.015em}
+    .pr-rule{width:3rem;height:1px;background:var(--brass);margin:2.5rem 0;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .5s}
+    body.ld .pr-rule{transform:scaleX(1)}
+    .pr-body{font-size:.96rem;color:var(--mid);line-height:1.9;max-width:36em;font-weight:300}
+    .pr-cta{margin-top:3.5rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+    .pr-lnk{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--rule);padding-bottom:.3rem;transition:border-color .3s,color .3s}
+    .pr-lnk:hover{border-color:var(--brass);color:var(--brass)}
+    .pr-lnk-g{color:var(--brass);border-bottom-color:rgba(140,120,86,.5);animation:bth 3.2s ease-in-out infinite}
+    @keyframes bth{0%,100%{opacity:.7}50%{opacity:1}}
+    .pr-img{position:relative;overflow:hidden}
+    .pr-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;transition:opacity 1.2s ease .3s}
+    body.ld .pr-img img{opacity:1}
 
-    /* ── progress hairline ── */
-    #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:1400}
+    /* ── CONDITIONS ── */
+    #cond{background:var(--ink);padding:1.1rem 0;padding-left:var(--nw);overflow-x:auto;scrollbar-width:none}
+    #cond::-webkit-scrollbar{display:none}
+    .cond-row{display:flex;align-items:center;padding:0 clamp(2rem,4vw,4.5rem);white-space:nowrap;gap:0;min-width:max-content}
+    .cl-lbl{display:flex;align-items:center;gap:.55rem;font-size:.58rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--brass-l);padding-right:2rem;margin-right:2rem;border-right:1px solid var(--rule-lt);flex:none}
+    .cd{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:cdp 2.2s infinite}
+    @keyframes cdp{0%,100%{opacity:1}50%{opacity:.2}}
+    .ci{display:flex;flex-direction:column;gap:.05rem;padding:0 1.75rem;border-right:1px solid var(--rule-lt)}
+    .ci:last-of-type{border-right:none}
+    .ci-k{font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,228,.38)}
+    .ci-v{font-family:var(--serif);font-size:1rem;font-weight:400;color:rgba(244,239,228,.88)}
+    .ci-v small{font-family:var(--sans);font-size:.6rem;font-weight:300;color:rgba(244,239,228,.45);margin-left:.2rem}
+    .cond-src{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,228,.28);margin-left:auto;padding-left:2rem}
 
-    /* ── header ── */
-    header{position:fixed;top:0;left:0;right:0;z-index:1200;transition:transform .45s var(--ease),background .35s,box-shadow .35s,border-color .35s;border-bottom:1px solid transparent}
-    header.hide{transform:translateY(-100%)}
-    .hd-inner{display:flex;align-items:center;justify-content:space-between;padding:1.15rem clamp(1.25rem,4vw,3rem);max-width:1440px;margin:0 auto}
-    .brand{display:flex;flex-direction:column;line-height:1.25}
-    .brand-name{font-family:var(--serif);font-size:1.18rem;font-weight:500;letter-spacing:.22em;color:var(--paper);transition:color .35s}
-    .brand-sub{font-size:.56rem;font-weight:600;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
-    .hd-links{display:flex;align-items:center;gap:2.2rem}
-    .hd-links a{font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,247,241,.8);position:relative;transition:color .35s;padding:.25rem 0}
-    .hd-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s var(--ease)}
-    .hd-links a:hover{color:var(--paper)}
-    .hd-links a:hover::after{width:100%}
-    .hd-cta{display:flex;align-items:center;gap:1.1rem}
-    .hd-classic{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,241,.5);border:1px solid rgba(250,247,241,.22);border-radius:100px;padding:.45rem .95rem;transition:all var(--t)}
-    .hd-classic:hover{color:var(--paper);border-color:var(--gold)}
-    .hd-book{padding:.62rem 1.4rem}
-    header.solid{background:rgba(250,247,241,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--mist);box-shadow:0 1px 0 rgba(10,22,38,.04)}
-    header.solid .brand-name{color:var(--ink)}
-    header.solid .hd-links a{color:var(--slate)}
-    header.solid .hd-links a:hover{color:var(--ink)}
-    header.solid .hd-classic{color:var(--slate);border-color:var(--mist)}
-    header.solid .hd-classic:hover{color:var(--ink);border-color:var(--gold)}
-    .burger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px}
-    .burger span{display:block;width:24px;height:1.5px;background:var(--paper);transition:all .3s var(--ease)}
-    header.solid .burger span{background:var(--ink)}
-    .m-nav{position:fixed;inset:0;background:var(--ink);z-index:1300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
-    .m-nav.open{opacity:1;pointer-events:all}
-    .m-nav a{font-family:var(--serif);font-size:2.1rem;font-weight:300;color:var(--paper);transition:color var(--t)}
-    .m-nav a:hover{color:var(--gold-lt)}
-    .m-nav .m-close{position:absolute;top:1.4rem;right:1.6rem;background:none;border:none;color:var(--paper);font-size:2rem;cursor:pointer;line-height:1}
-    .m-nav .m-classic{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(182,152,90,.4);border-radius:100px;padding:.7rem 1.4rem}
+    /* ── WORK ── */
+    #work{background:var(--linen-2);padding:clamp(5rem,10vh,8.5rem) 0;padding-left:var(--nw);border-top:1px solid var(--rule)}
+    .work-in{padding:0 clamp(2.5rem,5vw,5.5rem)}
+    .kk{font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin-bottom:3.5rem;display:flex;align-items:center;gap:1rem}
+    .kk::before{content:'';width:1.8rem;height:1px;background:var(--brass);flex:none}
+    .wl{border-top:1px solid var(--rule)}
+    .wi{display:grid;grid-template-columns:3.8rem 1fr;gap:1.5rem;padding:2.2rem .4rem;border-bottom:1px solid var(--rule);transition:background .3s}
+    .wi:hover{background:rgba(140,120,86,.05)}
+    .wn{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--brass);line-height:1.5;padding-top:.1rem}
+    .wt{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--ink);line-height:1.3;margin-bottom:.5rem}
+    .wd{font-size:.9rem;color:var(--mid);line-height:1.85;max-width:60em;font-weight:300}
 
-    /* ── hero ── */
-    #hero{position:relative;height:100svh;min-height:680px;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
-    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:scale(1.06);transition:transform 7s var(--ease),opacity 1.2s ease;opacity:0}
-    .hero-img.on{transform:scale(1);opacity:1}
-    .hero-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,38,.88) 0%,rgba(10,22,38,.35) 45%,rgba(10,22,38,.45) 100%)}
-    .hero-body{position:relative;z-index:2;width:100%;padding-bottom:clamp(3rem,7vh,5.5rem)}
-    .hero-kick{display:flex;align-items:center;gap:1rem;font-size:.66rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-lt)}
-    .hero-kick::before{content:'';width:3rem;height:1px;background:var(--gold)}
-    .hero-h{font-size:clamp(3rem,7.6vw,6.6rem);font-weight:300;color:var(--paper);line-height:1.02;margin:1.6rem 0 1.8rem;letter-spacing:-.015em;max-width:11em}
-    .hero-h em{font-style:italic;color:var(--gold-lt)}
-    .hero-h .ln{display:block;overflow:hidden}
-    .hero-h .ln span{display:block;transform:translateY(112%);transition:transform 1s var(--ease)}
-    .hero-h .ln:nth-child(2) span{transition-delay:.12s}
-    body.loaded .hero-h .ln span{transform:none}
-    .hero-sub{font-size:1rem;color:rgba(250,247,241,.78);max-width:36em;line-height:1.8;margin-bottom:2.4rem;opacity:0;transform:translateY(14px);transition:opacity .8s ease .5s,transform .8s var(--ease) .5s}
-    body.loaded .hero-sub{opacity:1;transform:none}
-    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(14px);transition:opacity .8s ease .65s,transform .8s var(--ease) .65s}
-    body.loaded .hero-ctas{opacity:1;transform:none}
-    .hero-coords{position:absolute;right:clamp(1.25rem,4vw,3rem);bottom:clamp(3rem,7vh,5.5rem);z-index:2;writing-mode:vertical-rl;font-size:.6rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(250,247,241,.45)}
-    .scroll-cue{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:2;width:1px;height:64px;overflow:hidden}
-    .scroll-cue::after{content:'';position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--gold-lt);animation:cue 2.2s var(--ease) infinite}
-    @keyframes cue{0%{top:-50%}60%,100%{top:110%}}
+    /* ── STANDARD ── */
+    #standard{background:var(--slate);padding:clamp(5rem,10vh,8.5rem) 0;padding-left:var(--nw);color:rgba(244,239,228,.9)}
+    .std-in{padding:0 clamp(2.5rem,5vw,5.5rem)}
+    .kk-lt{font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(176,154,110,.85);margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+    .kk-lt::before{content:'';width:1.8rem;height:1px;background:rgba(176,154,110,.6);flex:none}
+    .std-h2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2rem,3.8vw,3.2rem);line-height:1.2;color:var(--linen);margin-bottom:clamp(3rem,6vh,5rem);max-width:20em}
+    .sg{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule-lt);border-left:1px solid var(--rule-lt)}
+    .si{padding:2.8rem 2.6rem;border-right:1px solid var(--rule-lt);border-bottom:1px solid var(--rule-lt)}
+    .sin{font-family:var(--serif);font-style:italic;font-size:2.6rem;color:rgba(176,154,110,.45);line-height:1;margin-bottom:1.3rem;display:block}
+    .sih{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--linen);margin-bottom:.7rem;line-height:1.35}
+    .sip{font-size:.9rem;color:rgba(244,239,228,.55);line-height:1.85;font-weight:300}
+    .sq{margin-top:clamp(3.5rem,7vh,5.5rem);border-top:1px solid var(--rule-lt);padding-top:3.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .sqm{font-family:var(--serif);font-size:4.5rem;color:rgba(176,154,110,.38);line-height:.65;margin-bottom:1.4rem}
+    .sqt{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,1.85rem);color:var(--linen);max-width:28em;line-height:1.5}
+    .sqa{margin-top:1.5rem;font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,228,.42)}
+    .sqa span{color:rgba(176,154,110,.75)}
 
-    /* ── live conditions ── */
-    #conditions{background:var(--ink);border-top:1px solid var(--mist-ink);padding:1.2rem 0;position:relative;z-index:3}
-    .cond-row{display:flex;align-items:center;gap:clamp(1.4rem,3.5vw,3rem);overflow-x:auto;scrollbar-width:none}
-    .cond-row::-webkit-scrollbar{display:none}
-    .cond-id{flex:none;padding-right:clamp(1.4rem,3.5vw,3rem);border-right:1px solid var(--mist-ink)}
-    .cond-live{display:flex;align-items:center;gap:.5rem;font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);white-space:nowrap}
-    .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-    .cond-src{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,241,.4);margin-top:.2rem;white-space:nowrap}
-    .cond-item{flex:none;display:flex;flex-direction:column;gap:.1rem}
-    .cond-k{font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,247,241,.45);white-space:nowrap}
-    .cond-v{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--paper);font-variant-numeric:tabular-nums;white-space:nowrap}
-    .cond-v small{font-family:var(--sans);font-size:.62rem;font-weight:400;color:rgba(250,247,241,.5);letter-spacing:.04em;margin-left:.25rem}
-    .cond-upd{flex:none;margin-left:auto;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,247,241,.35);white-space:nowrap}
+    /* ── WATERS ── */
+    #waters{background:var(--linen);padding:clamp(5rem,10vh,8.5rem) 0;padding-left:var(--nw);border-top:1px solid var(--rule)}
+    .wt-in{padding:0 clamp(2.5rem,5vw,5.5rem)}
+    .wg{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,7rem);align-items:start}
+    .wh2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.9rem,3.5vw,3rem);line-height:1.2;color:var(--ink);margin-bottom:2rem}
+    .wb{font-size:.95rem;color:var(--mid);line-height:1.9;font-weight:300}
+    .wb+.wb{margin-top:1.3rem}
+    .sa{margin-top:3.5rem;border-top:1px solid var(--rule)}
+    .act{display:grid;grid-template-columns:10rem 1fr;gap:1.5rem;padding:1.8rem 0;border-bottom:1px solid var(--rule)}
+    .awt{font-size:.63rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);padding-top:.15rem}
+    .ah{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.4rem}
+    .ad{font-size:.88rem;color:var(--mid);line-height:1.8;font-weight:300}
+    .wn-note{margin-top:3rem;padding:2rem 2.2rem;border-left:2px solid var(--brass);background:rgba(140,120,86,.06)}
+    .wn-note p{font-family:var(--serif);font-style:italic;font-size:1.08rem;color:var(--ink);line-height:1.65}
+    .hl{margin-top:0}
+    .hl-lbl{font-size:.6rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--mid);margin-bottom:1.5rem}
+    .hl-list{border-top:1px solid var(--rule)}
+    .hrow{display:flex;align-items:baseline;justify-content:space-between;padding:1rem .25rem;border-bottom:1px solid var(--rule);font-size:.93rem;color:var(--ink)}
+    .hrow span:last-child{font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
 
-    /* ── ethos ── */
-    #ethos{padding:clamp(6rem,12vh,9.5rem) 0 clamp(5rem,10vh,8rem)}
-    .ethos-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(3rem,6vw,6rem);align-items:start}
-    .ethos-copy .display{margin-bottom:2.2rem}
-    .ethos-p{font-size:1.02rem;color:var(--slate);line-height:1.9;max-width:36em}
-    .ethos-p + .ethos-p{margin-top:1.4rem}
-    .ethos-p:first-of-type::first-letter{font-family:var(--serif);font-size:3.4em;font-weight:500;float:left;line-height:.82;margin:.06em .14em 0 0;color:var(--gold)}
-    .ethos-sig{margin-top:2.6rem;display:flex;align-items:center;gap:1.1rem}
-    .ethos-sig .rule{width:3rem;flex:none;transform:scaleX(1)}
-    .ethos-sig p{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink)}
-    .ethos-photo{position:relative}
-    .ethos-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
-    .ethos-photo figcaption{margin-top:.9rem;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);display:flex;justify-content:space-between;gap:1rem}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--mist);margin-top:clamp(3.5rem,7vh,5.5rem)}
-    .stat{padding:2.2rem 1.5rem 0;border-left:1px solid var(--mist)}
-    .stat:first-child{border-left:none;padding-left:0}
-    .stat-n{font-family:var(--serif);font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:300;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
-    .stat-n sup{font-size:.45em;color:var(--gold);font-style:italic;margin-left:.1em}
-    .stat-l{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-top:.7rem}
+    /* ── RECORD ── */
+    #record{position:relative;height:100svh;min-height:580px;background:#0D0D08;padding-left:var(--nw);overflow:hidden;display:flex;align-items:flex-end}
+    .ri{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .95s ease}
+    .ri.on{opacity:1}
+    .rov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,8,.72) 0%,rgba(13,13,8,.08) 55%,transparent 100%);z-index:1}
+    .rk{position:absolute;top:2.5rem;left:calc(var(--nw) + clamp(2rem,4vw,4.5rem));z-index:2;font-size:.58rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(244,239,228,.45);display:flex;align-items:center;gap:.8rem}
+    .rk::before{content:'';width:1.5rem;height:1px;background:rgba(244,239,228,.3);flex:none}
+    .rui{position:relative;z-index:2;width:100%;display:flex;align-items:flex-end;justify-content:space-between;padding:0 clamp(2rem,4vw,4.5rem) 2.6rem}
+    .rcap{}
+    .rcl{font-size:.58rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--brass-l);margin-bottom:.45rem}
+    .rct{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.4vw,1.9rem);font-weight:300;color:rgba(244,239,228,.92);line-height:1.35}
+    .rctrl{display:flex;flex-direction:column;align-items:flex-end;gap:1rem}
+    .rcnt{font-size:.6rem;font-weight:500;letter-spacing:.2em;color:rgba(244,239,228,.45);font-variant-numeric:tabular-nums}
+    .rarr{display:flex;gap:.5rem}
+    .rb{width:40px;height:40px;border:1px solid rgba(244,239,228,.28);background:rgba(13,13,8,.38);color:rgba(244,239,228,.82);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;border-radius:0;backdrop-filter:blur(4px)}
+    .rb:hover{border-color:var(--brass-l);color:var(--brass-l)}
+    .rb svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.5}
 
-    /* ── services index ── */
-    #services{padding:clamp(5rem,10vh,8rem) 0;background:var(--paper-dk);border-top:1px solid var(--mist);border-bottom:1px solid var(--mist)}
-    .svc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2.5rem,5vh,4rem)}
-    .svc-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
-    .svc-visual{position:sticky;top:104px;aspect-ratio:4/5;overflow:hidden;background:var(--ink)}
-    .svc-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .55s ease,transform .9s var(--ease)}
-    .svc-visual img.on{opacity:1;transform:scale(1)}
-    .svc-visual .svc-tag{position:absolute;left:1.2rem;bottom:1.1rem;z-index:2;font-size:.6rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--paper);background:rgba(10,22,38,.55);backdrop-filter:blur(6px);padding:.5rem .9rem;border-radius:100px}
-    .svc-list{border-top:1px solid var(--mist)}
-    .svc-row{display:grid;grid-template-columns:3.4rem 1fr auto;gap:1.2rem;align-items:baseline;padding:1.55rem .25rem;border-bottom:1px solid var(--mist);cursor:pointer;transition:background .3s,padding .3s var(--ease)}
-    .svc-row:hover,.svc-row.on{background:rgba(182,152,90,.06);padding-left:.8rem}
-    .svc-no{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold)}
-    .svc-title{font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.8rem);font-weight:400;color:var(--ink);transition:color var(--t)}
-    .svc-row:hover .svc-title,.svc-row.on .svc-title{color:var(--gold)}
-    .svc-meta{font-size:.7rem;letter-spacing:.06em;color:var(--slate);margin-top:.35rem;line-height:1.6}
-    .svc-go{width:38px;height:38px;border-radius:50%;border:1px solid var(--mist);display:flex;align-items:center;justify-content:center;align-self:center;transition:all var(--t);opacity:.55}
-    .svc-go svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
-    .svc-row:hover .svc-go,.svc-row.on .svc-go{opacity:1;border-color:var(--gold);background:var(--gold);color:var(--ink);transform:translateX(2px)}
-    .svc-foot{margin-top:1.6rem;font-size:.78rem;color:var(--slate)}
-    .svc-foot a{color:var(--ink);border-bottom:1px solid var(--gold);transition:color var(--t)}
-    .svc-foot a:hover{color:var(--gold)}
+    /* ── BEGIN ── */
+    #begin{background:var(--linen);padding:clamp(5rem,10vh,8.5rem) 0 clamp(4rem,8vh,7rem);padding-left:var(--nw);border-top:1px solid var(--rule)}
+    .beg-in{padding:0 clamp(2.5rem,5vw,5.5rem);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(3rem,6vw,7rem);align-items:start}
+    .bh2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.9rem,3.5vw,3rem);line-height:1.2;color:var(--ink);margin-bottom:1.8rem}
+    .bb{font-size:.95rem;color:var(--mid);line-height:1.9;font-weight:300;max-width:28em}
+    .bdt{margin-top:3rem;border-top:1px solid var(--rule)}
+    .bdr{display:flex;justify-content:space-between;gap:1rem;padding:1rem .25rem;border-bottom:1px solid var(--rule)}
+    .bdk{font-size:.58rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+    .bdv{font-family:var(--serif);font-size:1rem;color:var(--ink)}
+    /* form */
+    .ft-h{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:.35rem}
+    .fn{font-size:.82rem;color:var(--mid);font-weight:300;margin-bottom:2.5rem}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem}
+    .ff{display:flex;flex-direction:column;gap:.28rem;margin-bottom:1.8rem}
+    .ff.w{grid-column:1/-1}
+    .ff label{font-size:.56rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--mid)}
+    .ff label b{color:var(--brass);font-weight:600}
+    .ff input,.ff select,.ff textarea{font-family:var(--sans);font-size:.94rem;font-weight:300;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--rule);padding:.5rem 0;transition:border-color .3s;border-radius:0;-webkit-appearance:none;appearance:none;width:100%}
+    .ff select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238C7856' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0 center}
+    .ff textarea{resize:vertical;min-height:78px;line-height:1.7}
+    .ff input:focus,.ff select:focus,.ff textarea:focus{outline:none;border-color:var(--brass)}
+    .ff.err input,.ff.err textarea{border-color:#a33}
+    .ff .fe{display:none;font-size:.62rem;color:#a33;margin-top:.2rem}
+    .ff.err .fe{display:block}
+    .fac{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-top:.3rem}
+    .fsub{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:none;border:none;border-bottom:1px solid var(--ink);padding-bottom:.3rem;cursor:pointer;transition:color .3s,border-color .3s}
+    .fsub:hover{color:var(--brass);border-color:var(--brass)}
+    .fpv{font-size:.68rem;color:var(--mid);font-weight:300}
+    .fdone{display:none;padding:2rem 0}
+    .fdone.sh{display:block}
+    .fdone p{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink);line-height:1.7}
+    .fdone small{display:block;margin-top:.8rem;font-size:.78rem;color:var(--mid);font-style:normal;font-family:var(--sans);font-weight:300}
 
-    /* ── harbor marquee ── */
-    .marq{overflow:hidden;border-bottom:1px solid var(--mist);padding:1.3rem 0;background:var(--paper)}
-    .marq-track{display:flex;gap:3.5rem;width:max-content;animation:marq 46s linear infinite}
-    .marq:hover .marq-track{animation-play-state:paused}
-    .marq-track span{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--slate);white-space:nowrap;display:flex;align-items:center;gap:3.5rem}
-    .marq-track span::after{content:'·';color:var(--gold)}
-    @keyframes marq{to{transform:translateX(-50%)}}
+    /* ── FOOTER ── */
+    footer{background:var(--ink);padding:3.5rem 0 2.4rem;padding-left:var(--nw)}
+    .ft-in{padding:0 clamp(2.5rem,5vw,5.5rem);display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-bottom:1px solid var(--rule-lt);padding-bottom:2.4rem;margin-bottom:2rem}
+    .ft-b{font-family:var(--serif);font-weight:700;font-size:1rem;letter-spacing:.22em;color:var(--linen);margin-bottom:.35rem}
+    .ft-s{font-size:.65rem;font-weight:300;letter-spacing:.14em;color:rgba(244,239,228,.42)}
+    .ft-ls{display:flex;gap:2rem;flex-wrap:wrap}
+    .ft-ls a{font-size:.65rem;font-weight:300;letter-spacing:.14em;color:rgba(244,239,228,.48);transition:color .3s}
+    .ft-ls a:hover,.ft-ls a[aria-current]{color:var(--brass-l)}
+    .ft-bot{padding:0 clamp(2.5rem,5vw,5.5rem);display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;font-size:.62rem;color:rgba(244,239,228,.28);font-weight:300;letter-spacing:.1em}
+    .ft-ed i{font-style:normal;color:rgba(176,154,110,.7)}
 
-    /* ── season ── */
-    #season{padding:clamp(5.5rem,11vh,9rem) 0}
-    .season-head{max-width:46em;margin-bottom:clamp(3rem,6vh,4.5rem)}
-    .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--mist);border:1px solid var(--mist)}
-    .act{background:var(--paper);padding:2.6rem 2.1rem 2.4rem;position:relative;transition:background .35s}
-    .act:hover{background:var(--paper-dk)}
-    .act-no{font-family:var(--serif);font-style:italic;font-size:2.6rem;font-weight:300;color:var(--gold);line-height:1}
-    .act-when{font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);margin:1.1rem 0 .5rem}
-    .act h3{font-size:1.55rem;margin-bottom:.8rem}
-    .act p{font-size:.92rem;color:var(--slate);line-height:1.8}
-    .season-ruler{margin-top:clamp(3rem,6vh,4.5rem)}
-    .ruler-track{position:relative;height:1px;background:var(--mist);margin:2.4rem 0 .9rem}
-    .ruler-fill{position:absolute;left:12.5%;width:62.5%;top:-1px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-lt));transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--ease) .2s}
-    .ruler-fill.in{transform:scaleX(1)}
-    .ruler-months{display:flex;justify-content:space-between;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
-    .ruler-note{text-align:center;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-top:1.6rem}
-    .ruler-note strong{color:var(--gold);font-weight:500}
+    img.img-fallback{background:linear-gradient(135deg,var(--ink) 0%,var(--slate) 100%)}
 
-    /* ── standard ── */
-    #standard{background:var(--ink);color:var(--paper);padding:clamp(5.5rem,11vh,9rem) 0}
-    #standard .kicker .idx{color:rgba(250,247,241,.45)}
-    #standard .display{color:var(--paper)}
-    .std-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--mist-ink);margin-top:clamp(2.5rem,5vh,4rem)}
-    .std{padding:2.6rem 2.4rem 2.6rem 0;border-bottom:1px solid var(--mist-ink);display:grid;grid-template-columns:auto 1fr;gap:1.6rem}
-    .std:nth-child(odd){border-right:1px solid var(--mist-ink);padding-right:3rem}
-    .std:nth-child(even){padding-left:3rem;padding-right:0}
-    .std-n{font-family:var(--serif);font-size:2.8rem;font-weight:300;font-style:italic;color:var(--gold-lt);line-height:1}
-    .std h3{font-size:1.4rem;color:var(--paper);margin-bottom:.6rem}
-    .std p{font-size:.92rem;color:rgba(250,247,241,.6);line-height:1.8}
-
-    /* ── gallery ── */
-    #gallery{padding:clamp(5.5rem,11vh,9rem) 0 clamp(4rem,8vh,6rem)}
-    .gal-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(2.5rem,5vh,4rem)}
-    .gal-nav{display:flex;gap:.7rem}
-    .gal-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--mist);background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t)}
-    .gal-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
-    .gal-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-    .gal-strip{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 clamp(1.25rem,4vw,3rem) .5rem;scrollbar-width:none;cursor:grab}
-    .gal-strip::-webkit-scrollbar{display:none}
-    .gal-strip.drag{cursor:grabbing;scroll-snap-type:none}
-    .gal-card{flex:0 0 min(520px,78vw);scroll-snap-align:center;position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--ink)}
-    .gal-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
-    .gal-card:hover img{transform:scale(1.045)}
-    .gal-cap{position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1.4rem 1.1rem;background:linear-gradient(to top,rgba(10,22,38,.78),transparent);color:var(--paper);font-family:var(--serif);font-style:italic;font-size:1.05rem;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
-    .gal-card:hover .gal-cap{opacity:1;transform:none}
-
-    /* ── words ── */
-    #words{padding:clamp(4rem,8vh,6rem) 0 clamp(5.5rem,11vh,9rem)}
-    .words-box{max-width:880px;margin:0 auto;text-align:center;position:relative;padding-top:3.2rem}
-    .words-box::before{content:'\201C';position:absolute;top:0;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:6rem;line-height:1;color:var(--gold);opacity:.55}
-    .quotes{position:relative;min-height:15rem}
-    .quote{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s var(--ease);pointer-events:none}
-    .quote.on{opacity:1;transform:none;pointer-events:auto;position:relative}
-    .quote blockquote{font-family:var(--serif);font-size:clamp(1.45rem,2.6vw,2.05rem);font-weight:300;font-style:italic;line-height:1.45;color:var(--ink)}
-    .quote figcaption{margin-top:1.6rem;font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--slate)}
-    .quote figcaption b{color:var(--gold);font-weight:600}
-    .words-dots{display:flex;justify-content:center;gap:.6rem;margin-top:2.2rem}
-    .wdot{width:24px;height:2px;background:var(--mist);border:none;cursor:pointer;transition:background .3s;padding:0}
-    .wdot.on{background:var(--gold)}
-
-    /* ── faq ── */
-    #faq{padding:0 0 clamp(5.5rem,11vh,9rem)}
-    .faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
-    .faq-list{border-top:1px solid var(--mist)}
-    .faq-list details{border-bottom:1px solid var(--mist)}
-    .faq-list summary{list-style:none;display:flex;align-items:baseline;gap:1.3rem;padding:1.5rem .25rem;cursor:pointer;transition:padding .3s var(--ease)}
-    .faq-list summary::-webkit-details-marker{display:none}
-    .faq-list summary:hover{padding-left:.7rem}
-    .faq-q{font-family:var(--serif);font-size:1.3rem;color:var(--ink);flex:1}
-    .faq-x{font-family:var(--serif);font-size:1.5rem;color:var(--gold);transition:transform .35s var(--ease);align-self:center;line-height:1}
-    details[open] .faq-x{transform:rotate(45deg)}
-    .faq-a{padding:0 .25rem 1.6rem;font-size:.92rem;color:var(--slate);line-height:1.85;max-width:42em}
-    .faq-aside p{font-size:.92rem;color:var(--slate);margin-top:1.4rem;line-height:1.8}
-
-    /* ── contact ── */
-    #contact{background:var(--ink);color:var(--paper);padding:clamp(5.5rem,11vh,9rem) 0;position:relative;overflow:hidden}
-    #contact::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=70&auto=format&fit=crop') center/cover;opacity:.1}
-    #contact::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,var(--ink) 38%,rgba(10,22,38,.78))}
-    #contact .wrap{position:relative;z-index:2}
-    .ct-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(3rem,6vw,6rem);align-items:start}
-    #contact .display{color:var(--paper)}
-    #contact .kicker .idx{color:rgba(250,247,241,.45)}
-    .ct-lede{color:rgba(250,247,241,.7);font-size:1rem;line-height:1.85;max-width:30em;margin-top:1.6rem}
-    .ct-rows{margin-top:2.6rem;border-top:1px solid var(--mist-ink)}
-    .ct-row{display:flex;justify-content:space-between;gap:1.5rem;align-items:baseline;padding:1.15rem .15rem;border-bottom:1px solid var(--mist-ink)}
-    .ct-k{font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,247,241,.45)}
-    .ct-v{font-family:var(--serif);font-size:1.15rem;color:var(--paper)}
-    .ct-harbors{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.55rem}
-    .hb{font-size:.64rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,241,.65);border:1px solid var(--mist-ink);border-radius:100px;padding:.45rem .95rem;transition:all var(--t)}
-    .hb:hover{color:var(--gold-lt);border-color:rgba(182,152,90,.5)}
-    .form-card{background:var(--paper);color:var(--ink);padding:clamp(2rem,4vw,3.2rem);box-shadow:0 30px 80px rgba(0,0,0,.35)}
-    .form-card h3{font-size:1.7rem;margin-bottom:.4rem}
-    .form-note{font-size:.82rem;color:var(--slate);margin-bottom:2rem}
-    .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 1.6rem}
-    .f-field{display:flex;flex-direction:column;gap:.45rem}
-    .f-field.wide{grid-column:1/-1}
-    .f-field label{font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--slate)}
-    .f-field label b{color:var(--gold);font-weight:600}
-    .f-field input,.f-field select,.f-field textarea{font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--mist);padding:.55rem .1rem;transition:border-color .3s;border-radius:0;-webkit-appearance:none;appearance:none}
-    .f-field textarea{resize:vertical;min-height:84px;line-height:1.6}
-    .f-field select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2351606F' fill='none' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .2rem center}
-    .f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--gold)}
-    .f-field.err input,.f-field.err textarea{border-color:#B4533B}
-    .f-msg{font-size:.68rem;color:#B4533B;display:none}
-    .f-field.err .f-msg{display:block}
-    .f-actions{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:.6rem;flex-wrap:wrap}
-    .f-privacy{font-size:.7rem;color:var(--slate)}
-    .f-success{display:none;text-align:center;padding:3rem 1rem}
-    .f-success.show{display:block}
-    .f-success .fs-ic{width:60px;height:60px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem}
-    .f-success .fs-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.6}
-    .f-success h3{margin-bottom:.6rem}
-    .f-success p{font-size:.9rem;color:var(--slate);max-width:26em;margin:0 auto}
-
-    /* ── footer ── */
-    footer{background:var(--ink);color:var(--paper);border-top:1px solid var(--mist-ink);padding:clamp(3.5rem,7vh,5rem) 0 2.2rem;position:relative;overflow:hidden}
-    .ft-word{font-family:var(--serif);font-weight:300;font-size:clamp(4rem,12vw,11rem);line-height:.9;letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(250,247,241,.12);user-select:none;pointer-events:none;white-space:nowrap;margin-bottom:2.5rem}
-    .ft-grid{display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;padding-bottom:2.5rem;border-bottom:1px solid var(--mist-ink)}
-    .ft-brand p{font-size:.8rem;color:rgba(250,247,241,.5);max-width:24em;margin-top:.8rem;line-height:1.7}
-    .ft-cols{display:flex;gap:clamp(2.5rem,6vw,5.5rem);flex-wrap:wrap}
-    .ft-col p{font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-    .ft-col ul{display:flex;flex-direction:column;gap:.6rem}
-    .ft-col a{font-size:.82rem;color:rgba(250,247,241,.55);transition:color var(--t)}
-    .ft-col a:hover{color:var(--paper)}
-    .ft-base{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;padding-top:1.8rem;font-size:.7rem;color:rgba(250,247,241,.4)}
-    .ft-base .ed{display:inline-flex;align-items:center;gap:.5rem}
-    .ft-base .ed i{font-style:normal;color:var(--gold-lt)}
-    .ft-base a{color:rgba(250,247,241,.55);border-bottom:1px solid transparent;transition:all var(--t)}
-    .ft-base a:hover{color:var(--paper);border-color:var(--gold)}
-
-    /* ── floating cta ── */
-    #fab{position:fixed;right:1.8rem;bottom:1.8rem;z-index:1100;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .4s,transform .4s var(--ease)}
-    #fab.show{opacity:1;transform:none;pointer-events:all}
-
-    /* fallback for broken photos */
-    img.img-fallback{background:linear-gradient(135deg,var(--ink) 0%,var(--ink-soft) 55%,#1C3C57 100%)}
-
-    /* ── responsive ── */
-    @media(max-width:1080px){
-      .ethos-grid,.faq-grid{grid-template-columns:1fr}
-      .ethos-photo{max-width:520px}
-      .svc-layout{grid-template-columns:1fr}
-      .svc-visual{display:none}
-      .ct-grid{grid-template-columns:1fr}
-      .std:nth-child(odd){padding-right:2rem}
-      .std:nth-child(even){padding-left:2rem}
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      :root{--nw:0px}
+      #sn{display:none}
+      #tb{display:flex}
+      #practice{padding-top:56px;grid-template-columns:1fr;min-height:auto}
+      .pr-img{height:55vw;min-height:260px;position:relative}
+      .pr-img img{position:absolute}
+      .pr-txt{padding:2.5rem 1.5rem 3.5rem}
+      #cond,#work,#standard,#waters,#record,#begin,footer{padding-left:0}
+      .wg,.beg-in{grid-template-columns:1fr}
+      .sg{grid-template-columns:1fr}
+      .work-in,.std-in,.wt-in,.beg-in,.ft-in,.ft-bot{padding-left:1.5rem;padding-right:1.5rem}
+      .beg-in{display:block}
+      .beg-in > *+*{margin-top:3.5rem}
     }
-    @media(max-width:840px){
-      .hd-links,.hd-classic{display:none}
-      .burger{display:flex}
-      .acts{grid-template-columns:1fr}
-      .std-grid{grid-template-columns:1fr}
-      .std:nth-child(odd){border-right:none;padding-right:0}
-      .std:nth-child(even){padding-left:0}
-      .std{padding:2.2rem 0}
-      .stats{grid-template-columns:1fr}
-      .stat{border-left:none;padding:1.8rem 0 0;border-top:1px solid var(--mist);margin-top:1.8rem}
-      .stat:first-child{border-top:none;margin-top:0;padding-top:2.2rem}
-      .f-grid{grid-template-columns:1fr}
-      .svc-row{grid-template-columns:2.4rem 1fr auto}
-      .gal-head{flex-direction:column;align-items:flex-start}
-      .hero-coords{display:none}
+    @media(max-width:640px){
+      .fr{grid-template-columns:1fr}
+      .act{grid-template-columns:1fr;gap:.3rem}
+      .si{padding:2rem 1.5rem}
+      .rui{padding:0 1.2rem 2rem}
+      .rk{left:1.2rem}
     }
     @media(prefers-reduced-motion:reduce){
-      *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
       .rv{opacity:1;transform:none}
-      .hero-img{opacity:1;transform:none}
-      .hero-h .ln span,.hero-sub,.hero-ctas{transform:none;opacity:1}
+      html{scroll-behavior:auto}
     }
   </style>
 </head>
 <body>
+<script>function imgFail(e){e.onerror=null;e.classList.add('img-fallback');e.removeAttribute('src');e.alt='';}</script>
 
-<script>/* must exist before images parse */ function imgFail(el){el.onerror=null;el.classList.add('img-fallback');el.removeAttribute('src');el.alt='';}</script>
+<!-- SIDENAV -->
+<nav id="sn" aria-label="Section navigation">
+  <a href="#practice" class="sn-mark" aria-label="Buoyancy Elite home">B·E</a>
+  <div class="sn-dots">
+    <button class="snd on" data-sec="practice" data-label="The Approach" aria-label="The Approach"></button>
+    <button class="snd" data-sec="work" data-label="The Work" aria-label="The Work"></button>
+    <button class="snd" data-sec="standard" data-label="The Standard" aria-label="The Standard"></button>
+    <button class="snd" data-sec="waters" data-label="The Waters" aria-label="The Waters"></button>
+    <button class="snd" data-sec="record" data-label="The Record" aria-label="The Record"></button>
+    <button class="snd" data-sec="begin" data-label="Begin" aria-label="Begin"></button>
+  </div>
+  <a class="sn-ed" href="/" title="View the Classic Edition">Classic ↗</a>
+</nav>
 
-<div id="progress" aria-hidden="true"></div>
-
-<header id="hd">
-  <div class="hd-inner">
-    <a href="#hero" class="brand" aria-label="Buoyancy Elite home">
-      <span class="brand-name">BUOYANCY ELITE</span>
-      <span class="brand-sub">Fable Edition</span>
-    </a>
-    <nav class="hd-links" aria-label="Main navigation">
-      <a href="#ethos">Ethos</a>
-      <a href="#services">Services</a>
-      <a href="#season">The Season</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div class="hd-cta">
-      <a class="hd-classic" href="/" title="View the classic edition of this site">Classic Edition</a>
-      <a class="btn btn-gold hd-book" href="#contact">Request a Proposal</a>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </div>
+<!-- MOBILE HEADER -->
+<header id="tb">
+  <a href="#practice" class="tb-b">BUOYANCY ELITE</a>
+  <div class="tb-r">
+    <a href="/" class="tb-cl">Classic ↗</a>
+    <button class="tb-hb" id="burger" aria-label="Open menu" aria-expanded="false">—</button>
   </div>
 </header>
 
-<div class="m-nav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu">
-  <button class="m-close" id="mclose" aria-label="Close menu">&times;</button>
-  <a href="#ethos">Ethos</a>
-  <a href="#services">Services</a>
-  <a href="#season">The Season</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contact">Request a Proposal</a>
-  <a class="m-classic" href="/">View Classic Edition</a>
+<!-- MOBILE NAV -->
+<div id="mn" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mn-x" id="mnx" aria-label="Close">×</button>
+  <a href="#practice">The Approach</a>
+  <a href="#work">The Work</a>
+  <a href="#standard">The Standard</a>
+  <a href="#waters">The Waters</a>
+  <a href="#record">The Record</a>
+  <a href="#begin">Begin</a>
+  <a href="/" class="mn-cl">Classic Edition ↗</a>
 </div>
 
-<!-- ════════ HERO ════════ -->
-<section id="hero" aria-label="Introduction">
-  <!-- SWAP: your hero photo -->
-  <img class="hero-img" id="heroImg" src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2400&q=85&auto=format&fit=crop" alt="A luxury motor yacht underway on Lake Michigan" fetchpriority="high" onerror="imgFail(this)"/>
-  <div class="hero-shade" aria-hidden="true"></div>
-  <div class="wrap hero-body">
-    <p class="hero-kick">Yacht Management — Chicago · Lake Michigan</p>
-    <h1 class="hero-h">
-      <span class="ln"><span>You step aboard.</span></span>
-      <span class="ln"><span><em>Everything else is handled.</em></span></span>
+<!-- ══════════════════ PRACTICE ══════════════════ -->
+<section id="practice" aria-labelledby="pr-h1">
+  <div class="pr-txt">
+    <p class="pr-sup rv">Buoyancy Elite · Chicago · Lake Michigan</p>
+    <h1 class="pr-h1 rv d1" id="pr-h1">
+      The finest vessels<br>deserve the finest<br><em>stewardship.</em>
     </h1>
-    <p class="hero-sub">White-glove care for the vessels of Chicago's harbors — from the first wash of April to the winter cradle in November. One crew, one standard, all season long.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-gold" href="#contact">Request a Proposal <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-ghost" href="#services">See What's Included</a>
+    <div class="pr-rule" aria-hidden="true"></div>
+    <p class="pr-body rv d2">
+      We manage Lake Michigan yachts the way they deserve to be managed — with a dedicated crew, meticulous documentation, and the quiet certainty that your vessel is exactly as you left it, or better. Most of our clients describe the experience simply: they stopped worrying.
+    </p>
+    <div class="pr-cta rv d3">
+      <a class="pr-lnk pr-lnk-g" href="#begin">Request a Consultation</a>
+      <a class="pr-lnk" href="#work">The Work ↓</a>
     </div>
   </div>
-  <p class="hero-coords" aria-hidden="true">41°53′ N — 87°37′ W</p>
-  <div class="scroll-cue" aria-hidden="true"></div>
-</section>
-
-<!-- ════════ LIVE CONDITIONS ════════ -->
-<section id="conditions" aria-label="Live Lake Michigan conditions">
-  <div class="wrap">
-    <div class="cond-row">
-      <div class="cond-id">
-        <p class="cond-live"><span class="dot" aria-hidden="true"></span> Live · Lake Michigan</p>
-        <p class="cond-src" id="condSrc">NOAA Buoy 45198 · Chicago</p>
-      </div>
-      <div class="cond-item"><span class="cond-k">Wind</span><span class="cond-v" id="cWind">—</span></div>
-      <div class="cond-item"><span class="cond-k">Waves</span><span class="cond-v" id="cWave">—</span></div>
-      <div class="cond-item"><span class="cond-k">Water</span><span class="cond-v" id="cWater">—</span></div>
-      <div class="cond-item"><span class="cond-k">Air</span><span class="cond-v" id="cAir">—</span></div>
-      <div class="cond-item"><span class="cond-k">Pressure</span><span class="cond-v" id="cPres">—</span></div>
-      <p class="cond-upd" id="cUpd"></p>
-    </div>
+  <div class="pr-img">
+    <!-- SWAP: your hero vessel photograph -->
+    <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1800&q=85&auto=format&fit=crop" alt="A well-maintained motor yacht underway on Lake Michigan" fetchpriority="high" onerror="imgFail(this)"/>
   </div>
 </section>
 
-<!-- ════════ ETHOS ════════ -->
-<section id="ethos" aria-labelledby="ethos-h">
-  <div class="wrap">
-    <div class="ethos-grid">
-      <div class="ethos-copy">
-        <p class="kicker rv"><span class="idx">01</span> The Ethos</p>
-        <h2 id="ethos-h" class="display rv rv-1">Ownership, the way<br/>the brochure <em>promised.</em></h2>
-        <p class="ethos-p rv rv-2">Buoyancy Elite was founded on a simple conviction: a yacht should give back more time than it takes. Yet most owners spend their weekends chasing vendors, checking lines after a blow, and wondering when the teak was last oiled.</p>
-        <p class="ethos-p rv rv-3">We take all of it. A dedicated crew visits your vessel every week — washing, inspecting, topping off, turning over the interior — and documents every call with a photographed care log. When you walk down the dock on Friday evening, the only thing left to do is cast off.</p>
-        <div class="ethos-sig rv rv-4">
-          <span class="rule" aria-hidden="true"></span>
-          <p>Quiet, meticulous, and always a step ahead.</p>
-        </div>
-      </div>
-      <figure class="ethos-photo rv rv-2">
-        <!-- SWAP: photo of your crew at work -->
-        <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=900&q=85&auto=format&fit=crop" alt="Freshly detailed teak deck aboard a classic yacht" loading="lazy" onerror="imgFail(this)"/>
-        <figcaption><span>Brightwork, midweek visit</span><span>Belmont Harbor</span></figcaption>
-      </figure>
-    </div>
-    <!-- SWAP: verify these figures before launch -->
-    <div class="stats rv">
-      <div class="stat"><p class="stat-n"><span data-count="60">0</span><sup>+</sup></p><p class="stat-l">Vessels under our care</p></div>
-      <div class="stat"><p class="stat-n"><span data-count="9">0</span></p><p class="stat-l">Chicago harbors served</p></div>
-      <div class="stat"><p class="stat-n"><span data-count="100">0</span><sup>%</sup></p><p class="stat-l">Visits photo-documented</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ SERVICES ════════ -->
-<section id="services" aria-labelledby="svc-h">
-  <div class="wrap">
-    <div class="svc-head">
-      <div>
-        <p class="kicker rv"><span class="idx">02</span> The Service</p>
-        <h2 id="svc-h" class="display rv rv-1">Every detail,<br/><em>every week.</em></h2>
-      </div>
-      <p class="lede rv rv-2" style="max-width:24em">Eight disciplines, one crew, one standard. Select any service to begin a proposal.</p>
-    </div>
-    <div class="svc-layout">
-      <div class="svc-visual rv" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=900&q=80&auto=format&fit=crop" alt="" class="on" data-vis="0" loading="lazy" onerror="imgFail(this)"/>
-        <img src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=900&q=80&auto=format&fit=crop" alt="" data-vis="1" loading="lazy" onerror="imgFail(this)"/>
-        <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=900&q=80&auto=format&fit=crop" alt="" data-vis="2" loading="lazy" onerror="imgFail(this)"/>
-        <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=80&auto=format&fit=crop" alt="" data-vis="3" loading="lazy" onerror="imgFail(this)"/>
-        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80&auto=format&fit=crop" alt="" data-vis="4" loading="lazy" onerror="imgFail(this)"/>
-        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=900&q=80&auto=format&fit=crop" alt="" data-vis="5" loading="lazy" onerror="imgFail(this)"/>
-        <span class="svc-tag" id="svcTag">Weekly Wash &amp; Detail</span>
-      </div>
-      <div>
-        <ul class="svc-list" id="svcList">
-          <li class="svc-row on" data-img="0" data-svc="Weekly Wash &amp; Detail" tabindex="0">
-            <span class="svc-no">01</span>
-            <div><h3 class="svc-title">Weekly Wash &amp; Detail</h3><p class="svc-meta">Hull &amp; topsides · gelcoat polish · brightwork · water-tank top-offs · line &amp; fender checks</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="1" data-svc="Interior Turnover" tabindex="0">
-            <span class="svc-no">02</span>
-            <div><h3 class="svc-title">Interior Turnover</h3><p class="svc-meta">Cabin detail · linens &amp; towels · galley sanitation · odor control · guest-ready staging</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="2" data-svc="Teak Restoration &amp; Sealing" tabindex="0">
-            <span class="svc-no">03</span>
-            <div><h3 class="svc-title">Teak Restoration &amp; Sealing</h3><p class="svc-meta">Two-part cleaning · brightening · premium sealing · honey-gold finish, preserved</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="3" data-svc="Preventative Maintenance" tabindex="0">
-            <span class="svc-no">04</span>
-            <div><h3 class="svc-title">Preventative Maintenance</h3><p class="svc-meta">Bilge &amp; through-hulls · batteries · hoses &amp; clamps · systems checks before issues escalate</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="4" data-svc="Project &amp; Refit Management" tabindex="0">
-            <span class="svc-no">05</span>
-            <div><h3 class="svc-title">Project &amp; Refit Management</h3><p class="svc-meta">Scoping &amp; quotes · vendor supervision · weekly progress reports · final sign-off</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="5" data-svc="Vendor Coordination" tabindex="0">
-            <span class="svc-no">06</span>
-            <div><h3 class="svc-title">Vendor Coordination</h3><p class="svc-meta">Mechanics · riggers · canvas &amp; upholstery · electronics — one call, ours</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="0" data-svc="Captain Services" tabindex="0">
-            <span class="svc-no">07</span>
-            <div><h3 class="svc-title">Captain Services</h3><p class="svc-meta">USCG-licensed captains · day charters · deliveries · sea trials · owner instruction</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-          <li class="svc-row" data-img="1" data-svc="Provisioning &amp; Concierge" tabindex="0">
-            <span class="svc-no">08</span>
-            <div><h3 class="svc-title">Provisioning &amp; Concierge</h3><p class="svc-meta">Galley stocking · florals &amp; ice · guest itineraries · 48 hours' notice is plenty</p></div>
-            <span class="svc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </li>
-        </ul>
-        <p class="svc-foot rv">Season-long programs bundle all eight — <a href="#contact">request a tailored proposal</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- harbor marquee -->
-<div class="marq" aria-hidden="true">
-  <div class="marq-track">
-    <span>Belmont Harbor</span><span>DuSable Harbor</span><span>Monroe Harbor</span><span>Burnham Harbor</span><span>Diversey Harbor</span><span>Montrose Harbor</span><span>31st Street Harbor</span><span>Jackson Park</span><span>59th Street Harbor</span>
-    <span>Belmont Harbor</span><span>DuSable Harbor</span><span>Monroe Harbor</span><span>Burnham Harbor</span><span>Diversey Harbor</span><span>Montrose Harbor</span><span>31st Street Harbor</span><span>Jackson Park</span><span>59th Street Harbor</span>
+<!-- ══════════════════ CONDITIONS ══════════════════ -->
+<div id="cond" aria-label="Live Lake Michigan conditions">
+  <div class="cond-row">
+    <span class="cl-lbl"><span class="cd" aria-hidden="true"></span>Live · Lake Michigan</span>
+    <div class="ci"><span class="ci-k">Wind</span><span class="ci-v" id="cWind">—</span></div>
+    <div class="ci"><span class="ci-k">Waves</span><span class="ci-v" id="cWave">—</span></div>
+    <div class="ci"><span class="ci-k">Water Temp</span><span class="ci-v" id="cWater">—</span></div>
+    <div class="ci"><span class="ci-k">Air Temp</span><span class="ci-v" id="cAir">—</span></div>
+    <div class="ci"><span class="ci-k">Pressure</span><span class="ci-v" id="cPres">—</span></div>
+    <span class="cond-src" id="cSrc">NOAA Buoy 45198</span>
   </div>
 </div>
 
-<!-- ════════ SEASON ════════ -->
-<section id="season" aria-labelledby="season-h">
-  <div class="wrap">
-    <div class="season-head">
-      <p class="kicker rv"><span class="idx">03</span> A Year on the Water</p>
-      <h2 id="season-h" class="display rv rv-1">The Great Lakes season<br/>is <em>short.</em> We make it<br/>feel effortless.</h2>
-    </div>
-    <div class="acts rv">
-      <article class="act">
-        <p class="act-no">I.</p>
-        <p class="act-when">April — May</p>
-        <h3>Commissioning</h3>
-        <p>Launch coordination, full detail, systems checks, and a shakedown before you ever step aboard. Your boat meets the season ready — not catching up to it.</p>
-      </article>
-      <article class="act">
-        <p class="act-no">II.</p>
-        <p class="act-when">May — October</p>
-        <h3>The Season</h3>
-        <p>Weekly wash and inspection, interior turnovers, tank top-offs, and storm checks after every blow — by a crew that knows your vessel by name.</p>
-      </article>
-      <article class="act">
-        <p class="act-no">III.</p>
-        <p class="act-when">October — November</p>
-        <h3>Winterization</h3>
-        <p>Haul-out, engine and systems winterization, shrink-wrap, and a documented winter plan — including any refit work you'd like finished by spring.</p>
-      </article>
-    </div>
-    <div class="season-ruler rv" aria-hidden="true">
-      <div class="ruler-track"><div class="ruler-fill" id="rulerFill"></div></div>
-      <div class="ruler-months"><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
-      <p class="ruler-note">Roughly <strong>180 days</strong> on the water. None of them should be spent waiting on a vendor.</p>
+<!-- ══════════════════ WORK ══════════════════ -->
+<section id="work" aria-labelledby="work-h">
+  <div class="work-in">
+    <p class="kk rv" id="work-h">The Work</p>
+    <div class="wl" role="list">
+      <div class="wi rv" role="listitem">
+        <span class="wn" aria-hidden="true">I.</span>
+        <div>
+          <h3 class="wt">Weekly Stewardship</h3>
+          <p class="wd">Hull and topside washes, gelcoat polish, brightwork care, fender and line inspection, and fresh-water tank top-offs — every visit closed with a photographed care log sent directly to you.</p>
+        </div>
+      </div>
+      <div class="wi rv d1" role="listitem">
+        <span class="wn" aria-hidden="true">II.</span>
+        <div>
+          <h3 class="wt">Interior Care &amp; Turnover</h3>
+          <p class="wd">Full cabin detail, linen and towel turnover, galley sanitation, and odor control. Every trip begins in a vessel that has been prepared, not merely cleaned.</p>
+        </div>
+      </div>
+      <div class="wi rv d2" role="listitem">
+        <span class="wn" aria-hidden="true">III.</span>
+        <div>
+          <h3 class="wt">Teak Restoration &amp; Sealing</h3>
+          <p class="wd">Two-part cleaning, brightening, and premium sealing using products chosen for Lake Michigan's specific conditions. The warm honey-gold appearance of original teak, preserved.</p>
+        </div>
+      </div>
+      <div class="wi rv" role="listitem">
+        <span class="wn" aria-hidden="true">IV.</span>
+        <div>
+          <h3 class="wt">Preventative Maintenance</h3>
+          <p class="wd">Systematic inspection of bilge, through-hulls, batteries, hoses, and mechanical systems on every visit. Issues found early cost a fraction of those found late.</p>
+        </div>
+      </div>
+      <div class="wi rv d1" role="listitem">
+        <span class="wn" aria-hidden="true">V.</span>
+        <div>
+          <h3 class="wt">Project &amp; Refit Management</h3>
+          <p class="wd">End-to-end oversight of repair, upgrade, and refit projects — from scoping and competitive quotes through vendor supervision, weekly progress reports, and final sign-off.</p>
+        </div>
+      </div>
+      <div class="wi rv d2" role="listitem">
+        <span class="wn" aria-hidden="true">VI.</span>
+        <div>
+          <h3 class="wt">Vendor Coordination</h3>
+          <p class="wd">We manage your relationships with marine mechanics, riggers, canvas shops, electronics specialists, and detailers. One call to us handles all of them.</p>
+        </div>
+      </div>
+      <div class="wi rv" role="listitem">
+        <span class="wn" aria-hidden="true">VII.</span>
+        <div>
+          <h3 class="wt">Captain Services</h3>
+          <p class="wd">USCG-licensed, experienced captains available for day charters, delivery runs, sea trials, and owner-accompanied passages on Lake Michigan.</p>
+        </div>
+      </div>
+      <div class="wi rv d1" role="listitem">
+        <span class="wn" aria-hidden="true">VIII.</span>
+        <div>
+          <h3 class="wt">Seasonal Programs</h3>
+          <p class="wd">Comprehensive season-long care covering spring commissioning, weekly maintenance throughout the season, and full winterization — tailored to your vessel and how you use it.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ STANDARD ════════ -->
+<!-- ══════════════════ STANDARD ══════════════════ -->
 <section id="standard" aria-labelledby="std-h">
-  <div class="wrap">
-    <p class="kicker rv"><span class="idx">04</span> The Buoyancy Standard</p>
-    <h2 id="std-h" class="display rv rv-1">Why owners<br/><em>stay</em> with us.</h2>
-    <div class="std-grid">
-      <div class="std rv"><p class="std-n">01</p><div><h3>The same hands, every week</h3><p>A dedicated crew is assigned to your vessel — people who notice when a stanchion loosens or a line begins to chafe, because they were there last Tuesday too.</p></div></div>
-      <div class="std rv rv-1"><p class="std-n">02</p><div><h3>Documented, every visit</h3><p>A timestamped, photographed care log lands in your inbox after every call. You always know what was done, what we found, and what we recommend.</p></div></div>
-      <div class="std rv rv-2"><p class="std-n">03</p><div><h3>Discretion as the default</h3><p>Unmarked when you prefer it, quiet always. We work around your guests, your schedule, and your harbor's rhythm — never the other way around.</p></div></div>
-      <div class="std rv rv-3"><p class="std-n">04</p><div><h3>Ready before you are</h3><p>A text is enough. Forty-eight hours later the tanks are full, the linens are fresh, the fridge is stocked, and she's pointed at open water.</p></div></div>
+  <div class="std-in">
+    <p class="kk-lt rv">The Standard</p>
+    <h2 class="std-h2 rv d1" id="std-h">Why those who have<br>worked with us<br><em>stay.</em></h2>
+    <div class="sg">
+      <div class="si rv">
+        <span class="sin" aria-hidden="true">01</span>
+        <h3 class="sih">The same hands, every time.</h3>
+        <p class="sip">A dedicated crew is permanently assigned to your vessel. They know your lines, your systems, the way you like things left. When you come aboard, nothing needs explaining.</p>
+      </div>
+      <div class="si rv d1">
+        <span class="sin" aria-hidden="true">02</span>
+        <h3 class="sih">Documented, every visit.</h3>
+        <p class="sip">A timestamped, photographed care log lands in your inbox after every call. What was done, what we found, what we recommend. No guesswork, no surprises on the haulout invoice.</p>
+      </div>
+      <div class="si rv d2">
+        <span class="sin" aria-hidden="true">03</span>
+        <h3 class="sih">Vigilant between visits.</h3>
+        <p class="sip">Storm watches, harbor incident response, system monitoring. Our responsibility to your vessel doesn't pause between scheduled visits. It runs continuously through the season.</p>
+      </div>
+      <div class="si rv d3">
+        <span class="sin" aria-hidden="true">04</span>
+        <h3 class="sih">Ready before you arrive.</h3>
+        <p class="sip">Provisioned, detailed, tanks full, lines set. Forty-eight hours' notice is plenty. You board and cast off. Everything that needed to happen already has.</p>
+      </div>
+    </div>
+    <div class="sq rv">
+      <p class="sqm" aria-hidden="true">"</p>
+      <blockquote class="sqt">They turned ownership back into pleasure. We arrive Friday evening and she's spotless, provisioned, and ready — every single week.</blockquote>
+      <p class="sqa">M. &amp; T. H. · <span>M/Y Northern Star</span> · Belmont Harbor</p>
     </div>
   </div>
 </section>
 
-<!-- ════════ GALLERY ════════ -->
-<section id="gallery" aria-labelledby="gal-h">
-  <div class="wrap">
-    <div class="gal-head">
+<!-- ══════════════════ WATERS ══════════════════ -->
+<section id="waters" aria-labelledby="waters-h">
+  <div class="wt-in">
+    <p class="kk rv">The Waters</p>
+    <div class="wg">
       <div>
-        <p class="kicker rv"><span class="idx">05</span> Life on the Water</p>
-        <h2 id="gal-h" class="display rv rv-1">This is what<br/>we're <em>taking care of.</em></h2>
-      </div>
-      <div class="gal-nav rv rv-2">
-        <button class="gal-btn" id="galPrev" aria-label="Previous photos"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-        <button class="gal-btn" id="galNext" aria-label="Next photos"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
-  </div>
-  <div class="gal-strip rv" id="galStrip" tabindex="0" aria-label="Photo gallery, scroll horizontally">
-    <!-- SWAP: replace with your real fleet photography -->
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1100&q=80&auto=format&fit=crop" alt="Luxury motor yacht underway on open water" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Open water, full speed ahead</figcaption></figure>
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=1100&q=80&auto=format&fit=crop" alt="Friends gathered on a yacht deck at golden hour" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Golden hour on the deck</figcaption></figure>
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1100&q=80&auto=format&fit=crop" alt="Sunset over Lake Michigan" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Lake Michigan at dusk</figcaption></figure>
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1100&q=80&auto=format&fit=crop" alt="Restored teak deck detail" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Teak, restored to perfection</figcaption></figure>
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1100&q=80&auto=format&fit=crop" alt="Chicago skyline seen from the lake" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Chicago, from the water</figcaption></figure>
-    <figure class="gal-card"><img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1100&q=80&auto=format&fit=crop" alt="Marina at night with city lights" loading="lazy" onerror="imgFail(this)"/><figcaption class="gal-cap">Harbored and ready</figcaption></figure>
-  </div>
-</section>
-
-<!-- ════════ WORDS ════════ -->
-<section id="words" aria-labelledby="words-h">
-  <div class="wrap">
-    <h2 id="words-h" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">What owners say</h2>
-    <div class="words-box rv">
-      <!-- SWAP: replace with real client quotes & vessel names -->
-      <div class="quotes" id="quotes">
-        <figure class="quote on">
-          <blockquote>Buoyancy Elite turned ownership back into pleasure. We arrive Friday evening and she's spotless, provisioned, and ready — every single week.</blockquote>
-          <figcaption>Margaret &amp; Tom H. · <b>M/Y Northern Star</b> · Belmont Harbor</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>The care log alone is worth the fee. Photos after every visit — and the teak hasn't looked this good in fifteen years.</blockquote>
-          <figcaption>David R. · <b>S/Y Meridian</b> · Monroe Harbor</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>They managed a winter refit end to end while we were in Florida. We came home to a better boat than the one we left.</blockquote>
-          <figcaption>The Vandermeers · <b>M/Y Second Wind</b> · DuSable Harbor</figcaption>
-        </figure>
-      </div>
-      <div class="words-dots" id="wordsDots" role="tablist" aria-label="Testimonials">
-        <button class="wdot on" aria-label="Testimonial 1"></button>
-        <button class="wdot" aria-label="Testimonial 2"></button>
-        <button class="wdot" aria-label="Testimonial 3"></button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ FAQ ════════ -->
-<section id="faq" aria-labelledby="faq-h">
-  <div class="wrap">
-    <div class="faq-grid">
-      <div class="faq-aside">
-        <p class="kicker rv"><span class="idx">06</span> Questions</p>
-        <h2 id="faq-h" class="display rv rv-1">Asked,<br/><em>answered.</em></h2>
-        <p class="rv rv-2">Anything else on your mind? <a href="#contact" class="link-quiet" style="margin-top:.4rem">Ask us directly</a></p>
-      </div>
-      <div class="faq-list rv rv-2">
-        <details>
-          <summary><span class="faq-q">Which harbors do you serve?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">All nine Chicago Park District harbors — Belmont, Burnham, Diversey, DuSable, Monroe, Montrose, 31st Street, Jackson Park, and 59th Street — plus select North Shore clubs and Indiana marinas by arrangement.</p>
-        </details>
-        <details>
-          <summary><span class="faq-q">What does weekly care actually include?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">A full wash of hull and topsides, interior walkthrough, fresh-water tank top-off, line and fender inspection, a bilge and systems glance, and anything your vessel's program adds — all closed out with a photographed care log the same day.</p>
-        </details>
-        <details>
-          <summary><span class="faq-q">Can you oversee projects while I'm away?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">Yes — refits, repairs, and upgrades are managed end to end: scoping, competitive quotes, vendor supervision, weekly progress reports with photos, and final sign-off before we hand her back.</p>
-        </details>
-        <details>
-          <summary><span class="faq-q">Are you insured?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">Fully insured, and every captain we place is USCG-licensed. Documentation and references are available on request.</p>
-        </details>
-        <details>
-          <summary><span class="faq-q">How do I know what was done?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">After every visit you receive a timestamped care log — photos, notes, anything we found, and anything we recommend. No mystery invoices, no "trust us."</p>
-        </details>
-        <details>
-          <summary><span class="faq-q">What does a program cost?</span><span class="faq-x" aria-hidden="true">+</span></summary>
-          <p class="faq-a">Every program is tailored to the vessel, the harbor, and the season you have in mind. Tell us about your boat and you'll have a written proposal within one business day.</p>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ CONTACT ════════ -->
-<section id="contact" aria-labelledby="ct-h">
-  <div class="wrap">
-    <div class="ct-grid">
-      <div>
-        <p class="kicker rv"><span class="idx">07</span> Begin</p>
-        <h2 id="ct-h" class="display rv rv-1">It starts with<br/>a <em>conversation.</em></h2>
-        <p class="ct-lede rv rv-2">Tell us about your vessel and the season you have in mind. You'll hear from us within one business day — usually sooner.</p>
-        <div class="ct-rows rv rv-3">
-          <!-- SWAP: real phone & email -->
-          <div class="ct-row"><span class="ct-k">Phone</span><span class="ct-v">[Phone Number]</span></div>
-          <div class="ct-row"><span class="ct-k">Email</span><span class="ct-v">[email@buoyancyelite.com]</span></div>
-          <div class="ct-row"><span class="ct-k">Season</span><span class="ct-v">April — November</span></div>
-        </div>
-        <div class="ct-harbors rv rv-4" role="list" aria-label="Harbors served">
-          <span class="hb" role="listitem">Belmont</span><span class="hb" role="listitem">Burnham</span><span class="hb" role="listitem">Diversey</span><span class="hb" role="listitem">DuSable</span><span class="hb" role="listitem">Monroe</span><span class="hb" role="listitem">Montrose</span><span class="hb" role="listitem">31st Street</span><span class="hb" role="listitem">Jackson Park</span><span class="hb" role="listitem">59th Street</span>
-        </div>
-      </div>
-      <div class="form-card rv rv-2">
-        <form id="propForm" novalidate>
-          <h3>Request a Proposal</h3>
-          <p class="form-note">A few details about you and the boat — we'll take it from there.</p>
-          <div class="f-grid">
-            <div class="f-field" id="ff-name">
-              <label for="f-name">Name <b>*</b></label>
-              <input id="f-name" name="name" type="text" autocomplete="name"/>
-              <span class="f-msg">Please tell us your name.</span>
-            </div>
-            <div class="f-field" id="ff-email">
-              <label for="f-email">Email <b>*</b></label>
-              <input id="f-email" name="email" type="email" autocomplete="email"/>
-              <span class="f-msg">A valid email helps us reply.</span>
-            </div>
-            <div class="f-field">
-              <label for="f-phone">Phone</label>
-              <input id="f-phone" name="phone" type="tel" autocomplete="tel"/>
-            </div>
-            <div class="f-field">
-              <label for="f-vessel">Vessel — make &amp; length</label>
-              <input id="f-vessel" name="vessel" type="text" placeholder=""/>
-            </div>
-            <div class="f-field">
-              <label for="f-harbor">Harbor</label>
-              <select id="f-harbor" name="harbor">
-                <option value="">Select…</option>
-                <option>Belmont</option><option>Burnham</option><option>Diversey</option><option>DuSable</option><option>Monroe</option><option>Montrose</option><option>31st Street</option><option>Jackson Park</option><option>59th Street</option><option>Other / North Shore</option>
-              </select>
-            </div>
-            <div class="f-field">
-              <label for="f-interest">Interested in</label>
-              <select id="f-interest" name="interest">
-                <option value="">Select…</option>
-                <option>Season-Long Program</option>
-                <option>Weekly Wash &amp; Detail</option>
-                <option>Interior Turnover</option>
-                <option>Teak Restoration &amp; Sealing</option>
-                <option>Preventative Maintenance</option>
-                <option>Project &amp; Refit Management</option>
-                <option>Vendor Coordination</option>
-                <option>Captain Services</option>
-                <option>Provisioning &amp; Concierge</option>
-                <option>Winterization</option>
-              </select>
-            </div>
-            <div class="f-field wide">
-              <label for="f-msg">Anything we should know?</label>
-              <textarea id="f-msg" name="message"></textarea>
-            </div>
-            <div class="f-actions">
-              <button type="submit" class="btn btn-ink">Send Request <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-              <p class="f-privacy">Replies within one business day. Never shared, never spammed.</p>
-            </div>
+        <h2 class="wh2 rv d1" id="waters-h">A season on<br>Lake Michigan<br><em>is short.</em></h2>
+        <p class="wb rv d2">From ice-out in April through the November haul, the Great Lakes sailing season lasts roughly 180 days. Every one of them matters. We treat the window between first thaw and first snow as a gift — and make sure nothing is wasted waiting on a vendor or chasing down a problem that should have been caught in May.</p>
+        <p class="wb rv d3">We commission your vessel before the season opens, watch over it through every storm and calm between, and put it away properly when the water goes cold. You own the season. We manage it.</p>
+        <div class="sa rv d4">
+          <div class="act">
+            <p class="awt">April — May</p>
+            <div><h4 class="ah">Commissioning</h4><p class="ad">Launch coordination, full detail, systems inspection, and a shakedown before you're aboard. Your boat meets the season ready — not catching up to it.</p></div>
           </div>
-        </form>
-        <!-- SWAP: wire this form to your email/CRM endpoint -->
-        <div class="f-success" id="fSuccess" role="status">
-          <div class="fs-ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>Request received.</h3>
-          <p>Thank you — we'll be in touch within one business day to talk through your vessel and the season ahead.</p>
+          <div class="act">
+            <p class="awt">May — October</p>
+            <div><h4 class="ah">Active Stewardship</h4><p class="ad">Weekly care, storm watches, interior turnovers, tank top-offs, and concierge readiness — all season, every week, documented every time.</p></div>
+          </div>
+          <div class="act">
+            <p class="awt">October — November</p>
+            <div><h4 class="ah">Winterization</h4><p class="ad">Haul-out, engine and systems winterization, shrink-wrap, and a documented winter plan — including any refit work you want completed before spring.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="hl-lbl kk rv">Harbors We Serve</p>
+        <div class="hl-list rv d1" role="list">
+          <div class="hrow" role="listitem"><span>Belmont Harbor</span><span>Lincoln Park</span></div>
+          <div class="hrow" role="listitem"><span>Burnham Harbor</span><span>Museum Campus</span></div>
+          <div class="hrow" role="listitem"><span>Diversey Harbor</span><span>Lincoln Park</span></div>
+          <div class="hrow" role="listitem"><span>DuSable Harbor</span><span>Streeterville</span></div>
+          <div class="hrow" role="listitem"><span>Monroe Harbor</span><span>Grant Park</span></div>
+          <div class="hrow" role="listitem"><span>Montrose Harbor</span><span>Uptown</span></div>
+          <div class="hrow" role="listitem"><span>31st Street Harbor</span><span>Bridgeport</span></div>
+          <div class="hrow" role="listitem"><span>Jackson Park Harbor</span><span>Hyde Park</span></div>
+          <div class="hrow" role="listitem"><span>59th Street Harbor</span><span>South Shore</span></div>
+        </div>
+        <div class="wn-note rv d2">
+          <p>North Shore clubs and Indiana marinas considered by arrangement. Tell us where your vessel lives.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════ FOOTER ════════ -->
+<!-- ══════════════════ RECORD ══════════════════ -->
+<section id="record" aria-label="The Record — Photography">
+  <p class="rk">The Record</p>
+  <!-- SWAP: replace with your own fleet photography -->
+  <img class="ri on" src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2000&q=80&auto=format&fit=crop" alt="Luxury motor yacht underway on open water" data-cap="Open water, full speed ahead" data-loc="Lake Michigan" loading="lazy" onerror="imgFail(this)"/>
+  <img class="ri" src="https://images.unsplash.com/photo-1533591380348-14193f1de18f?w=2000&q=80&auto=format&fit=crop" alt="Friends gathered on a yacht deck at golden hour" data-cap="Golden hour on the deck" data-loc="Belmont Harbor" loading="lazy" onerror="imgFail(this)"/>
+  <img class="ri" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=2000&q=80&auto=format&fit=crop" alt="Sunset over Lake Michigan" data-cap="Lake Michigan at dusk" data-loc="Monroe Harbor" loading="lazy" onerror="imgFail(this)"/>
+  <img class="ri" src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=2000&q=80&auto=format&fit=crop" alt="Teak deck detail, expertly restored" data-cap="Teak, restored to original warmth" data-loc="Burnham Harbor" loading="lazy" onerror="imgFail(this)"/>
+  <img class="ri" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=2000&q=80&auto=format&fit=crop" alt="Chicago skyline from Lake Michigan" data-cap="Chicago, from the water" data-loc="DuSable Harbor" loading="lazy" onerror="imgFail(this)"/>
+  <img class="ri" src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=2000&q=80&auto=format&fit=crop" alt="Marina at night with city lights reflected" data-cap="Harbored and ready" data-loc="59th Street Harbor" loading="lazy" onerror="imgFail(this)"/>
+  <div class="rov" aria-hidden="true"></div>
+  <div class="rui">
+    <div class="rcap">
+      <p class="rcl" id="rLoc">Lake Michigan</p>
+      <p class="rct" id="rCap">Open water, full speed ahead</p>
+    </div>
+    <div class="rctrl">
+      <p class="rcnt" id="rCnt" aria-live="polite">01 / 06</p>
+      <div class="rarr">
+        <button class="rb" id="rPrev" aria-label="Previous image"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="rb" id="rNext" aria-label="Next image"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ BEGIN ══════════════════ -->
+<section id="begin" aria-labelledby="beg-h">
+  <div class="beg-in">
+    <div>
+      <p class="kk rv">Begin</p>
+      <h2 class="bh2 rv d1" id="beg-h">Tell us about<br>your <em>vessel.</em></h2>
+      <p class="bb rv d2">A brief conversation is where every engagement begins. We'll ask a few questions about the boat, the harbor, and how you use it — and come back with a proposal written for your specific situation, not a rate sheet.</p>
+      <div class="bdt rv d3">
+        <!-- SWAP: real phone & email -->
+        <div class="bdr"><span class="bdk">Phone</span><span class="bdv">[Phone Number]</span></div>
+        <div class="bdr"><span class="bdk">Email</span><span class="bdv">[email@buoyancyelite.com]</span></div>
+        <div class="bdr"><span class="bdk">Season</span><span class="bdv">April — November</span></div>
+        <div class="bdr"><span class="bdk">Response</span><span class="bdv">Within one business day</span></div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <form id="propForm" novalidate>
+        <h3 class="ft-h">Request a Proposal</h3>
+        <p class="fn">A few details about you and the boat — we'll take it from there.</p>
+        <div class="fr">
+          <div class="ff" id="ff-name">
+            <label for="f-name">Name <b>*</b></label>
+            <input id="f-name" name="name" type="text" autocomplete="name"/>
+            <span class="fe">Please tell us your name.</span>
+          </div>
+          <div class="ff" id="ff-email">
+            <label for="f-email">Email <b>*</b></label>
+            <input id="f-email" name="email" type="email" autocomplete="email"/>
+            <span class="fe">A valid email helps us reply.</span>
+          </div>
+          <div class="ff">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel"/>
+          </div>
+          <div class="ff">
+            <label for="f-vessel">Vessel — make &amp; length</label>
+            <input id="f-vessel" name="vessel" type="text"/>
+          </div>
+          <div class="ff">
+            <label for="f-harbor">Harbor</label>
+            <select id="f-harbor" name="harbor">
+              <option value="">Select…</option>
+              <option>Belmont</option><option>Burnham</option><option>Diversey</option>
+              <option>DuSable</option><option>Monroe</option><option>Montrose</option>
+              <option>31st Street</option><option>Jackson Park</option><option>59th Street</option>
+              <option>Other / North Shore</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label for="f-svc">Interested in</label>
+            <select id="f-svc" name="service">
+              <option value="">Select…</option>
+              <option>Seasonal Program</option>
+              <option>Weekly Stewardship</option>
+              <option>Interior Care</option>
+              <option>Teak Restoration</option>
+              <option>Preventative Maintenance</option>
+              <option>Project Management</option>
+              <option>Captain Services</option>
+              <option>Winterization</option>
+            </select>
+          </div>
+          <div class="ff w">
+            <label for="f-msg">Anything we should know?</label>
+            <textarea id="f-msg" name="message"></textarea>
+          </div>
+          <div class="fac w">
+            <button type="submit" class="fsub">Send Request →</button>
+            <p class="fpv">Replies within one business day. Never shared.</p>
+          </div>
+        </div>
+      </form>
+      <!-- SWAP: wire to your email/CRM -->
+      <div class="fdone" id="fDone" role="status">
+        <p>Your request has been received.</p>
+        <small>We'll be in touch within one business day to talk through your vessel and the season ahead.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
 <footer>
-  <div class="wrap">
-    <p class="ft-word" aria-hidden="true">BUOYANCY</p>
-    <div class="ft-grid">
-      <div class="ft-brand">
-        <a href="#hero" class="brand" style="line-height:1.25">
-          <span class="brand-name" style="color:var(--paper)">BUOYANCY ELITE</span>
-          <span class="brand-sub">Yacht Management · Chicago</span>
-        </a>
-        <p>White-glove yacht care for Lake Michigan — weekly programs, refit management, and captain services across Chicago's harbors.</p>
-      </div>
-      <div class="ft-cols">
-        <div class="ft-col">
-          <p>Explore</p>
-          <ul>
-            <li><a href="#ethos">The Ethos</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#season">A Year on the Water</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <p>Contact</p>
-          <ul>
-            <!-- SWAP: real phone & email -->
-            <li><a href="#contact">[Phone Number]</a></li>
-            <li><a href="#contact">[email@buoyancyelite.com]</a></li>
-            <li><a href="#conditions">Live lake conditions</a></li>
-          </ul>
-        </div>
-        <div class="ft-col">
-          <p>Editions</p>
-          <ul>
-            <li><a href="/">Classic Edition</a></li>
-            <li><a href="/fable" aria-current="page">Fable Edition</a></li>
-          </ul>
-        </div>
-      </div>
+  <div class="ft-in">
+    <div>
+      <p class="ft-b">BUOYANCY ELITE</p>
+      <p class="ft-s">Yacht Management · Chicago · Lake Michigan</p>
     </div>
-    <div class="ft-base">
-      <p>© <span id="yr">2026</span> Buoyancy Elite Yacht Management. All rights reserved.</p>
-      <p class="ed">Fable Edition — designed with <i>Fable 5</i> · <a href="/">view the Classic Edition</a></p>
+    <div class="ft-ls">
+      <a href="#practice">The Approach</a>
+      <a href="#work">The Work</a>
+      <a href="#standard">The Standard</a>
+      <a href="#waters">The Waters</a>
+      <a href="#record">The Record</a>
+      <a href="#begin">Begin</a>
+      <a href="/" title="View the Classic Edition">Classic Edition ↗</a>
     </div>
+  </div>
+  <div class="ft-bot">
+    <p>© <span id="yr">2026</span> Buoyancy Elite Yacht Management. All rights reserved.</p>
+    <p class="ft-ed">Fable Edition — designed with <i>Fable 5</i></p>
   </div>
 </footer>
 
-<a id="fab" class="btn btn-gold" href="#contact">Request a Proposal</a>
-
 <script>
 (function(){
-  'use strict';
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+'use strict';
+var rm=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  /* ── load-in ── */
-  window.addEventListener('load', function(){
-    document.body.classList.add('loaded');
-    var hi = document.getElementById('heroImg');
-    if(hi) hi.classList.add('on');
-  });
-  /* belt & braces if load already fired or hangs on a slow asset */
-  setTimeout(function(){document.body.classList.add('loaded');var hi=document.getElementById('heroImg');if(hi)hi.classList.add('on');}, 1400);
+/* load */
+function load(){document.body.classList.add('ld');}
+if(document.readyState==='complete'){load();}else{window.addEventListener('load',load);}
+setTimeout(load,1500);
 
-  /* ── header: solid after hero start, hide on scroll down ── */
-  var hd = document.getElementById('hd'), lastY = 0;
-  function onScroll(){
-    var y = window.scrollY;
-    hd.classList.toggle('solid', y > 40);
-    hd.classList.toggle('hide', y > 560 && y > lastY && !document.getElementById('mnav').classList.contains('open'));
-    lastY = y;
-    var doc = document.documentElement;
-    document.getElementById('progress').style.width = (y / (doc.scrollHeight - window.innerHeight) * 100) + '%';
-    var fab = document.getElementById('fab');
-    var ct = document.getElementById('contact').getBoundingClientRect();
-    fab.classList.toggle('show', y > 900 && ct.top > window.innerHeight * .55);
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+/* scroll reveal */
+var obs=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
 
-  /* ── mobile nav ── */
-  var mnav = document.getElementById('mnav'), burger = document.getElementById('burger');
-  function setMenu(open){
-    mnav.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  burger.addEventListener('click', function(){ setMenu(true); });
-  document.getElementById('mclose').addEventListener('click', function(){ setMenu(false); });
-  mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
-
-  /* ── reveal ── */
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
-
-  /* ── season ruler draw-in ── */
-  var rf = document.getElementById('rulerFill');
-  if(rf){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ rf.classList.add('in'); o.disconnect(); } }); },{threshold:.4}).observe(rf.parentElement); }
-
-  /* ── counters ── */
-  document.querySelectorAll('[data-count]').forEach(function(el){
-    new IntersectionObserver(function(es,o){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        o.disconnect();
-        var end = +el.dataset.count, t0 = null;
-        if(reduced){ el.textContent = end; return; }
-        function tick(ts){
-          if(!t0) t0 = ts;
-          var p = Math.min((ts - t0) / 1200, 1);
-          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
-          if(p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      });
-    },{threshold:.6}).observe(el);
-  });
-
-  /* ── services: sticky visual swap + proposal preselect ── */
-  var rows = document.querySelectorAll('.svc-row');
-  var visuals = document.querySelectorAll('.svc-visual img');
-  var tag = document.getElementById('svcTag');
-  var interest = document.getElementById('f-interest');
-  function activate(row){
-    rows.forEach(function(r){ r.classList.toggle('on', r === row); });
-    var i = +row.dataset.img;
-    visuals.forEach(function(im){ im.classList.toggle('on', +im.dataset.vis === i); });
-    tag.innerHTML = row.dataset.svc;
-  }
-  rows.forEach(function(row){
-    row.addEventListener('mouseenter', function(){ activate(row); });
-    row.addEventListener('focus', function(){ activate(row); });
-    row.addEventListener('click', function(){
-      var name = row.dataset.svc.replace(/&amp;/g,'&');
-      if(interest){
-        for(var i=0;i<interest.options.length;i++){
-          if(interest.options[i].text === name){ interest.selectedIndex = i; break; }
-        }
-      }
-      document.getElementById('contact').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
-    });
-    row.addEventListener('keydown', function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); row.click(); } });
-  });
-
-  /* ── gallery: buttons + drag ── */
-  var strip = document.getElementById('galStrip');
-  var step = function(){ return Math.min(strip.clientWidth * .8, 560); };
-  document.getElementById('galPrev').addEventListener('click', function(){ strip.scrollBy({left:-step(), behavior:'smooth'}); });
-  document.getElementById('galNext').addEventListener('click', function(){ strip.scrollBy({left: step(), behavior:'smooth'}); });
-  var down = false, startX = 0, startL = 0, moved = false;
-  strip.addEventListener('pointerdown', function(e){ down = true; moved = false; startX = e.clientX; startL = strip.scrollLeft; strip.classList.add('drag'); });
-  window.addEventListener('pointermove', function(e){
-    if(!down) return;
-    var dx = e.clientX - startX;
-    if(Math.abs(dx) > 4) moved = true;
-    strip.scrollLeft = startL - dx;
-  });
-  window.addEventListener('pointerup', function(){ down = false; strip.classList.remove('drag'); });
-  strip.addEventListener('click', function(e){ if(moved){ e.preventDefault(); } }, true);
-
-  /* ── quotes carousel ── */
-  var qs = document.querySelectorAll('.quote'), dots = document.querySelectorAll('.wdot'), qi = 0, qt;
-  function showQ(i){
-    qi = (i + qs.length) % qs.length;
-    qs.forEach(function(q,k){ q.classList.toggle('on', k === qi); });
-    dots.forEach(function(d,k){ d.classList.toggle('on', k === qi); });
-  }
-  dots.forEach(function(d,k){ d.addEventListener('click', function(){ showQ(k); restartQ(); }); });
-  function restartQ(){ clearInterval(qt); if(!reduced) qt = setInterval(function(){ showQ(qi+1); }, 7000); }
-  restartQ();
-  var wb = document.querySelector('.words-box');
-  wb.addEventListener('mouseenter', function(){ clearInterval(qt); });
-  wb.addEventListener('mouseleave', restartQ);
-
-  /* ── FAQ: close others ── */
-  var faqs = document.querySelectorAll('.faq-list details');
-  faqs.forEach(function(d){
-    d.addEventListener('toggle', function(){
-      if(d.open) faqs.forEach(function(o){ if(o !== d) o.open = false; });
-    });
-  });
-
-  /* ── form ── */
-  var form = document.getElementById('propForm');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var ok = true;
-    var name = document.getElementById('f-name'), email = document.getElementById('f-email');
-    var fn = document.getElementById('ff-name'), fe = document.getElementById('ff-email');
-    fn.classList.toggle('err', !(name.value.trim())); if(!name.value.trim()) ok = false;
-    var em = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
-    fe.classList.toggle('err', !em); if(!em) ok = false;
-    if(!ok) return;
-    /* SWAP: POST to your email/CRM endpoint here */
-    form.style.display = 'none';
-    document.getElementById('fSuccess').classList.add('show');
-  });
-
-  /* ── footer year ── */
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  /* ── live conditions: NOAA buoy 45198 with Open-Meteo fallback ── */
-  var COMPASS = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-  function compass(d){ return COMPASS[Math.round(d / 22.5) % 16]; }
-  function setV(id, html){ document.getElementById(id).innerHTML = html; }
-  function stamp(){
-    var d = new Date();
-    document.getElementById('cUpd').textContent = 'Updated ' + d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
-  }
-  function renderWind(mph, dir, gust){
-    var s = Math.round(mph) + '<small>mph' + (dir != null ? ' ' + compass(dir) : '') + '</small>';
-    if(gust) s += '<small>· g ' + Math.round(gust) + '</small>';
-    setV('cWind', s);
-  }
-  async function fetchBuoy(){
-    var URL = 'https://www.ndbc.noaa.gov/data/realtime2/45198.txt';
-    var PROXY = 'https://corsproxy.io/?url=';
-    try{
-      var res = await fetch(PROXY + encodeURIComponent(URL), {signal: AbortSignal.timeout(8000)});
-      if(!res.ok) throw new Error('proxy');
-      var text = await res.text();
-      var lines = text.trim().split('\n').filter(function(l){ return !l.startsWith('#'); });
-      if(!lines.length) throw new Error('empty');
-      var c = lines[0].trim().split(/\s+/);
-      function g(i){ var v = c[i]; return (v === 'MM' || v === undefined) ? null : parseFloat(v); }
-      var wdir = g(5), wspd = g(6), gst = g(7), wvht = g(8), atmp = g(13), wtmp = g(14), pres = g(12);
-      if(wspd == null && wvht == null && wtmp == null) throw new Error('no data');
-      if(wspd != null) renderWind(wspd * 2.237, wdir, gst != null ? gst * 2.237 : null);
-      if(wvht != null) setV('cWave', (wvht * 3.281).toFixed(1) + '<small>ft</small>');
-      if(wtmp != null) setV('cWater', Math.round(wtmp * 9/5 + 32) + '<small>°F</small>');
-      if(atmp != null) setV('cAir', Math.round(atmp * 9/5 + 32) + '<small>°F</small>');
-      if(pres != null) setV('cPres', Math.round(pres) + '<small>hPa</small>');
-      document.getElementById('condSrc').textContent = 'NOAA Buoy 45198 · Chicago';
-      stamp();
-    }catch(err){
-      try{
-        var m = await (await fetch('https://marine-api.open-meteo.com/v1/marine?latitude=41.89&longitude=-87.57&current=wave_height&timezone=America%2FChicago')).json();
-        var w = await (await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.89&longitude=-87.57&current=temperature_2m,wind_speed_10m,wind_direction_10m,surface_pressure&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago')).json();
-        if(w.current){
-          renderWind(w.current.wind_speed_10m, w.current.wind_direction_10m, null);
-          setV('cAir', Math.round(w.current.temperature_2m) + '<small>°F</small>');
-          setV('cPres', Math.round(w.current.surface_pressure) + '<small>hPa</small>');
-        }
-        if(m.current && m.current.wave_height != null) setV('cWave', (m.current.wave_height * 3.281).toFixed(1) + '<small>ft</small>');
-        setV('cWater', '—');
-        document.getElementById('condSrc').textContent = 'Open-Meteo · Lake Michigan';
-        stamp();
-      }catch(e2){
-        document.getElementById('condSrc').textContent = 'Conditions temporarily unavailable';
-      }
+/* sidenav: active dot tracking */
+var sections=['practice','work','standard','waters','record','begin'];
+var dots=document.querySelectorAll('.snd');
+var sio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      var id=e.target.id;
+      dots.forEach(function(d){d.classList.toggle('on',d.dataset.sec===id);});
     }
+  });
+},{threshold:.3});
+sections.forEach(function(s){var el=document.getElementById(s);if(el)sio.observe(el);});
+dots.forEach(function(d){
+  d.addEventListener('click',function(){
+    var t=document.getElementById(d.dataset.sec);
+    if(t)t.scrollIntoView({behavior:rm?'auto':'smooth'});
+  });
+});
+
+/* mobile nav */
+var mn=document.getElementById('mn'),bg=document.getElementById('burger');
+function setMn(o){mn.classList.toggle('open',o);bg.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';}
+bg.addEventListener('click',function(){setMn(true);});
+document.getElementById('mnx').addEventListener('click',function(){setMn(false);});
+mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMn(false);});});
+
+/* gallery */
+var imgs=document.querySelectorAll('.ri');
+var n=imgs.length,ci=0;
+function gShow(i){
+  ci=(i+n)%n;
+  imgs.forEach(function(img,k){img.classList.toggle('on',k===ci);});
+  var img=imgs[ci];
+  document.getElementById('rCap').textContent=img.dataset.cap||'';
+  document.getElementById('rLoc').textContent=img.dataset.loc||'';
+  document.getElementById('rCnt').textContent=(ci<9?'0':'')+(ci+1)+' / '+(n<10?'0':'')+n;
+}
+document.getElementById('rPrev').addEventListener('click',function(){gShow(ci-1);});
+document.getElementById('rNext').addEventListener('click',function(){gShow(ci+1);});
+document.addEventListener('keydown',function(e){
+  if(document.getElementById('record').getBoundingClientRect().top<window.innerHeight&&document.getElementById('record').getBoundingClientRect().bottom>0){
+    if(e.key==='ArrowLeft')gShow(ci-1);
+    if(e.key==='ArrowRight')gShow(ci+1);
   }
-  fetchBuoy();
-  setInterval(fetchBuoy, 10 * 60 * 1000);
+});
+var gAuto=setInterval(function(){gShow(ci+1);},5800);
+document.getElementById('record').addEventListener('mouseenter',function(){clearInterval(gAuto);});
+
+/* form */
+var form=document.getElementById('propForm');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var ok=true;
+  var nm=document.getElementById('f-name'),em=document.getElementById('f-email');
+  var fn=document.getElementById('ff-name'),fe=document.getElementById('ff-email');
+  fn.classList.toggle('err',!nm.value.trim());
+  if(!nm.value.trim())ok=false;
+  var valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
+  fe.classList.toggle('err',!valid);
+  if(!valid)ok=false;
+  if(!ok)return;
+  /* SWAP: POST to your email/CRM endpoint */
+  form.style.display='none';
+  document.getElementById('fDone').classList.add('sh');
+});
+
+/* footer year */
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* live conditions: NOAA buoy 45198 → Open-Meteo fallback */
+var CMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+function cmp(d){return CMP[Math.round(d/22.5)%16];}
+function sv(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html;}
+function fmtWind(mph,dir,gst){
+  var s=Math.round(mph)+'<small>mph'+(dir!=null?' '+cmp(dir):'')+' </small>';
+  if(gst)s+='<small>g'+Math.round(gst)+'</small>';
+  return s;
+}
+async function fetchCond(){
+  var URL='https://www.ndbc.noaa.gov/data/realtime2/45198.txt';
+  var PX='https://corsproxy.io/?url=';
+  try{
+    var r=await fetch(PX+encodeURIComponent(URL),{signal:AbortSignal.timeout(8000)});
+    if(!r.ok)throw new Error();
+    var txt=await r.text();
+    var lines=txt.trim().split('\n').filter(function(l){return !l.startsWith('#');});
+    if(!lines.length)throw new Error();
+    var c=lines[0].trim().split(/\s+/);
+    function g(i){var v=c[i];return(v==='MM'||v===undefined)?null:parseFloat(v);}
+    var wdir=g(5),wspd=g(6),gst=g(7),wvht=g(8),atmp=g(13),wtmp=g(14),pres=g(12);
+    if(wspd==null&&wvht==null&&wtmp==null)throw new Error();
+    if(wspd!=null)sv('cWind',fmtWind(wspd*2.237,wdir,gst!=null?gst*2.237:null));
+    if(wvht!=null)sv('cWave',(wvht*3.281).toFixed(1)+'<small>ft</small>');
+    if(wtmp!=null)sv('cWater',Math.round(wtmp*9/5+32)+'<small>°F</small>');
+    if(atmp!=null)sv('cAir',Math.round(atmp*9/5+32)+'<small>°F</small>');
+    if(pres!=null)sv('cPres',Math.round(pres)+'<small>hPa</small>');
+    sv('cSrc','NOAA Buoy 45198 · Updated '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}));
+  }catch(_){
+    try{
+      var m=await(await fetch('https://marine-api.open-meteo.com/v1/marine?latitude=41.89&longitude=-87.57&current=wave_height&timezone=America%2FChicago')).json();
+      var w=await(await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.89&longitude=-87.57&current=temperature_2m,wind_speed_10m,wind_direction_10m,surface_pressure&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago')).json();
+      if(w.current){
+        sv('cWind',fmtWind(w.current.wind_speed_10m,w.current.wind_direction_10m,null));
+        sv('cAir',Math.round(w.current.temperature_2m)+'<small>°F</small>');
+        sv('cPres',Math.round(w.current.surface_pressure)+'<small>hPa</small>');
+      }
+      if(m.current&&m.current.wave_height!=null)sv('cWave',(m.current.wave_height*3.281).toFixed(1)+'<small>ft</small>');
+      sv('cSrc','Open-Meteo · Lake Michigan');
+    }catch(_2){sv('cSrc','Conditions temporarily unavailable');}
+  }
+}
+fetchCond();
+setInterval(fetchCond,10*60*1000);
 })();
 </script>
 </body>
