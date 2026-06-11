@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Buoyancy Elite Yacht Management — professional yacht care, maintenance, refit oversight, and licensed captains for vessels berthed in Chicago's harbors. Every visit documented."/>
+  <title>Buoyancy Elite Yacht Management — Lake Michigan Vessel Care</title>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","x2eyivxcmg");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --navy:#142A3D;--deep:#0C1D2C;--harbor:#1E3A52;
+      --paper:#F5F2EA;--sand:#E9E3D4;--chart:#EFEBDF;
+      --red:#A8442E;--rope:#8A7349;
+      --txt:#22313D;--mut:#5A6873;
+      --line:rgba(20,42,61,.16);--line-lt:rgba(245,242,234,.16);
+      --serif:'Libre Caslon Text',Georgia,serif;
+      --sans:'IBM Plex Sans',system-ui,sans-serif;
+      --mono:'IBM Plex Mono',ui-monospace,monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);font-weight:400;font-size:16px;color:var(--txt);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none}
+    button{font-family:inherit}
+    ::selection{background:var(--navy);color:var(--paper)}
+    :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+    section{scroll-margin-top:118px}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3.5vw,2.5rem)}
+
+    /* ── UTILITY BAR: conditions ticker + editions ── */
+    #util{background:var(--deep);color:rgba(245,242,234,.85);font-size:.74rem;border-bottom:1px solid rgba(245,242,234,.08)}
+    .util-in{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3.5vw,2.5rem);display:flex;align-items:center;gap:1.5rem;height:38px;overflow:hidden}
+    .tick{display:flex;align-items:center;gap:1.4rem;overflow-x:auto;scrollbar-width:none;flex:1;white-space:nowrap}
+    .tick::-webkit-scrollbar{display:none}
+    .tick-live{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:#7BC894;flex:none}
+    .tick-dot{width:6px;height:6px;border-radius:50%;background:#5CB377;animation:tkp 2.2s infinite}
+    @keyframes tkp{0%,100%{opacity:1}50%{opacity:.25}}
+    .tick-i{font-family:var(--mono);font-size:.68rem;color:rgba(245,242,234,.75);flex:none}
+    .tick-i b{font-weight:500;color:var(--paper)}
+    .tick-src{font-family:var(--mono);font-size:.62rem;color:rgba(245,242,234,.4);flex:none}
+    .util-ed{display:flex;align-items:center;gap:1rem;flex:none;font-size:.68rem;letter-spacing:.05em}
+    .util-ed span{color:rgba(245,242,234,.35)}
+    .util-ed a{color:rgba(245,242,234,.6);transition:color .25s}
+    .util-ed a:hover{color:var(--paper)}
+    .util-ed a.cur{color:var(--paper);border-bottom:1px solid var(--red)}
+
+    /* ── MASTHEAD ── */
+    #mast{background:var(--navy);color:var(--paper);position:sticky;top:0;z-index:600;box-shadow:0 1px 0 rgba(0,0,0,.25)}
+    .mast-in{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3.5vw,2.5rem);display:flex;align-items:center;justify-content:space-between;height:72px;gap:2rem}
+    .mk{display:flex;align-items:center;gap:.9rem}
+    .mk-burgee{width:30px;height:30px;flex:none}
+    .mk-burgee svg{width:100%;height:100%;display:block}
+    .mk-txt{line-height:1.2}
+    .mk-name{font-family:var(--serif);font-weight:700;font-size:1.02rem;letter-spacing:.06em;color:var(--paper)}
+    .mk-sub{font-family:var(--mono);font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,242,234,.55)}
+    .mnav{display:flex;align-items:center;gap:1.9rem}
+    .mnav a{font-size:.78rem;font-weight:500;letter-spacing:.04em;color:rgba(245,242,234,.82);padding:.4rem 0;border-bottom:2px solid transparent;transition:color .25s,border-color .25s}
+    .mnav a:hover{color:var(--paper);border-bottom-color:var(--red)}
+    .mast-r{display:flex;align-items:center;gap:1.4rem}
+    .mast-tel{text-align:right;line-height:1.3}
+    .mast-tel a{font-family:var(--mono);font-size:.86rem;font-weight:500;color:var(--paper)}
+    .mast-tel span{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,234,.5)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;font-weight:600;letter-spacing:.05em;padding:.7rem 1.3rem;border:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+    .btn-red{background:var(--red);color:var(--paper)}
+    .btn-red:hover{background:#8F3A27}
+    .btn-line{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+    .btn-line:hover{background:var(--navy);color:var(--paper)}
+    .btn-paper{background:var(--paper);color:var(--navy)}
+    .btn-paper:hover{background:var(--sand)}
+    .hb{display:none;background:none;border:1px solid rgba(245,242,234,.3);color:var(--paper);padding:.5rem .7rem;cursor:pointer;font-size:.7rem;letter-spacing:.1em}
+    /* mobile drawer */
+    #drawer{display:none;background:var(--harbor);border-top:1px solid rgba(245,242,234,.1)}
+    #drawer.open{display:block}
+    #drawer a{display:block;padding:.95rem clamp(1.25rem,3.5vw,2.5rem);font-size:.86rem;color:rgba(245,242,234,.85);border-bottom:1px solid rgba(245,242,234,.07)}
+    #drawer a:hover{background:rgba(245,242,234,.06)}
+    #drawer .dr-ed{font-size:.7rem;color:rgba(245,242,234,.5)}
+
+    /* ── HERO ── */
+    #top{position:relative;background:var(--deep)}
+    .hero-ph{position:relative;height:min(72vh,640px);min-height:430px;overflow:hidden}
+    .hero-ph img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+    .hero-ph::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,29,44,.88) 0%,rgba(12,29,44,.25) 45%,rgba(12,29,44,.15) 100%)}
+    .hero-board{position:absolute;left:0;right:0;bottom:0;z-index:2}
+    .hero-board .wrap{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;padding-bottom:2.6rem}
+    .hero-copy{max-width:640px}
+    .hero-tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:#D8A06A;margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+    .hero-tag::before{content:'';width:26px;height:1px;background:var(--red)}
+    h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.3rem);line-height:1.18;color:var(--paper);letter-spacing:.005em}
+    .hero-sub{margin-top:1.1rem;font-size:.98rem;font-weight:300;color:rgba(245,242,234,.82);max-width:36em;line-height:1.75}
+    .hero-cta{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+    .hero-est{flex:none;text-align:right;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,234,.5);line-height:2}
+    /* credentials strake */
+    .strake{background:var(--navy);border-top:1px solid rgba(245,242,234,.12)}
+    .strake .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .cred{padding:1.15rem 1.4rem 1.15rem 0;display:flex;align-items:center;gap:.8rem;border-right:1px solid rgba(245,242,234,.1)}
+    .cred:last-child{border-right:none}
+    .cred+ .cred{padding-left:1.4rem}
+    .cred-mk{width:8px;height:8px;background:var(--red);transform:rotate(45deg);flex:none}
+    .cred p{font-size:.74rem;font-weight:500;letter-spacing:.03em;color:rgba(245,242,234,.85);line-height:1.45}
+    .cred p small{display:block;font-weight:300;font-size:.66rem;color:rgba(245,242,234,.5)}
+
+    /* ── SHARED SECTION HEADER ── */
+    .sx-head{display:flex;align-items:baseline;gap:1.2rem;border-bottom:2px solid var(--navy);padding-bottom:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
+    .sx-no{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--red);font-weight:500}
+    .sx-h{font-family:var(--serif);font-weight:700;font-size:clamp(1.45rem,2.8vw,2.1rem);color:var(--navy);line-height:1.25}
+    .sx-aside{margin-left:auto;font-size:.78rem;color:var(--mut);font-weight:300}
+
+    /* ── SERVICES ── */
+    #services{padding:clamp(3.5rem,8vh,6rem) 0}
+    .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem 3rem}
+    .svc{border:1px solid var(--line);background:#FBF9F3}
+    .svc-top{padding:1.5rem 1.7rem 1.2rem;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+    .svc-top h3{font-family:var(--serif);font-size:1.18rem;font-weight:700;color:var(--navy)}
+    .svc-freq{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rope);white-space:nowrap}
+    .svc-bd{padding:1.2rem 1.7rem 1.5rem}
+    .svc-bd>p{font-size:.86rem;font-weight:300;color:var(--mut);line-height:1.75;margin-bottom:1.1rem}
+    .inc{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:.6rem}
+    .svc-ls li{position:relative;padding:.42rem 0 .42rem 1.45rem;font-size:.84rem;border-top:1px dotted var(--line)}
+    .svc-ls li::before{content:'';position:absolute;left:.15rem;top:.95rem;width:7px;height:7px;border:1.5px solid var(--red);transform:rotate(45deg)}
+    .svc-note{margin-top:2.2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;border:1px solid var(--line);background:var(--chart);padding:1.3rem 1.7rem}
+    .svc-note p{font-size:.88rem;color:var(--txt)}
+    .svc-note p b{font-family:var(--serif);font-weight:700;color:var(--navy)}
+
+    /* ── CARE LOG ── */
+    #log{padding:clamp(3.5rem,8vh,6rem) 0;background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .log-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
+    .log-copy h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.45rem,2.8vw,2.1rem);color:var(--navy);line-height:1.3;margin:.6rem 0 1.2rem}
+    .log-copy>p{font-size:.92rem;font-weight:300;color:var(--mut);line-height:1.8;max-width:34em}
+    .log-copy>p+p{margin-top:1rem}
+    .log-pts{margin-top:1.8rem}
+    .log-pts li{display:flex;gap:.85rem;padding:.7rem 0;border-top:1px solid var(--line);font-size:.87rem;align-items:baseline}
+    .log-pts li::before{content:'—';color:var(--red);font-weight:600;flex:none}
+    /* the artifact */
+    .doc{background:#FCFAF4;border:1px solid var(--line);box-shadow:0 14px 36px rgba(20,42,61,.14);font-family:var(--mono)}
+    .doc-hd{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.95rem 1.4rem;border-bottom:2px solid var(--navy)}
+    .doc-hd b{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);font-weight:500}
+    .doc-hd span{font-size:.62rem;color:var(--mut)}
+    .doc-meta{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+    .doc-meta div{padding:.7rem 1.4rem;font-size:.68rem;border-right:1px dotted var(--line)}
+    .doc-meta div:nth-child(2n){border-right:none}
+    .doc-meta span{display:block;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:.15rem}
+    .doc-meta b{font-weight:500;color:var(--navy)}
+    .doc-rows{padding:.5rem 0}
+    .doc-r{display:flex;gap:.9rem;align-items:baseline;padding:.5rem 1.4rem;font-size:.72rem;color:var(--txt)}
+    .doc-r .ck{flex:none;width:13px;height:13px;border:1.5px solid var(--navy);position:relative;top:2px}
+    .doc-r .ck.x::after{content:'✕';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--red);font-weight:500}
+    .doc-r .tm{margin-left:auto;color:var(--mut);font-size:.62rem;flex:none}
+    .doc-note{margin:.4rem 1.4rem .9rem;padding:.75rem .9rem;background:var(--chart);border-left:3px solid var(--rope);font-size:.68rem;line-height:1.65;color:var(--txt)}
+    .doc-ft{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1.4rem;border-top:1px solid var(--line);font-size:.62rem;color:var(--mut)}
+    .doc-ft b{color:var(--navy);font-weight:500}
+
+    /* ── PROCESS ── */
+    #process{padding:clamp(3.5rem,8vh,6rem) 0}
+    .steps{counter-reset:st;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .st{counter-increment:st;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.7rem 1.5rem 1.9rem;background:#FBF9F3;position:relative}
+    .st::before{content:counter(st,decimal-leading-zero);font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--paper);background:var(--navy);padding:.3rem .55rem;position:absolute;top:0;left:0}
+    .st h3{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--navy);margin:1.6rem 0 .6rem}
+    .st p{font-size:.82rem;font-weight:300;color:var(--mut);line-height:1.75}
+    .st .st-t{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rope);display:block;margin-top:1rem}
+
+    /* ── SEASON CALENDAR ── */
+    #season{padding:clamp(3.5rem,8vh,6rem) 0;background:var(--navy);color:var(--paper)}
+    #season .sx-head{border-bottom-color:rgba(245,242,234,.4)}
+    #season .sx-h{color:var(--paper)}
+    #season .sx-aside{color:rgba(245,242,234,.5)}
+    .cal{border:1px solid var(--line-lt)}
+    .cal-r{display:grid;grid-template-columns:9rem 11rem 1fr;border-bottom:1px solid var(--line-lt);transition:background .25s}
+    .cal-r:last-child{border-bottom:none}
+    .cal-r:hover{background:rgba(245,242,234,.04)}
+    .cal-m{padding:1.1rem 1.3rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#D8A06A;border-right:1px solid var(--line-lt)}
+    .cal-ph{padding:1.1rem 1.3rem;font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--paper);border-right:1px solid var(--line-lt)}
+    .cal-d{padding:1.1rem 1.3rem;font-size:.84rem;font-weight:300;color:rgba(245,242,234,.72);line-height:1.7}
+    .cal-foot{margin-top:1.6rem;display:flex;align-items:baseline;gap:.8rem;font-size:.85rem;color:rgba(245,242,234,.65)}
+    .cal-foot b{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#D8A06A;font-weight:500}
+
+    /* ── HARBORS ── */
+    #harbors{padding:clamp(3.5rem,8vh,6rem) 0}
+    .hb-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
+    .hb-tbl{border:1px solid var(--line)}
+    .hb-r{display:grid;grid-template-columns:1fr 9rem 7rem;border-bottom:1px solid var(--line);background:#FBF9F3}
+    .hb-r:last-child{border-bottom:none}
+    .hb-r.hd{background:var(--navy)}
+    .hb-r.hd div{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,234,.75);padding:.7rem 1.2rem}
+    .hb-r div{padding:.85rem 1.2rem;font-size:.85rem}
+    .hb-r div:first-child{font-family:var(--serif);font-weight:700;color:var(--navy)}
+    .hb-r div:nth-child(2){color:var(--mut);font-weight:300}
+    .hb-r div:nth-child(3){font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--rope);text-transform:uppercase;align-self:center}
+    .hb-side h3{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:.9rem}
+    .hb-side p{font-size:.89rem;font-weight:300;color:var(--mut);line-height:1.8}
+    .hb-side p+p{margin-top:.9rem}
+    .hb-card{margin-top:1.8rem;border:1px solid var(--line);background:var(--chart);padding:1.4rem 1.6rem}
+    .hb-card p{font-size:.84rem;color:var(--txt)}
+    .hb-card b{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.5rem;font-weight:500}
+
+    /* ── QUOTES ── */
+    #word{padding:clamp(3rem,7vh,5rem) 0;background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .word-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+    .wq{border-left:3px solid var(--navy);padding:0 0 0 1.4rem}
+    .wq blockquote{font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.65;color:var(--navy)}
+    .wq figcaption{margin-top:1rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--mut)}
+    .wq figcaption b{color:var(--red);font-weight:500}
+
+    /* ── QUESTIONS ── */
+    #questions{padding:clamp(3.5rem,8vh,6rem) 0}
+    .q-list{border-top:1px solid var(--line)}
+    .q-list details{border-bottom:1px solid var(--line)}
+    .q-list summary{list-style:none;display:flex;align-items:baseline;gap:1.1rem;padding:1.25rem .3rem;cursor:pointer;transition:background .2s}
+    .q-list summary::-webkit-details-marker{display:none}
+    .q-list summary:hover{background:rgba(20,42,61,.03)}
+    .q-no{font-family:var(--mono);font-size:.66rem;color:var(--red);flex:none;letter-spacing:.08em}
+    .q-t{font-family:var(--serif);font-weight:700;font-size:1.02rem;color:var(--navy);flex:1}
+    .q-x{font-family:var(--mono);color:var(--rope);font-size:1rem;transition:transform .3s;align-self:center}
+    details[open] .q-x{transform:rotate(45deg)}
+    .q-a{padding:0 .3rem 1.5rem 2.6rem;font-size:.89rem;font-weight:300;color:var(--mut);line-height:1.85;max-width:50em}
+
+    /* ── CONTACT ── */
+    #contact{padding:clamp(3.5rem,8vh,6rem) 0;background:var(--deep);color:var(--paper)}
+    #contact .sx-head{border-bottom-color:rgba(245,242,234,.4)}
+    #contact .sx-h{color:var(--paper)}
+    #contact .sx-aside{color:rgba(245,242,234,.5)}
+    .ct-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
+    .ct-call{border:1px solid var(--line-lt);padding:1.6rem 1.8rem;background:rgba(245,242,234,.03)}
+    .ct-call b{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#D8A06A;display:block;margin-bottom:.8rem;font-weight:500}
+    .ct-tel{font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--paper);line-height:1.3}
+    .ct-call p{font-size:.82rem;font-weight:300;color:rgba(245,242,234,.6);margin-top:.6rem;line-height:1.7}
+    .ct-rows{margin-top:1.8rem;border-top:1px solid var(--line-lt)}
+    .ct-r{display:flex;justify-content:space-between;gap:1rem;padding:.85rem .2rem;border-bottom:1px solid var(--line-lt);font-size:.84rem}
+    .ct-r span{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,234,.45);align-self:center}
+    .ct-r b{font-weight:400;color:rgba(245,242,234,.88)}
+    /* form */
+    .wf{background:var(--paper);color:var(--txt);border:1px solid var(--line);padding:clamp(1.6rem,3vw,2.4rem)}
+    .wf h3{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+    .wf-n{font-size:.82rem;font-weight:300;color:var(--mut);margin-bottom:1.8rem}
+    .wf-g{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 1.4rem}
+    .wff{display:flex;flex-direction:column;gap:.3rem}
+    .wff.w{grid-column:1/-1}
+    .wff label{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+    .wff label b{color:var(--red);font-weight:500}
+    .wff input,.wff select,.wff textarea{font-family:var(--sans);font-size:.92rem;font-weight:300;color:var(--txt);background:#FCFAF4;border:1px solid var(--line);padding:.6rem .8rem;transition:border-color .25s;border-radius:0;-webkit-appearance:none;appearance:none;width:100%}
+    .wff select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23142A3D' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center}
+    .wff textarea{resize:vertical;min-height:84px;line-height:1.65}
+    .wff input:focus,.wff select:focus,.wff textarea:focus{outline:none;border-color:var(--navy)}
+    .wff.err input{border-color:var(--red)}
+    .wff .fe{display:none;font-size:.66rem;color:var(--red)}
+    .wff.err .fe{display:block}
+    .wf-ac{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;margin-top:.5rem}
+    .wf-pv{font-size:.72rem;font-weight:300;color:var(--mut)}
+    .wf-done{display:none;text-align:left;padding:1rem 0}
+    .wf-done.sh{display:block}
+    .wf-done h4{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+    .wf-done p{font-size:.88rem;font-weight:300;color:var(--mut);line-height:1.75}
+
+    /* ── FOOTER ── */
+    footer{background:var(--deep);color:rgba(245,242,234,.6);border-top:1px solid rgba(245,242,234,.1);padding:2.6rem 0 2rem}
+    .f-in{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;padding-bottom:1.8rem;border-bottom:1px solid rgba(245,242,234,.08);margin-bottom:1.5rem}
+    .f-bd .mk-name{font-size:.92rem}
+    .f-bd p{font-size:.74rem;font-weight:300;max-width:26em;margin-top:.6rem;line-height:1.7}
+    .f-cols{display:flex;gap:clamp(2rem,5vw,4.5rem);flex-wrap:wrap}
+    .f-c b{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#D8A06A;display:block;margin-bottom:.8rem;font-weight:500}
+    .f-c ul{display:flex;flex-direction:column;gap:.45rem}
+    .f-c a{font-size:.76rem;font-weight:300;color:rgba(245,242,234,.55);transition:color .25s}
+    .f-c a:hover{color:var(--paper)}
+    .f-c a[aria-current]{color:var(--paper)}
+    .f-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.68rem;font-weight:300;color:rgba(245,242,234,.35)}
+    .f-base .ed i{font-style:normal;color:#D8A06A}
+
+    img.img-fallback{background:linear-gradient(135deg,var(--deep),var(--harbor))}
+
+    /* reveal — restrained */
+    .rv{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+    .rv.in{opacity:1;transform:none}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1020px){
+      .mnav{display:none}
+      .hb{display:block}
+      .mast-tel{display:none}
+      .svc-grid{grid-template-columns:1fr}
+      .log-grid,.hb-grid,.ct-grid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .word-grid{grid-template-columns:1fr}
+      .strake .wrap{grid-template-columns:1fr 1fr}
+      .cred{border-bottom:1px solid rgba(245,242,234,.08);padding-left:0 !important}
+    }
+    @media(max-width:640px){
+      .steps{grid-template-columns:1fr}
+      .cal-r{grid-template-columns:1fr}
+      .cal-m,.cal-ph{border-right:none;border-bottom:1px dotted var(--line-lt);padding-bottom:.5rem}
+      .cal-d{padding-top:.6rem}
+      .hb-r{grid-template-columns:1fr 1fr}
+      .hb-r div:nth-child(3){display:none}
+      .wf-g{grid-template-columns:1fr}
+      .hero-est{display:none}
+      .util-ed span:first-child{display:none}
+      .strake .wrap{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+      .rv{opacity:1;transform:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body>
+<script>function imgFail(e){e.onerror=null;e.classList.add('img-fallback');e.removeAttribute('src');e.alt='';}</script>
+
+<!-- UTILITY BAR -->
+<div id="util">
+  <div class="util-in">
+    <div class="tick" aria-label="Live Lake Michigan conditions">
+      <span class="tick-live"><span class="tick-dot" aria-hidden="true"></span>LAKE MICHIGAN</span>
+      <span class="tick-i">WIND <b id="cWind">—</b></span>
+      <span class="tick-i">WAVES <b id="cWave">—</b></span>
+      <span class="tick-i">WATER <b id="cWater">—</b></span>
+      <span class="tick-i">AIR <b id="cAir">—</b></span>
+      <span class="tick-src" id="cSrc">NOAA BUOY 45198</span>
+    </div>
+    <nav class="util-ed" aria-label="Site editions">
+      <span>Editions:</span>
+      <a href="/">Classic</a>
+      <a href="/fable">Fable</a>
+      <a href="/harbor" class="cur" aria-current="page">Harbor</a>
+    </nav>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header id="mast">
+  <div class="mast-in">
+    <a href="#top" class="mk" aria-label="Buoyancy Elite Yacht Management — home">
+      <span class="mk-burgee" aria-hidden="true">
+        <svg viewBox="0 0 30 30" fill="none"><path d="M2 4h26L17 15l11 11H2V4z" fill="#A8442E"/><path d="M2 4h13v22H2V4z" fill="#F5F2EA"/><circle cx="8.5" cy="15" r="3.2" fill="#142A3D"/></svg>
+      </span>
+      <span class="mk-txt">
+        <span class="mk-name">BUOYANCY ELITE</span>
+        <span class="mk-sub">Yacht Management · Chicago</span>
+      </span>
+    </a>
+    <nav class="mnav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#log">The Care Log</a>
+      <a href="#process">How It Works</a>
+      <a href="#season">The Season</a>
+      <a href="#harbors">Harbors</a>
+      <a href="#questions">Questions</a>
+    </nav>
+    <div class="mast-r">
+      <p class="mast-tel">
+        <!-- SWAP: real phone -->
+        <a href="tel:+13125550000">[Phone Number]</a>
+        <span>Mon–Sat · 7a–6p</span>
+      </p>
+      <a href="#contact" class="btn btn-red">Request a Walkthrough</a>
+      <button class="hb" id="hbBtn" aria-expanded="false" aria-controls="drawer">MENU</button>
+    </div>
+  </div>
+  <nav id="drawer" aria-label="Mobile">
+    <a href="#services">Services</a>
+    <a href="#log">The Care Log</a>
+    <a href="#process">How It Works</a>
+    <a href="#season">The Season</a>
+    <a href="#harbors">Harbors</a>
+    <a href="#questions">Questions</a>
+    <a href="#contact">Request a Walkthrough</a>
+    <a href="/" class="dr-ed">Classic Edition ↗</a>
+    <a href="/fable" class="dr-ed">Fable Edition ↗</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="top" aria-label="Overview">
+  <div class="hero-ph">
+    <!-- SWAP: your own vessel photography -->
+    <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=2200&q=85&auto=format&fit=crop" alt="A professionally maintained motor yacht underway on Lake Michigan" fetchpriority="high" onerror="imgFail(this)"/>
+    <div class="hero-board">
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="hero-tag">Vessel Management · Lake Michigan</p>
+          <h1>Professional yacht care for Chicago's harbors.</h1>
+          <p class="hero-sub">Weekly stewardship, preventative maintenance, refit oversight, and licensed captains — for owners who expect their vessel kept right and their time on the water uninterrupted. Every visit documented. Every season covered.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-red">Schedule a Dockside Walkthrough</a>
+            <a href="#services" class="btn btn-paper">Review Our Services</a>
+          </div>
+        </div>
+        <p class="hero-est">All 9 Chicago harbors<br/>Apr — Nov season<br/>43°N · Lake Michigan</p>
+      </div>
+    </div>
+  </div>
+  <div class="strake" aria-label="Credentials">
+    <div class="wrap">
+      <div class="cred"><span class="cred-mk" aria-hidden="true"></span><p>Fully insured<small>Documentation on request</small></p></div>
+      <div class="cred"><span class="cred-mk" aria-hidden="true"></span><p>USCG-licensed captains<small>Day charters, deliveries, sea trials</small></p></div>
+      <div class="cred"><span class="cred-mk" aria-hidden="true"></span><p>Photo-documented visits<small>A care log after every call</small></p></div>
+      <div class="cred"><span class="cred-mk" aria-hidden="true"></span><p>One dedicated crew<small>The same hands, every week</small></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no">SEC. 01</span>
+      <h2 class="sx-h" id="svc-h">Services</h2>
+      <p class="sx-aside">Standing programs and call-out work, all delivered by one crew.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc rv">
+        <div class="svc-top"><h3>Routine Vessel Care</h3><span class="svc-freq">Weekly · In Season</span></div>
+        <div class="svc-bd">
+          <p>The standing program most owners start with. Your boat is washed, inspected, and made ready every week — and you receive the log to prove it.</p>
+          <p class="inc">Included</p>
+          <ul class="svc-ls">
+            <li>Hull &amp; topside wash, gelcoat polish, brightwork care</li>
+            <li>Interior turnover — linens, galley, heads, odor control</li>
+            <li>Fresh-water tank top-offs &amp; shore power check</li>
+            <li>Dock line, fender &amp; chafe gear inspection</li>
+            <li>Bilge, batteries &amp; through-hull visual check</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc rv">
+        <div class="svc-top"><h3>Maintenance &amp; Restoration</h3><span class="svc-freq">Scheduled · As Found</span></div>
+        <div class="svc-bd">
+          <p>Preventative work caught early costs a fraction of what it costs late. We inspect on every visit and schedule corrective work before it becomes a haul-out problem.</p>
+          <p class="inc">Included</p>
+          <ul class="svc-ls">
+            <li>Teak restoration — two-part clean, brighten &amp; seal</li>
+            <li>Systems inspection — hoses, clamps, impellers, zincs</li>
+            <li>Canvas, isinglass &amp; stainless care</li>
+            <li>Oil &amp; fluid coordination with your mechanic</li>
+            <li>Written condition reports with photos</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc rv">
+        <div class="svc-top"><h3>Projects &amp; Refit Oversight</h3><span class="svc-freq">Quoted · Supervised</span></div>
+        <div class="svc-bd">
+          <p>Electronics upgrades, repowers, interior refits, insurance repairs. We scope the work, gather competitive quotes, supervise the yard, and sign off on your behalf.</p>
+          <p class="inc">Included</p>
+          <ul class="svc-ls">
+            <li>Project scoping &amp; competitive vendor quotes</li>
+            <li>Yard &amp; contractor supervision</li>
+            <li>Weekly progress reports with photographs</li>
+            <li>Sea trial &amp; final acceptance on completion</li>
+            <li>Winter work scheduled so spring isn't lost</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc rv">
+        <div class="svc-top"><h3>Captains &amp; On-Water Services</h3><span class="svc-freq">On Call · 48 Hrs Notice</span></div>
+        <div class="svc-bd">
+          <p>USCG-licensed, Lake Michigan–experienced captains for the days you want crew aboard — or when the boat needs to move and you can't be there.</p>
+          <p class="inc">Included</p>
+          <ul class="svc-ls">
+            <li>Day charters &amp; owner-accompanied passages</li>
+            <li>Deliveries between harbors &amp; yards</li>
+            <li>Sea trials for surveys &amp; post-repair checks</li>
+            <li>Docking instruction &amp; new-owner orientation</li>
+            <li>Provisioning &amp; guest-ready staging on request</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <div class="svc-note rv">
+      <p><b>Seasonal programs</b> bundle routine care, maintenance, commissioning, and winterization into one engagement, priced for your vessel — not a rate sheet.</p>
+      <a href="#contact" class="btn btn-line">Request a Proposal</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARE LOG -->
+<section id="log" aria-labelledby="log-h">
+  <div class="wrap">
+    <div class="log-grid">
+      <div class="log-copy rv">
+        <span class="sx-no">SEC. 02</span>
+        <h2 id="log-h">Every visit ends with a care log in your inbox.</h2>
+        <p>Most owners' real worry isn't whether work happens — it's not knowing. Our answer is the care log: a timestamped, photographed record of every visit, sent the same day.</p>
+        <p>What was done, what we found, what we recommend. When survey time or resale comes, your vessel has a maintenance history most brokers only wish they could show.</p>
+        <ul class="log-pts">
+          <li>Photographs of completed work, every visit</li>
+          <li>Condition flags before they become invoices</li>
+          <li>A season-long history you can hand a surveyor</li>
+        </ul>
+      </div>
+      <div class="rv" aria-label="Sample care log entry">
+        <!-- sample care log artifact -->
+        <div class="doc">
+          <div class="doc-hd"><b>Vessel Care Log</b><span>ENTRY №&nbsp;14-22</span></div>
+          <div class="doc-meta">
+            <div><span>Vessel</span><b>M/Y Northern Star · 46′</b></div>
+            <div><span>Berth</span><b>Belmont Harbor · D-Dock</b></div>
+            <div><span>Date</span><b>Thu, June 11 · 08:40</b></div>
+            <div><span>Crew</span><b>Team 2 (assigned)</b></div>
+          </div>
+          <div class="doc-rows">
+            <div class="doc-r"><span class="ck x" aria-hidden="true"></span>Hull &amp; topside wash, spot polish port quarter<span class="tm">08:40</span></div>
+            <div class="doc-r"><span class="ck x" aria-hidden="true"></span>Interior turnover — linens, galley, heads<span class="tm">09:25</span></div>
+            <div class="doc-r"><span class="ck x" aria-hidden="true"></span>Fresh-water tanks topped — 140 gal<span class="tm">10:05</span></div>
+            <div class="doc-r"><span class="ck x" aria-hidden="true"></span>Lines &amp; fenders checked after Tuesday's blow<span class="tm">10:15</span></div>
+            <div class="doc-r"><span class="ck x" aria-hidden="true"></span>Bilge dry · batteries 12.7V · through-hulls clear<span class="tm">10:30</span></div>
+          </div>
+          <div class="doc-note"><b>NOTED:</b> Chafe beginning on starboard bow line at chock. Replaced from spares aboard; recommend one spare line ordered. Photo attached.</div>
+          <div class="doc-ft"><span>12 photographs attached</span><b>Sent to owner 11:02 AM</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" aria-labelledby="prc-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no">SEC. 03</span>
+      <h2 class="sx-h" id="prc-h">How an engagement works</h2>
+      <p class="sx-aside">From first call to first care log — usually inside two weeks.</p>
+    </div>
+    <div class="steps">
+      <div class="st rv">
+        <h3>Dockside walkthrough</h3>
+        <p>We meet you at the boat. Thirty minutes aboard tells us more than any form — condition, systems, how you actually use her.</p>
+        <span class="st-t">No charge · At your slip</span>
+      </div>
+      <div class="st rv">
+        <h3>Written proposal</h3>
+        <p>A program scoped to your vessel and season — what's included, what it costs, and what we flagged aboard that needs attention first.</p>
+        <span class="st-t">Within one business day</span>
+      </div>
+      <div class="st rv">
+        <h3>Crew assignment</h3>
+        <p>One crew is permanently assigned to your vessel. They learn your boat — and they're the ones aboard every week thereafter.</p>
+        <span class="st-t">Same hands, every visit</span>
+      </div>
+      <div class="st rv">
+        <h3>Weekly care &amp; log</h3>
+        <p>The program runs. You get the care log after every visit and a phone call whenever something needs a decision from you.</p>
+        <span class="st-t">All season · Apr–Nov</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEASON -->
+<section id="season" aria-labelledby="sea-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no" style="color:#D8A06A">SEC. 04</span>
+      <h2 class="sx-h" id="sea-h">A season on the lake, managed end to end</h2>
+      <p class="sx-aside">Chicago Park District harbors run roughly April through November.</p>
+    </div>
+    <div class="cal rv">
+      <div class="cal-r">
+        <div class="cal-m">Apr — May</div>
+        <div class="cal-ph">Commissioning</div>
+        <div class="cal-d">Launch coordination, bottom &amp; hull detail, systems inspection and de-winterization, safety gear check, shakedown run. The boat meets the season ready — not catching up to it.</div>
+      </div>
+      <div class="cal-r">
+        <div class="cal-m">May — Oct</div>
+        <div class="cal-ph">Active Season</div>
+        <div class="cal-d">Weekly care visits and logs, interior turnovers, tank top-offs, preventative inspections, storm checks after every blow, captains and provisioning on 48 hours' notice.</div>
+      </div>
+      <div class="cal-r">
+        <div class="cal-m">Oct — Nov</div>
+        <div class="cal-ph">Decommissioning</div>
+        <div class="cal-d">Haul-out coordination, engine and systems winterization, shrink-wrap, batteries to tender, and a documented lay-up report so spring starts from a known state.</div>
+      </div>
+      <div class="cal-r">
+        <div class="cal-m">Dec — Mar</div>
+        <div class="cal-ph">Winter Watch</div>
+        <div class="cal-d">Monthly storage checks, cover and cradle inspection after heavy weather, and refit or upgrade projects supervised in the yard while you're away — finished before launch, not after.</div>
+      </div>
+    </div>
+    <p class="cal-foot rv"><b>NOTE</b> Roughly 180 days of boating weather a year. Our job is making sure none of them are spent waiting on a vendor.</p>
+  </div>
+</section>
+
+<!-- HARBORS -->
+<section id="harbors" aria-labelledby="hb-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no">SEC. 05</span>
+      <h2 class="sx-h" id="hb-h">Harbors served</h2>
+      <p class="sx-aside">All nine Chicago Park District harbors, on a weekly route.</p>
+    </div>
+    <div class="hb-grid">
+      <div class="hb-tbl rv" role="table" aria-label="Harbors served">
+        <div class="hb-r hd" role="row"><div role="columnheader">Harbor</div><div role="columnheader">Area</div><div role="columnheader">Service</div></div>
+        <div class="hb-r" role="row"><div role="cell">Montrose Harbor</div><div role="cell">Uptown</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">Belmont Harbor</div><div role="cell">Lakeview</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">Diversey Harbor</div><div role="cell">Lincoln Park</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">DuSable Harbor</div><div role="cell">Streeterville</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">Monroe Harbor</div><div role="cell">Grant Park</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">Burnham Harbor</div><div role="cell">Museum Campus</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">31st Street Harbor</div><div role="cell">Bridgeport</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">Jackson Park Harbor</div><div role="cell">Hyde Park</div><div role="cell">Weekly</div></div>
+        <div class="hb-r" role="row"><div role="cell">59th Street Harbor</div><div role="cell">South Shore</div><div role="cell">Weekly</div></div>
+      </div>
+      <div class="hb-side rv">
+        <h3>We work where your boat lives.</h3>
+        <p>Our crews run a weekly route through every Chicago Park District harbor, which means your vessel is rarely more than a few slips from someone who knows her. Mooring cans at Monroe included — we run the tender.</p>
+        <p>North Shore yacht clubs and Indiana marinas are taken on by arrangement, route permitting.</p>
+        <div class="hb-card">
+          <b>After a blow</b>
+          <p>When sustained winds top 25 knots, every vessel on a standing program gets a dock check within 24 hours — lines, fenders, cover, bilge. You get the all-clear by text.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section id="word" aria-label="From our owners">
+  <div class="wrap">
+    <div class="word-grid">
+      <!-- SWAP: real client quotes & vessels -->
+      <figure class="wq rv">
+        <blockquote>We arrive Friday evening and she's spotless, provisioned, and ready — every single week of the season.</blockquote>
+        <figcaption>M. &amp; T. H. · <b>M/Y Northern Star 46′</b> · Belmont</figcaption>
+      </figure>
+      <figure class="wq rv">
+        <blockquote>The care log alone is worth it. Photos after every visit, and the teak hasn't looked this good in fifteen years.</blockquote>
+        <figcaption>D. R. · <b>S/Y Meridian 42′</b> · Monroe</figcaption>
+      </figure>
+      <figure class="wq rv">
+        <blockquote>They ran a winter repower start to finish while we were in Florida. We came back to a better boat than we left.</blockquote>
+        <figcaption>The V. Family · <b>M/Y Second Wind 52′</b> · DuSable</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section id="questions" aria-labelledby="q-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no">SEC. 06</span>
+      <h2 class="sx-h" id="q-h">Owners' questions</h2>
+      <p class="sx-aside">The ones we hear at the dock, answered straight.</p>
+    </div>
+    <div class="q-list rv">
+      <details>
+        <summary><span class="q-no">Q.1</span><span class="q-t">What does a weekly visit actually include?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">A full wash of hull and topsides, interior walkthrough and turnover, fresh-water top-off, line and fender inspection, and a bilge, battery, and through-hull check — closed out with a photographed care log the same day. Your program may add teak care, canvas work, or provisioning.</p>
+      </details>
+      <details>
+        <summary><span class="q-no">Q.2</span><span class="q-t">Do you replace my mechanic, or work with him?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">We work with him. If you have a mechanic, rigger, or canvas shop you trust, we coordinate and supervise them. If you don't, we bring vendors we've worked with for years and stand behind. Either way, you make one call — to us.</p>
+      </details>
+      <details>
+        <summary><span class="q-no">Q.3</span><span class="q-t">What happens when a storm comes through?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">Every vessel on a standing program gets a dock check within 24 hours of sustained winds over 25 knots — lines, fenders, cover, bilge. You get the all-clear by text, or a phone call if something needs a decision.</p>
+      </details>
+      <details>
+        <summary><span class="q-no">Q.4</span><span class="q-t">Are you insured, and are your captains licensed?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">Fully insured — documentation available on request, and we're happy to be named on your policy's requirements. Every captain we place holds a current USCG license with Great Lakes experience.</p>
+      </details>
+      <details>
+        <summary><span class="q-no">Q.5</span><span class="q-t">Can you handle work over the winter?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">Winter is when the big work should happen. We scope projects in the fall, supervise the yard through the off-season with weekly photo reports, and sea-trial the result before launch — so your spring isn't spent waiting on a punch list.</p>
+      </details>
+      <details>
+        <summary><span class="q-no">Q.6</span><span class="q-t">What does a program cost?</span><span class="q-x" aria-hidden="true">+</span></summary>
+        <p class="q-a">It depends on the vessel, the harbor, and what you want covered — which is why we start with a free dockside walkthrough rather than a rate sheet. You'll have a written proposal within one business day of stepping aboard.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="ct-h">
+  <div class="wrap">
+    <div class="sx-head">
+      <span class="sx-no" style="color:#D8A06A">SEC. 07</span>
+      <h2 class="sx-h" id="ct-h">Start with a walkthrough</h2>
+      <p class="sx-aside">Thirty minutes at your slip. No charge, no obligation.</p>
+    </div>
+    <div class="ct-grid">
+      <div class="rv">
+        <div class="ct-call">
+          <b>Prefer to talk? Most owners do.</b>
+          <!-- SWAP: real phone -->
+          <p class="ct-tel"><a href="tel:+13125550000">[Phone Number]</a></p>
+          <p>Monday–Saturday, 7am–6pm. If we're on the water, leave a message — we return every call the same day.</p>
+        </div>
+        <div class="ct-rows">
+          <!-- SWAP: real email -->
+          <div class="ct-r"><span>Email</span><b>[email@buoyancyelite.com]</b></div>
+          <div class="ct-r"><span>Season</span><b>April — November</b></div>
+          <div class="ct-r"><span>Walkthrough</span><b>At your slip, free of charge</b></div>
+          <div class="ct-r"><span>Proposal</span><b>Within one business day</b></div>
+        </div>
+      </div>
+      <div class="rv">
+        <form class="wf" id="wForm" novalidate>
+          <h3>Request a Dockside Walkthrough</h3>
+          <p class="wf-n">Tell us about the boat and where she's berthed — we'll call to set a time.</p>
+          <div class="wf-g">
+            <div class="wff" id="wf-name">
+              <label for="w-name">Name <b>*</b></label>
+              <input id="w-name" name="name" type="text" autocomplete="name"/>
+              <span class="fe">Please tell us your name.</span>
+            </div>
+            <div class="wff" id="wf-phone">
+              <label for="w-phone">Phone <b>*</b></label>
+              <input id="w-phone" name="phone" type="tel" autocomplete="tel"/>
+              <span class="fe">We'll call to set a time.</span>
+            </div>
+            <div class="wff">
+              <label for="w-email">Email</label>
+              <input id="w-email" name="email" type="email" autocomplete="email"/>
+            </div>
+            <div class="wff">
+              <label for="w-vessel">Vessel — make &amp; length</label>
+              <input id="w-vessel" name="vessel" type="text" />
+            </div>
+            <div class="wff">
+              <label for="w-harbor">Harbor</label>
+              <select id="w-harbor" name="harbor">
+                <option value="">Select…</option>
+                <option>Montrose</option><option>Belmont</option><option>Diversey</option>
+                <option>DuSable</option><option>Monroe</option><option>Burnham</option>
+                <option>31st Street</option><option>Jackson Park</option><option>59th Street</option>
+                <option>Other / North Shore / Indiana</option>
+              </select>
+            </div>
+            <div class="wff">
+              <label for="w-int">Interested in</label>
+              <select id="w-int" name="interest">
+                <option value="">Select…</option>
+                <option>Seasonal program</option>
+                <option>Routine weekly care</option>
+                <option>Maintenance &amp; restoration</option>
+                <option>Project / refit oversight</option>
+                <option>Captain services</option>
+                <option>Winterization</option>
+              </select>
+            </div>
+            <div class="wff w">
+              <label for="w-msg">Anything we should know about the boat?</label>
+              <textarea id="w-msg" name="message"></textarea>
+            </div>
+            <div class="wf-ac">
+              <button type="submit" class="btn btn-red">Send Request</button>
+              <p class="wf-pv">Replies within one business day. Never shared.</p>
+            </div>
+          </div>
+        </form>
+        <!-- SWAP: wire form to your email/CRM endpoint -->
+        <div class="wf wf-done" id="wDone" role="status">
+          <h4>Request received.</h4>
+          <p>Thank you — we'll call within one business day to set a time at your slip. If it's urgent, ring the number on this page and we'll pick up.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div class="f-bd">
+        <span class="mk-name">BUOYANCY ELITE</span>
+        <p>Professional yacht management for Lake Michigan — weekly care, maintenance, refit oversight, and licensed captains across Chicago's nine harbors.</p>
+      </div>
+      <div class="f-cols">
+        <div class="f-c">
+          <b>Company</b>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#log">The Care Log</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#season">The Season</a></li>
+            <li><a href="#harbors">Harbors</a></li>
+          </ul>
+        </div>
+        <div class="f-c">
+          <b>Contact</b>
+          <ul>
+            <!-- SWAP: real phone & email -->
+            <li><a href="#contact">[Phone Number]</a></li>
+            <li><a href="#contact">[email@buoyancyelite.com]</a></li>
+            <li><a href="https://www.ndbc.noaa.gov/station_page.php?station=45198" target="_blank" rel="noopener">NOAA Buoy 45198 ↗</a></li>
+          </ul>
+        </div>
+        <div class="f-c">
+          <b>Editions</b>
+          <ul>
+            <li><a href="/">Classic</a></li>
+            <li><a href="/fable">Fable</a></li>
+            <li><a href="/harbor" aria-current="page">Harbor</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="f-base">
+      <p>© <span id="yr">2026</span> Buoyancy Elite Yacht Management. All rights reserved.</p>
+      <p class="ed">Harbor Edition — designed with <i>Fable 5</i></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* reveal */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.1,rootMargin:'0px 0px -4% 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* mobile drawer */
+var dr=document.getElementById('drawer'),hb=document.getElementById('hbBtn');
+hb.addEventListener('click',function(){
+  var open=dr.classList.toggle('open');
+  hb.setAttribute('aria-expanded',open);
+  hb.textContent=open?'CLOSE':'MENU';
+});
+dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){dr.classList.remove('open');hb.setAttribute('aria-expanded',false);hb.textContent='MENU';});});
+
+/* accordion: close others */
+var qs=document.querySelectorAll('.q-list details');
+qs.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)qs.forEach(function(o){if(o!==d)o.open=false;});});});
+
+/* form */
+var form=document.getElementById('wForm');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var ok=true;
+  var nm=document.getElementById('w-name'),ph=document.getElementById('w-phone');
+  var fn=document.getElementById('wf-name'),fp=document.getElementById('wf-phone');
+  fn.classList.toggle('err',!nm.value.trim());if(!nm.value.trim())ok=false;
+  var pOk=ph.value.replace(/\D/g,'').length>=7;
+  fp.classList.toggle('err',!pOk);if(!pOk)ok=false;
+  if(!ok)return;
+  /* SWAP: POST to your email/CRM endpoint */
+  form.style.display='none';
+  document.getElementById('wDone').classList.add('sh');
+});
+
+/* footer year */
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* conditions ticker: NOAA buoy 45198 → Open-Meteo fallback */
+var CMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+function cmp(d){return CMP[Math.round(d/22.5)%16];}
+function sv(id,t){var el=document.getElementById(id);if(el)el.textContent=t;}
+async function cond(){
+  var URL='https://www.ndbc.noaa.gov/data/realtime2/45198.txt';
+  var PX='https://corsproxy.io/?url=';
+  try{
+    var r=await fetch(PX+encodeURIComponent(URL),{signal:AbortSignal.timeout(8000)});
+    if(!r.ok)throw 0;
+    var lines=(await r.text()).trim().split('\n').filter(function(l){return !l.startsWith('#');});
+    if(!lines.length)throw 0;
+    var c=lines[0].trim().split(/\s+/);
+    function g(i){var v=c[i];return(v==='MM'||v===undefined)?null:parseFloat(v);}
+    var wd=g(5),ws=g(6),wh=g(8),at=g(13),wt=g(14);
+    if(ws==null&&wh==null&&wt==null)throw 0;
+    if(ws!=null)sv('cWind',Math.round(ws*2.237)+' mph'+(wd!=null?' '+cmp(wd):''));
+    if(wh!=null)sv('cWave',(wh*3.281).toFixed(1)+' ft');
+    if(wt!=null)sv('cWater',Math.round(wt*9/5+32)+'°F');
+    if(at!=null)sv('cAir',Math.round(at*9/5+32)+'°F');
+    sv('cSrc','NOAA BUOY 45198 · '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}));
+  }catch(_){
+    try{
+      var m=await(await fetch('https://marine-api.open-meteo.com/v1/marine?latitude=41.89&longitude=-87.57&current=wave_height&timezone=America%2FChicago')).json();
+      var w=await(await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.89&longitude=-87.57&current=temperature_2m,wind_speed_10m,wind_direction_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FChicago')).json();
+      if(w.current){
+        sv('cWind',Math.round(w.current.wind_speed_10m)+' mph '+cmp(w.current.wind_direction_10m));
+        sv('cAir',Math.round(w.current.temperature_2m)+'°F');
+      }
+      if(m.current&&m.current.wave_height!=null)sv('cWave',(m.current.wave_height*3.281).toFixed(1)+' ft');
+      sv('cSrc','OPEN-METEO · LAKE MICHIGAN');
+    }catch(_2){sv('cSrc','CONDITIONS UNAVAILABLE');}
+  }
+}
+cond();
+setInterval(cond,10*60*1000);
+})();
+</script>
+</body>
+</html>
