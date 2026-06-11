@@ -89,6 +89,8 @@
     .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--t)}
     .nav-links a:hover{color:var(--white)}
     .nav-links a:hover::after{width:100%}
+    .nav-links a.fable-link{color:var(--gold-lt)}
+    .nav-links a.fable-link::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold-lt);margin-right:.45rem;vertical-align:2px}
     .nav-cta{display:flex;align-items:center;gap:1rem}
     .weather-badge{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.08);border:1px solid rgba(194,162,76,.25);padding:.4rem 1rem;font-size:.72rem;color:rgba(255,255,255,.8);letter-spacing:.04em;border-radius:100px;backdrop-filter:blur(8px)}
     .weather-badge .w-icon{font-size:1rem}
@@ -473,6 +475,7 @@
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="/fable" class="fable-link" title="A second take on this site, designed with Fable 5">Fable Edition</a></li>
       </ul>
       <div class="nav-cta">
         <div class="weather-badge" id="weatherBadge" aria-live="polite">
@@ -492,6 +495,7 @@
   <a href="#gallery" class="mobile-link">Gallery</a>
   <a href="#faq" class="mobile-link">FAQ</a>
   <a href="#contact" class="mobile-link">Contact</a>
+  <a href="/fable" class="mobile-link" style="color:var(--gold-lt)">Fable Edition</a>
   <button class="btn btn-gold" onclick="openModal();toggleMenu(false)" style="margin-top:1rem">Request Service</button>
 </div>
 
@@ -746,7 +750,7 @@
         </div>
       </div>
       <div class="footer-col"><p class="footer-col-title">Services</p><ul><li><a href="#services">Washing &amp; Detailing</a></li><li><a href="#services">Interior Cleaning</a></li><li><a href="#services">Teak Restoration</a></li><li><a href="#services">Preventative Maintenance</a></li><li><a href="#services">Captain Services</a></li><li><a href="#seasonal">Seasonal Programs</a></li></ul></div>
-      <div class="footer-col"><p class="footer-col-title">Company</p><ul><li><a href="#about">About Us</a></li><li><a href="#approach">Our Approach</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><p class="footer-col-title">Company</p><ul><li><a href="#about">About Us</a></li><li><a href="#approach">Our Approach</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li><li><a href="/fable" style="color:var(--gold-lt)">Fable Edition</a></li></ul></div>
       <div class="footer-col"><p class="footer-col-title">Harbors</p><ul><li><a href="#contact">Burnham Harbor</a></li><li><a href="#contact">DuSable Harbor</a></li><li><a href="#contact">Monroe Harbor</a></li><li><a href="#contact">Belmont Harbor</a></li><li><a href="#contact">Montrose Harbor</a></li></ul></div>
     </div>
     <div class="footer-bottom">
